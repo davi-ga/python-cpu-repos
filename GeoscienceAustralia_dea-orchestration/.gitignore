@@ -1,0 +1,18 @@
+venv
+*__pycache__*
+*.pyc
+*.egg-info*
+.pytest_cache
+.cache*
+.idea
+dist
+.terraform
+terraform.tfstate*
+node_modules
+
+# package directories
+node_modules
+jspm_packages
+
+# Serverless directories
+.serverless

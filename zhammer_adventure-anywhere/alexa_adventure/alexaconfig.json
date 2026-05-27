@@ -1,0 +1,174 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "cave adventure",
+      "intents": [
+        {
+          "name": "AMAZON.FallbackIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "CommandIntent",
+          "slots": [
+            {
+              "name": "commandA",
+              "type": "COMMAND"
+            },
+            {
+              "name": "commandB",
+              "type": "COMMAND"
+            }
+          ],
+          "samples": [
+            "use the {commandA}",
+            "{commandA}",
+            "{commandA} {commandB}",
+            "{commandA} the {commandB}"
+          ]
+        }
+      ],
+      "types": [
+        {
+          "name": "COMMAND",
+          "values": [
+            { "id": "UPSTREAM", "name": { "value": "upstream" } },
+            { "id": "DOWNSTREAM", "name": { "value": "downstream" } },
+            { "id": "FOREST", "name": { "value": "forest" } },
+            { "id": "FORWARD", "name": { "value": "forward" } },
+            { "id": "ONWARD", "name": { "value": "onward" } },
+            { "id": "RETURN", "name": { "value": "return" } },
+            { "id": "RETREAT", "name": { "value": "retreat" } },
+            { "id": "VALLEY", "name": { "value": "valley" } },
+            { "id": "STAIRCASE", "name": { "value": "staircase" } },
+            { "id": "OUTSIDE", "name": { "value": "outside" } },
+            { "id": "BUILDING", "name": { "value": "building" } },
+            { "id": "STREAM", "name": { "value": "stream" } },
+            { "id": "COBBLE", "name": { "value": "cobble" } },
+            { "id": "INWARD", "name": { "value": "inward" } },
+            { "id": "INSIDE", "name": { "value": "inside" } },
+            { "id": "SURFACE", "name": { "value": "surface" } },
+            { "id": "NOWHERE", "name": { "value": "nowhere" } },
+            { "id": "PASSAGE", "name": { "value": "passage" } },
+            { "id": "TUNNEL", "name": { "value": "tunnel" } },
+            { "id": "CANYON", "name": { "value": "canyon" } },
+            { "id": "AWKWARD", "name": { "value": "awkward" } },
+            { "id": "UPWARD", "name": { "value": "upward" } },
+            { "id": "ASCEND", "name": { "value": "ascend" } },
+            { "id": "DOWNWARD", "name": { "value": "downward" } },
+            { "id": "DESCEND", "name": { "value": "descend" } },
+            { "id": "OUTDOORS", "name": { "value": "outdoors" } },
+            { "id": "BARREN", "name": { "value": "barren" } },
+            { "id": "ACROSS", "name": { "value": "across" } },
+            { "id": "DEBRIS", "name": { "value": "debris" } },
+            { "id": "BROKEN", "name": { "value": "broken" } },
+            { "id": "EXAMINE", "name": { "value": "examine" } },
+            { "id": "DESCRIBE", "name": { "value": "describe" } },
+            { "id": "SLABROOM", "name": { "value": "slabroom" } },
+            { "id": "DEPRESSION", "name": { "value": "depression" } },
+            { "id": "ENTRANCE", "name": { "value": "entrance" } },
+            { "id": "SECRET", "name": { "value": "secret" } },
+            { "id": "BEDQUILT", "name": { "value": "bedquilt" } },
+            { "id": "PLOVER", "name": { "value": "plover" } },
+            { "id": "ORIENTAL", "name": { "value": "oriental" } },
+            { "id": "CAVERN", "name": { "value": "cavern" } },
+            { "id": "RESERVOIR", "name": { "value": "reservoir" } },
+            { "id": "OFFICE", "name": { "value": "office" } },
+            { "id": "HEADLAMP", "name": { "value": "headlamp" } },
+            { "id": "LANTERN", "name": { "value": "lantern" } },
+            { "id": "PILLOW", "name": { "value": "pillow" } },
+            { "id": "VELVET", "name": { "value": "velvet" } },
+            { "id": "FISSURE", "name": { "value": "fissure" } },
+            { "id": "TABLET", "name": { "value": "tablet" } },
+            { "id": "OYSTER", "name": { "value": "oyster" } },
+            { "id": "MAGAZINE", "name": { "value": "magazine" } },
+            { "id": "SPELUNKER", "name": { "value": "spelunker" } },
+            { "id": "DWARVES", "name": { "value": "dwarves" } },
+            { "id": "KNIVES", "name": { "value": "knives" } },
+            { "id": "RATIONS", "name": { "value": "rations" } },
+            { "id": "BOTTLE", "name": { "value": "bottle" } },
+            { "id": "MIRROR", "name": { "value": "mirror" } },
+            { "id": "BEANSTALK", "name": { "value": "beanstalk" } },
+            { "id": "STALACTITE", "name": { "value": "stalactite" } },
+            { "id": "SHADOW", "name": { "value": "shadow" } },
+            { "id": "FIGURE", "name": { "value": "figure" } },
+            { "id": "DRAWINGS", "name": { "value": "drawings" } },
+            { "id": "PIRATE", "name": { "value": "pirate" } },
+            { "id": "DRAGON", "name": { "value": "dragon" } },
+            { "id": "MESSAGE", "name": { "value": "message" } },
+            { "id": "VOLCANO", "name": { "value": "volcano" } },
+            { "id": "GEYSER", "name": { "value": "geyser" } },
+            { "id": "MACHINE", "name": { "value": "machine" } },
+            { "id": "VENDING", "name": { "value": "vending" } },
+            { "id": "BATTERIES", "name": { "value": "batteries" } },
+            { "id": "CARPET", "name": { "value": "carpet" } },
+            { "id": "NUGGETS", "name": { "value": "nuggets" } },
+            { "id": "DIAMONDS", "name": { "value": "diamonds" } },
+            { "id": "SILVER", "name": { "value": "silver" } },
+            { "id": "JEWELRY", "name": { "value": "jewelry" } },
+            { "id": "TREASURE", "name": { "value": "treasure" } },
+            { "id": "TRIDENT", "name": { "value": "trident" } },
+            { "id": "SHARDS", "name": { "value": "shards" } },
+            { "id": "POTTERY", "name": { "value": "pottery" } },
+            { "id": "EMERALD", "name": { "value": "emerald" } },
+            { "id": "PLATINUM", "name": { "value": "platinum" } },
+            { "id": "PYRAMID", "name": { "value": "pyramid" } },
+            { "id": "PEARL", "name": { "value": "pearl" } },
+            { "id": "PERSIAN", "name": { "value": "persian" } },
+            { "id": "SPICES", "name": { "value": "spices" } },
+            { "id": "CAPTURE", "name": { "value": "capture" } },
+            { "id": "RELEASE", "name": { "value": "release" } },
+            { "id": "DISCARD", "name": { "value": "discard" } },
+            { "id": "MUMBLE", "name": { "value": "mumble" } },
+            { "id": "UNLOCK", "name": { "value": "unlock" } },
+            { "id": "NOTHING", "name": { "value": "nothing" } },
+            { "id": "EXTINGUISH", "name": { "value": "extinguish" } },
+            { "id": "PLACATE", "name": { "value": "placate" } },
+            { "id": "TRAVEL", "name": { "value": "travel" } },
+            { "id": "PROCEED", "name": { "value": "proceed" } },
+            { "id": "CONTINUE", "name": { "value": "continue" } },
+            { "id": "EXPLORE", "name": { "value": "explore" } },
+            { "id": "FOLLOW", "name": { "value": "follow" } },
+            { "id": "ATTACK", "name": { "value": "attack" } },
+            { "id": "STRIKE", "name": { "value": "strike" } },
+            { "id": "DEVOUR", "name": { "value": "devour" } },
+            { "id": "INVENTORY", "name": { "value": "inventory" } },
+            { "id": "DETONATE", "name": { "value": "detonate" } },
+            { "id": "IGNITE", "name": { "value": "ignite" } },
+            { "id": "BLOWUP", "name": { "value": "blowup" } },
+            { "id": "PERUSE", "name": { "value": "peruse" } },
+            { "id": "SHATTER", "name": { "value": "shatter" } },
+            { "id": "DISTURB", "name": { "value": "disturb" } },
+            { "id": "SUSPEND", "name": { "value": "suspend" } },
+            { "id": "SESAME", "name": { "value": "sesame" } },
+            { "id": "OPENSESAME", "name": { "value": "opensesame" } },
+            { "id": "ABRACADABRA", "name": { "value": "abracadabra" } },
+            { "id": "SHAZAM", "name": { "value": "shazam" } },
+            { "id": "EXCAVATE", "name": { "value": "excavate" } },
+            { "id": "INFORMATION", "name": { "value": "information" } },
+
+            { "id": "START", "name": { "value": "start" } },
+            { "id": "RESTART", "name": { "value": "restart" } },
+            { "id": "YES", "name": { "value": "yes" } },
+            { "id": "NO", "name": { "value": "no" } }
+          ]
+        }
+      ]
+    }
+  }
+}

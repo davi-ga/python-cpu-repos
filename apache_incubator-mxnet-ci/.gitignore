@@ -1,0 +1,21 @@
+*.DS_STORE
+*~
+
+# IDE
+.vscode/
+.idea
+
+# Terraform scripts
+.terraform/
+terraform/
+
+# Serverless scripts
+node_modules
+package-lock.json
+.serverless/
+
+# Python
+__pycache__/
+
+# As environment.yml contains secret credentials, don't commit
+environment.yml

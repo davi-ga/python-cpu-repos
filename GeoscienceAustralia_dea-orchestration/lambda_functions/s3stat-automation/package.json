@@ -1,0 +1,13 @@
+{
+  "name": "s3stat-monitoring",
+  "version": "1.0.0",
+  "description": "Download data from S3stat",
+  "main": "handler.py",
+  "author": "Geoscience Australia",
+  "license": "Apache-2.0",
+  "repository": "https://github.com/GeoscienceAustralia/dea-data/",
+  "devDependencies": {
+    "serverless-pseudo-parameters": "^2.5.0",
+    "serverless-python-requirements": "^5.0.1"
+  }
+}

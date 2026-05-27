@@ -1,0 +1,6 @@
+{
+    "Merchant": "https://sfa5fs6ssg.execute-api.us-east-1.amazonaws.com/merchant/messages",
+    "Labeler": "https://m19bfpn44h.execute-api.us-east-1.amazonaws.com/default/LabelerReceiver",
+    "Wrapper": "https://nr795gb086.execute-api.us-east-1.amazonaws.com/default/WrapperReceiver",
+    "Packer": "https://9gbsdy66q9.execute-api.us-east-1.amazonaws.com/default/PackerReceiver"
+}

@@ -1,0 +1,81 @@
+name: ${self:service.name}-data-prep
+definition:
+  StartAt: fixtures_offload
+  Comment: Update & prepare model training data in S3 bucket folders.
+  States:
+    fixtures_offload:
+      Type: Task
+      Resource: !GetAtt fixturesOffload.Arn
+      ResultPath: $.outputs.fixtures_offload
+      Next: csv_dump_week
+    csv_dump_week:
+      Type: Task
+      Resource: !GetAtt csvDump.Arn
+      Parameters:
+        query_type: weekly
+        query_dates.$: $.outputs.fixtures_offload.query_dates
+      ResultPath: $.outputs.csv_dump_week.bucket_path
+      Next: csv_transorm_parallel
+    csv_transorm_parallel:
+      Type: Parallel
+      Branches:
+        - StartAt: transform_1x
+          States:
+            transform_1x:
+              Type: Task
+              Resource: !GetAtt csvTransform.Arn
+              Parameters:
+                csv_label: "1x"
+                pipeline_type: "train"
+                pipeline_version.$: $.outputs.fixtures_offload.pipeline_version
+                csv_filepath.$: $.outputs.csv_dump_week.bucket_path
+              ResultPath: $.outputs.transform_1x
+              End: true
+
+        - StartAt: transform_x2
+          States:
+            transform_x2:
+              Type: Task
+              Resource: !GetAtt csvTransform.Arn
+              Parameters:
+                csv_label: "x2"
+                pipeline_type: "train"
+                pipeline_version.$: $.outputs.fixtures_offload.pipeline_version
+                csv_filepath.$: $.outputs.csv_dump_week.bucket_path
+              ResultPath: $.outputs.transform_x2
+              End: true
+
+        - StartAt: transform_12
+          States:
+            transform_12:
+              Type: Task
+              Resource: !GetAtt csvTransform.Arn
+              Parameters:
+                csv_label: "12"
+                pipeline_type: "train"
+                pipeline_version.$: $.outputs.fixtures_offload.pipeline_version
+                csv_filepath.$: $.outputs.csv_dump_week.bucket_path
+              ResultPath: $.outputs.transform_12
+              End: true
+
+        - StartAt: transform_xc
+          States:
+            transform_xc:
+              Type: Task
+              Resource: !GetAtt csvTransform.Arn
+              Parameters:
+                csv_label: "xc"
+                pipeline_type: "train"
+                pipeline_version.$: $.outputs.fixtures_offload.pipeline_version
+                csv_filepath.$: $.outputs.csv_dump_week.bucket_path
+              ResultPath: $.outputs.transform_xc
+              End: true
+      ResultPath: $.outputs.csv_transorm_parallel
+      End: true
+
+events:
+  - schedule:
+      name: weekly_data_prep
+      description: Prepare training data for available models.
+      rate: cron(0 6 ? * MON *) # Every week on Mon at 9:00AM EAT
+      enabled: true

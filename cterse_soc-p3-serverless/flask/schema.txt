@@ -1,0 +1,5 @@
+Merchant to Labeler: RequestLabel(orderID, address)  
+Merchant to Wrapper: Wrap(orderID, itemID, item)
+Wrapper to Packer: Wrapped(orderID, itemID, wrapping)
+Labeler to Packer: Labeled(orderID, address, label)
+Packer to Merchant: Packed(orderID, itemID, wrapping, label, status)

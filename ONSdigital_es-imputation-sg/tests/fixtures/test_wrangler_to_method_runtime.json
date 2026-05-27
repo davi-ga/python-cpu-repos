@@ -1,0 +1,20 @@
+{
+    "bpm_queue_url": "fake_bpm_queue_url",
+    "data": null,
+    "distinct_values": [
+        "region",
+        "strata"
+    ],
+    "environment": "sandbox",
+    "questions_list": [
+        "Q601_asphalting_sand",
+        "Q602_building_soft_sand",
+        "Q603_concreting_sand",
+        "Q604_bituminous_gravel",
+        "Q605_concreting_gravel",
+        "Q606_other_gravel",
+        "Q607_constructional_fill"
+    ],
+    "run_id": "bob",
+    "survey": "bmi_sg"
+}

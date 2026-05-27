@@ -1,0 +1,862 @@
+{
+  "title": "RegionTimeseriesRowWithHeader",
+  "description": "Prediction timeseries row with location information.",
+  "type": "object",
+  "properties": {
+    "date": {
+      "title": "Date",
+      "description": "Date of timeseries data point",
+      "type": "string",
+      "format": "date"
+    },
+    "country": {
+      "title": "Country",
+      "description": "2-letter ISO-3166 Country code.",
+      "type": "string"
+    },
+    "state": {
+      "title": "State",
+      "description": "2-letter ANSI state code.",
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "county": {
+      "title": "County",
+      "description": "County name",
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "fips": {
+      "title": "Fips",
+      "description": "FIPS Code. FIPS codes are either 2-digit state codes, 5-digit county codes, 5-digit CBSA codes, or 1-digit '0' for the entire USA.",
+      "type": "string"
+    },
+    "lat": {
+      "title": "Lat",
+      "description": "Latitude of point within the state or county",
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "long": {
+      "title": "Long",
+      "description": "Longitude of point within the state or county",
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "locationId": {
+      "title": "Locationid",
+      "description": "Location ID as defined here: https://github.com/covidatlas/li/blob/master/docs/reports-v1.md#general-notes",
+      "type": "string"
+    },
+    "actuals": {
+      "title": "Actuals",
+      "description": "Actuals for given day",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Actuals"
+        }
+      ]
+    },
+    "metrics": {
+      "title": "Metrics",
+      "description": "Metrics for given day",
+      "allOf": [
+        {
+          "$ref": "#/definitions/Metrics"
+        }
+      ]
+    },
+    "riskLevels": {
+      "title": "Risklevels",
+      "description": "Risk Levels for given day",
+      "allOf": [
+        {
+          "$ref": "#/definitions/RiskLevelsRow"
+        }
+      ]
+    },
+    "cdcTransmissionLevel": {
+      "description": "\nCommunity transmission level for region, calculated using the CDC definition.\n\nPossible values:\n    - 0: Low\n    - 1: Moderate\n    - 2: Substantial\n    - 3: High\n    - 4: Unknown\n\nSee [definitions of CDC community transmission levels](\nhttps://covid.cdc.gov/covid-data-tracker/#cases_community) for more\ndetails.\n\nNote that the value may differ from what the CDC website reports\ngiven we have different data sources. We have also introduced an\n\"Unknown\" level for when both case data and test positivity data are\nmissing for at least 15 days. The CDC does not have an \"Unknown\"\nlevel and instead will designate a location as \"Low\" when case and\ntest positivity data are missing.\n",
+      "allOf": [
+        {
+          "$ref": "#/definitions/CDCTransmissionLevel"
+        }
+      ]
+    },
+    "hsa": {
+      "title": "Hsa",
+      "description": "3 digit Health Service Area identification code. For CBSA, state, and country regions hsa is omitted. For more on HSAs see: https://github.com/covid-projections/covid-data-model/blob/main/data/misc/README.md",
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "hsaName": {
+      "title": "Hsaname",
+      "description": "Name of Health Service Area. For CBSA, state, and country regions hsaName is omitted. For more on HSAs see: https://github.com/covid-projections/covid-data-model/blob/main/data/misc/README.md",
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "hsaPopulation": {
+      "title": "Hsapopulation",
+      "description": "Total Population of county's corresponding Health Service Area. For CBSA, state, and country regions hsaPopulation is omitted. For more on HSAs see: https://github.com/covid-projections/covid-data-model/blob/main/data/misc/README.md",
+      "exclusiveMinimum": 0,
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "communityLevels": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/CommunityLevelsTimeseriesRow"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "date",
+    "country",
+    "state",
+    "county",
+    "fips",
+    "lat",
+    "long",
+    "locationId",
+    "actuals",
+    "metrics",
+    "riskLevels",
+    "cdcTransmissionLevel",
+    "hsa",
+    "hsaName",
+    "hsaPopulation"
+  ],
+  "definitions": {
+    "HospitalResourceUtilizationWithAdmissions": {
+      "title": "HospitalResourceUtilizationWithAdmissions",
+      "description": "Base model for API output.",
+      "type": "object",
+      "properties": {
+        "capacity": {
+          "title": "Capacity",
+          "description": "Total capacity for resource.",
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "currentUsageTotal": {
+          "title": "Currentusagetotal",
+          "description": "Currently used capacity for resource by all patients (COVID + Non-COVID)",
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "currentUsageCovid": {
+          "title": "Currentusagecovid",
+          "description": "Currently used capacity for resource by COVID ",
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "weeklyCovidAdmissions": {
+          "title": "Weeklycovidadmissions",
+          "description": "Number of COVID patients admitted in the past week.",
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "capacity",
+        "currentUsageTotal",
+        "currentUsageCovid",
+        "weeklyCovidAdmissions"
+      ]
+    },
+    "HospitalResourceUtilization": {
+      "title": "HospitalResourceUtilization",
+      "description": "Base model for API output.",
+      "type": "object",
+      "properties": {
+        "capacity": {
+          "title": "Capacity",
+          "description": "Total capacity for resource.",
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "currentUsageTotal": {
+          "title": "Currentusagetotal",
+          "description": "Currently used capacity for resource by all patients (COVID + Non-COVID)",
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "currentUsageCovid": {
+          "title": "Currentusagecovid",
+          "description": "Currently used capacity for resource by COVID ",
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "capacity",
+        "currentUsageTotal",
+        "currentUsageCovid"
+      ]
+    },
+    "DemographicDistributions": {
+      "title": "DemographicDistributions",
+      "description": "Distributions of demographic data.\n\nNote that different regions may have different demographic distributions for\nthe same field.  For instance, health departments in different states may report\ndifferent age ranges.\n\nThe data provided matches the source distributions.",
+      "type": "object",
+      "properties": {
+        "age": {
+          "title": "Age",
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "anyOf": [
+            {
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "race": {
+          "title": "Race",
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "anyOf": [
+            {
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ethnicity": {
+          "title": "Ethnicity",
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "anyOf": [
+            {
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "sex": {
+          "title": "Sex",
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "anyOf": [
+            {
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "Actuals": {
+      "title": "Actuals",
+      "description": "Known actuals data.",
+      "type": "object",
+      "properties": {
+        "cases": {
+          "title": "Cases",
+          "description": "Cumulative confirmed or suspected cases.",
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "deaths": {
+          "title": "Deaths",
+          "description": "Cumulative deaths that are suspected or confirmed to have been caused by COVID-19.",
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "positiveTests": {
+          "title": "Positivetests",
+          "description": "Cumulative positive test results to date",
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "negativeTests": {
+          "title": "Negativetests",
+          "description": "Cumulative negative test results to date",
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "contactTracers": {
+          "title": "Contacttracers",
+          "description": "Number of Contact Tracers",
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "hospitalBeds": {
+          "title": "Hospitalbeds",
+          "description": "\nInformation about acute bed utilization details.\n\nFields:\n * capacity - Current staffed acute bed capacity.\n * currentUsageTotal - Total number of acute beds currently in use\n * currentUsageCovid - Number of acute beds currently in use by COVID patients.\n * weeklyCovidAdmissions - Number of COVID patients admitted in the past week.\n",
+          "allOf": [
+            {
+              "$ref": "#/definitions/HospitalResourceUtilizationWithAdmissions"
+            }
+          ]
+        },
+        "hsaHospitalBeds": {
+          "title": "Hsahospitalbeds",
+          "description": "\nInformation about acute bed utilization details aggregated for the county's corresponding\nHealth Service Area (HSA). For CBSA, state, and country regions these fields are omitted.\nFor more on HSAs see: https://github.com/covid-projections/covid-data-model/blob/main/data/misc/README.md\"\n\nFields:\n * capacity - Current staffed acute bed capacity.\n * currentUsageTotal - Total number of acute beds currently in use\n * currentUsageCovid - Number of acute beds currently in use by COVID patients.\n * weeklyCovidAdmissions - Number of COVID patients admitted in the past week.\n",
+          "allOf": [
+            {
+              "$ref": "#/definitions/HospitalResourceUtilizationWithAdmissions"
+            }
+          ]
+        },
+        "icuBeds": {
+          "title": "Icubeds",
+          "description": "\nInformation about ICU bed utilization details.\n\nFields:\n * capacity - Current staffed ICU bed capacity.\n * currentUsageTotal - Total number of ICU beds currently in use\n * currentUsageCovid - Number of ICU beds currently in use by COVID patients.\n",
+          "allOf": [
+            {
+              "$ref": "#/definitions/HospitalResourceUtilization"
+            }
+          ]
+        },
+        "hsaIcuBeds": {
+          "title": "Hsaicubeds",
+          "description": "\nInformation about ICU bed utilization details aggregated for the county's corresponding\nHealth Service Area (HSA). For CBSA, state, and country regions these fields are omitted.\nFor For more on HSAs see: https://github.com/covid-projections/covid-data-model/blob/main/data/misc/README.md\"\n\nFields:\n * capacity - Current staffed ICU bed capacity.\n * currentUsageTotal - Total number of ICU beds currently in use\n * currentUsageCovid - Number of ICU beds currently in use by COVID patients.\n",
+          "allOf": [
+            {
+              "$ref": "#/definitions/HospitalResourceUtilization"
+            }
+          ]
+        },
+        "newCases": {
+          "title": "Newcases",
+          "description": "\nNew confirmed or suspected cases.\n\n\nNew cases are a processed timeseries of cases - summing new cases may not equal\nthe cumulative case count.\n\nProcessing steps:\n 1. If a region does not report cases for a period of time but then begins reporting again,\n    we will exclude the first day that reporting recommences. This first day likely includes\n    multiple days worth of cases and can be misleading to the overall series.\n 2. We remove any days with negative new cases.\n 3. We apply an outlier detection filter to the timeseries, which removes any data\n    points that seem improbable given recent numbers. Many times this is due to\n    backfill of previously unreported cases.\n",
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "newDeaths": {
+          "title": "Newdeaths",
+          "description": "\nNew confirmed or suspected COVID-19 deaths.\n\nNew deaths is an estimate of deaths per day; summing new deaths may not equal the\ncumulative death count.\n\nProcessing steps:\n 1. If a region does not report deaths for a period of time but then begins reporting again,\n    we will exclude the first day that reporting recommences. This first day likely includes\n    multiple days worth of deaths and can be misleading to the overall series.\n 2. We remove any days with negative new deaths.\n 3. We apply an outlier detection filter to the timeseries, which removes any data\n    points that seem improbable given recent numbers. Many times this is due to\n    backfill of previously unreported deaths.\n",
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "vaccinesDistributed": {
+          "title": "Vaccinesdistributed",
+          "description": "Number of vaccine doses distributed.",
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "vaccinationsInitiated": {
+          "title": "Vaccinationsinitiated",
+          "description": "\nNumber of vaccinations initiated.\n\nThis value may vary by type of vaccine, but for Moderna and Pfizer this indicates\nnumber of people vaccinated with the first dose.\n",
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "vaccinationsCompleted": {
+          "title": "Vaccinationscompleted",
+          "description": "\nNumber of vaccinations completed.\n\nThis value may vary by type of vaccine, but for Moderna and Pfizer this indicates\nnumber of people vaccinated with both the first and second dose.\n",
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "vaccinationsAdditionalDose": {
+          "title": "Vaccinationsadditionaldose",
+          "description": "Number of individuals who are fully vaccinated and have received a booster (or additional) dose.",
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "vaccinesAdministered": {
+          "title": "Vaccinesadministered",
+          "description": "Total number of vaccine doses administered.",
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "vaccinesAdministeredDemographics": {
+          "title": "Vaccinesadministereddemographics",
+          "description": "Demographic distributions for administered vaccines.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/DemographicDistributions"
+            }
+          ]
+        },
+        "vaccinationsInitiatedDemographics": {
+          "title": "Vaccinationsinitiateddemographics",
+          "description": "Demographic distributions for initiated vaccinations.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/DemographicDistributions"
+            }
+          ]
+        }
+      },
+      "required": [
+        "cases",
+        "deaths",
+        "positiveTests",
+        "negativeTests",
+        "contactTracers",
+        "hospitalBeds",
+        "hsaHospitalBeds",
+        "icuBeds",
+        "hsaIcuBeds",
+        "newCases",
+        "newDeaths"
+      ]
+    },
+    "TestPositivityRatioMethod": {
+      "title": "TestPositivityRatioMethod",
+      "description": "Method used to determine test positivity ratio.",
+      "enum": [
+        "CMSTesting",
+        "CDCTesting",
+        "HHSTesting",
+        "Valorum",
+        "covid_tracking",
+        "other"
+      ]
+    },
+    "TestPositivityRatioDetails": {
+      "title": "TestPositivityRatioDetails",
+      "description": "Details about how the test positivity ratio was calculated.",
+      "type": "object",
+      "properties": {
+        "source": {
+          "description": "Source data for test positivity ratio.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/TestPositivityRatioMethod"
+            }
+          ]
+        }
+      },
+      "required": [
+        "source"
+      ]
+    },
+    "Metrics": {
+      "title": "Metrics",
+      "description": "Calculated metrics data based on known actuals.",
+      "type": "object",
+      "properties": {
+        "testPositivityRatio": {
+          "title": "Testpositivityratio",
+          "description": "Ratio of people who test positive calculated using a 7-day rolling average.",
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "testPositivityRatioDetails": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/TestPositivityRatioDetails"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "caseDensity": {
+          "title": "Casedensity",
+          "description": "The number of cases per 100k population calculated using a 7-day rolling average.",
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "weeklyNewCasesPer100k": {
+          "title": "Weeklynewcasesper100K",
+          "description": "The number of new cases per 100k population over the last week.",
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "contactTracerCapacityRatio": {
+          "title": "Contacttracercapacityratio",
+          "description": "Ratio of currently hired tracers to estimated tracers needed based on 7-day daily case average.",
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "infectionRate": {
+          "title": "Infectionrate",
+          "description": "R_t, or the estimated number of infections arising from a typical case.",
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "infectionRateCI90": {
+          "title": "Infectionrateci90",
+          "description": "90th percentile confidence interval upper endpoint of the infection rate.",
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "icuCapacityRatio": {
+          "title": "Icucapacityratio",
+          "description": "Ratio of staffed intensive care unit (ICU) beds that are currently in use.",
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "bedsWithCovidPatientsRatio": {
+          "title": "Bedswithcovidpatientsratio",
+          "description": "Ratio of staffed hospital beds that are currently in use by COVID patients. For counties, this is calculated using HSA-level data for the corresponding area.",
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "weeklyCovidAdmissionsPer100k": {
+          "title": "Weeklycovidadmissionsper100K",
+          "description": "Number of COVID patients per 100k population admitted in the past week. For counties, this is calculated using HSA-level data for the corresponding area.",
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "vaccinationsInitiatedRatio": {
+          "title": "Vaccinationsinitiatedratio",
+          "description": "Ratio of population that has initiated vaccination.",
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "vaccinationsCompletedRatio": {
+          "title": "Vaccinationscompletedratio",
+          "description": "Ratio of population that has completed vaccination.",
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "vaccinationsAdditionalDoseRatio": {
+          "title": "Vaccinationsadditionaldoseratio",
+          "description": "Ratio of population that are fully vaccinated and have received a booster (or additional) dose.",
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "testPositivityRatio",
+        "caseDensity",
+        "weeklyNewCasesPer100k",
+        "contactTracerCapacityRatio",
+        "infectionRate",
+        "infectionRateCI90",
+        "icuCapacityRatio",
+        "bedsWithCovidPatientsRatio",
+        "weeklyCovidAdmissionsPer100k"
+      ]
+    },
+    "RiskLevel": {
+      "title": "RiskLevel",
+      "description": "COVID Risk Level.\n\n## Risk Level Definitions\n *Low* - On track to contain COVID\n *Medium* - Slow disease growth\n *High* - At risk of outbreak\n *Critical* - Active or imminent outbreak\n *Unknown* - Risk unknown\n *Extreme* - Severe outbreak",
+      "enum": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    "RiskLevelsRow": {
+      "title": "RiskLevelsRow",
+      "description": "Base model for API output.",
+      "type": "object",
+      "properties": {
+        "overall": {
+          "description": "Overall risk level for region .",
+          "allOf": [
+            {
+              "$ref": "#/definitions/RiskLevel"
+            }
+          ]
+        },
+        "caseDensity": {
+          "description": "Case density risk level for region.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/RiskLevel"
+            }
+          ]
+        }
+      },
+      "required": [
+        "overall",
+        "caseDensity"
+      ]
+    },
+    "CDCTransmissionLevel": {
+      "title": "CDCTransmissionLevel",
+      "description": "CDC community transmission level.",
+      "enum": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "CommunityLevel": {
+      "title": "CommunityLevel",
+      "description": "Community level.",
+      "enum": [
+        0,
+        1,
+        2
+      ]
+    },
+    "CommunityLevelsTimeseriesRow": {
+      "title": "CommunityLevelsTimeseriesRow",
+      "description": "Timeseries data for community levels.",
+      "type": "object",
+      "properties": {
+        "cdcCommunityLevel": {
+          "description": "\nCDC Community level for county, as provided by the CDC.\n\nPossible values:\n    - 0: Low\n    - 1: Medium\n    - 2: High\n\nSee https://www.cdc.gov/coronavirus/2019-ncov/science/community-levels.html\nfor details about how the Community Level is calculated and should be\ninterpretted.\n\nNote that we provide two versions of the Community Level. One is called\ncanCommunityLevel which is calculated on a daily basis using CAN's data\nsources and is available for states, counties, and metros.  The other is\ncalled cdcCommunityLevel and is the raw Community Level published by the\nCDC. It is only available for counties, and updates on a weekly basis.\n",
+          "allOf": [
+            {
+              "$ref": "#/definitions/CommunityLevel"
+            }
+          ]
+        },
+        "canCommunityLevel": {
+          "description": "\nCommunity level for region, calculated using the CDC definition but with CAN\ndata sources.\n\nPossible values:\n    - 0: Low\n    - 1: Medium\n    - 2: High\n\nSee https://www.cdc.gov/coronavirus/2019-ncov/science/community-levels.html\nfor details about how the Community Level is calculated and should be\ninterpretted.\n\nNote that we provide two versions of the Community Level. One is called\ncanCommunityLevel which is calculated on a daily basis using CAN's data\nsources and is available for states, counties, and metros.  The other is\ncalled cdcCommunityLevel and is the raw Community Level published by the\nCDC. It is only available for counties, and updates on a weekly basis.\n",
+          "allOf": [
+            {
+              "$ref": "#/definitions/CommunityLevel"
+            }
+          ]
+        },
+        "date": {
+          "title": "Date",
+          "description": "Date of timeseries data point",
+          "type": "string",
+          "format": "date"
+        }
+      },
+      "required": [
+        "cdcCommunityLevel",
+        "canCommunityLevel",
+        "date"
+      ]
+    }
+  }
+}

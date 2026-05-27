@@ -1,0 +1,94 @@
+version: 2
+defaults: &defaults
+  working_directory: ~/kickoffai-dataml
+  docker:
+    - image: circleci/python3.7
+
+jobs:
+  install-dependencies:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "Pipfile" }}
+          - v1-dependencies
+      - run:
+          name: Install Dependencies
+          command: pipenv install
+      - save_cache:
+          paths:
+            - ./venv
+          key: v1-dependencies-{{ checksum "Pipfile" }}
+      - persist_to_workspace:
+          root: ./
+          paths:
+            - ./
+
+  build-deploy-dev:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ./
+      - run:
+          name: Configure Serverless 'env.yml' Dev Secrets
+          command: |
+            cat .circleci/env.setup.yml |
+            sed "s~region~$(printf "${AWS_DEFAULT_REGION}")~" |
+            sed "s~db_name~$(printf "${DB_NAME}")~" |
+            sed "s~dev_stage~$(printf "${STAGE}")~" |
+            sed "s~dev_deploy_bucket~$(printf "${DEPLOY_BUCKET}")~" |
+            sed "s~dev_table~$(printf "${TABLE}")~" |
+            sed "s~dev_cluster_arn~$(printf "${DB_CLUSTER_ARN}")~" |
+            sed "s~dev_secret_arn~$(printf "${DB_SECRET_ARN}")~" > "config/env.yml"
+      - run:
+          name: Configure Serverless AWS Credentials
+          command: ./node_modules/.bin/serverless config credentials --provider aws --key ${ACCESS_KEY} --secret ${SECRET_KEY}
+      - run:
+          name: Serverless Dev Account Deploy
+          command: npm run deploy:dev
+
+  build-deploy-prod:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ./
+      - run:
+          name: Configure Serverless 'env.yml' Prod Secrets
+          command: |
+            cat .circleci/env.setup.yml |
+            sed "s~region~$(printf "${AWS_DEFAULT_REGION}")~" |
+            sed "s~db_name~$(printf "${DB_NAME}")~" |
+            sed "s~prod_stage~$(printf "${STAGE}")~" |
+            sed "s~prod_deploy_bucket~$(printf "${DEPLOY_BUCKET}")~" |
+            sed "s~prod_table~$(printf "${TABLE}")~" |
+            sed "s~prod_cluster_arn~$(printf "${DB_CLUSTER_ARN}")~" |
+            sed "s~prod_secret_arn~$(printf "${DB_SECRET_ARN}")~" > "config/env.yml"
+      - run:
+          name: Configure Serverless AWS Credentials
+          command: ./node_modules/.bin/serverless config credentials --provider aws --key ${ACCESS_KEY} --secret ${SECRET_KEY}
+      - run:
+          name: Serverless Prod Account Deploy
+          command: npm run deploy:prod
+
+workflows:
+  version: 2
+  dev:
+    jobs:
+      - install-dependencies
+      - build-deploy-dev:
+          context: kickoffai-dataml-dev
+          filters:
+            branches:
+              only:
+                - staging
+          requires:
+            - install-dependencies
+      - build-deploy-prod:
+          context: kickoffai-dataml-prod
+          filters:
+            branches:
+              only:
+                - master
+          requires:
+            - install-dependencies

@@ -1,0 +1,27 @@
+{
+  "name": "kickoffai-sls-dataml",
+  "version": "1.0.0",
+  "description": "Models' configuration on AWS Sagemaker.",
+  "main": "index.js",
+  "scripts": {
+    "validate:cfn": "cat .serverless/*template*.json | xargs -0 aws cloudformation validate-template --template-body",
+    "validate:sls": "sls deploy --stage dev --sentryCommit $(git rev-parse --short HEAD) --noDeploy",
+    "validate:all": "npm run validate:sls && npm run validate:cfn",
+    "deploy:dev": "sls deploy --stage dev --sentryCommit $(git rev-parse --short HEAD)",
+    "deploy:prod": "sls deploy --stage prod --sentryCommit $(git rev-parse --short HEAD)",
+    "ssm:download": "python3 src/scripts/io_ssm.py --action=download",
+    "ssm:update": "python3 src/scripts/io_ssm.py --action=update",
+    "ssm:delete": "python3 src/scripts/io_ssm.py --action=delete"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@personal:Gilbertly/kickoffai-sls-dataml.git"
+  },
+  "author": "Gilbert Gathara",
+  "license": "MIT",
+  "devDependencies": {
+    "serverless": "^2.38.0",
+    "serverless-python-requirements": "^5.1.1",
+    "serverless-step-functions": "^2.30.0"
+  }
+}

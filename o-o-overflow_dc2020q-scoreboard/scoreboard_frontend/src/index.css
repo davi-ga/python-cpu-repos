@@ -1,0 +1,117 @@
+body {
+  background: #111111;
+}
+
+.ReactModal__Overlay {
+  z-index: 1021 !important;
+}
+
+.category:before {
+  float: left;
+  font-size: 20pt;
+  padding-right: 0.25em;
+}
+
+.category-crypto:before {
+  content: "😭";
+}
+
+.category-golf:before {
+  content: "🏌️";
+}
+
+.category-kernel:before {
+  content: "🌰";
+}
+
+.category-misc:before {
+  content: "🤷";
+}
+
+.category-osint:before {
+  content: "🕵️";
+}
+
+.category-pwn:before {
+  content: "🤼";
+}
+
+.category-reversing:before {
+  content: "🔄";
+}
+
+.category-shellcoding:before {
+  content: "🐚";
+}
+
+.category-web:before {
+  content: "🌐";
+}
+
+.category-welcoming:before {
+  content: "👋";
+}
+
+.dark-background {
+  background: #111111;
+}
+
+.challenge {
+  background-size: cover;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  font-size: 18px;
+  height: 200px;
+  margin: 3px;
+  position: relative;
+  width: 300px;
+}
+
+.challenge-hidden {
+  background-color: #202223;
+}
+
+.challenge-score {
+  bottom: 0px;
+  color: white;
+  position: absolute;
+  right: 0px;
+  padding-right: 10px;
+}
+
+.challenge-section h2 {
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.challenge-solved {
+  background-color: pink;
+}
+
+.challenge-title {
+  background-color: #00000070;
+  bottom: 0px;
+  color: white;
+  position: absolute;
+  width: 300px;
+}
+
+.footer-padding {
+  padding-bottom: 60px;
+}
+
+.modal-body {
+  overflow: auto;
+  overflow-wrap: anywhere;
+}
+
+.modal-content {
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.sticky-left {
+  position: sticky;
+  left: 0;
+  background-color: white;
+}

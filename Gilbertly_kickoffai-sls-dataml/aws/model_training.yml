@@ -1,0 +1,64 @@
+name: ${self:service.name}-models-train
+definition:
+  StartAt: model_train
+  Comment: Train available models every first day of the month.
+  States:
+    model_train:
+      Type: Task
+      Resource: !GetAtt modelTrain.Arn
+      Parameters:
+        job_type.$: $.job_type         # train/hpo
+        model_label.$: $.model_label   # 1x/12/x2/xc
+        model_metric.$: $.model_metric # mae/rmse/mse
+        model_type.$: $.model_type     # xgb/tflow
+      ResultPath: $.outputs.model_train
+      Next: model_status
+    model_status:
+      Type: Task
+      Resource: !GetAtt modelTrainStatus.Arn
+      Parameters:
+        job_name.$: $.outputs.model_train.job_name
+        job_type.$: $.outputs.model_train.job_type
+        model_label.$: $.model_label
+        model_metric.$: $.model_metric
+        model_type.$: $.model_type
+      ResultPath: $.outputs.model_status
+      Next: make_state_choice
+    make_state_choice:
+      Type: Choice
+      Choices:
+        - Variable: $.outputs.model_status.job_status
+          StringEquals: "Completed"
+          Next: complete_model_train
+        - Variable: $.outputs.model_status.job_status
+          StringEquals: "InProgress"
+          Next: wait_2_min
+        - Variable: $.outputs.model_status.job_status
+          StringEquals: "Failed"
+          Next: status_failed
+        - Variable: $.outputs.model_status.job_status
+          StringEquals: "Stopped"
+          Next: status_failed
+        - Variable: $.outputs.model_status.job_status
+          StringEquals: "Stopping"
+          Next: status_failed
+      Default: status_failed
+    status_failed:
+      Type: Fail
+    wait_2_min:
+      Type: Wait
+      Seconds: 120
+      Next: model_status
+    complete_model_train:
+      Type: Pass
+      End: true
+
+events:
+  - schedule:
+      name: monthly_training
+      description: Run monthly models' training.
+      rate: cron(0 2 1 * ? *) # Every first day of month at 5:00AM EAT
+      input:
+        job_type: hpo
+        model_type: xgb
+      enabled: false

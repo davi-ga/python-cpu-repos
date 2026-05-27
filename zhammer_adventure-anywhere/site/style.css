@@ -1,0 +1,19 @@
+body {
+  font-family: "VT323", monospace;
+  --cta: #f06543;
+}
+
+.container {
+  width: 60%;
+  margin: auto;
+  margin-top: 30vh;
+}
+
+h1 {
+  text-align: center;
+}
+
+a {
+  color: var(--cta);
+  text-decoration: none;
+}

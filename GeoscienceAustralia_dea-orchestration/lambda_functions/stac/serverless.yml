@@ -1,0 +1,129 @@
+service: stac-catalog-generator
+
+frameworkVersion: ">=1.2.0 <2.0.0"
+plugins:
+  - serverless-python-requirements
+  - serverless-pseudo-parameters
+package:
+  exclude:
+    - node_modules/**
+    - .idea/**
+    - .requirements/**
+    - env/**
+    - README.md
+    - package.json
+    - package-lock.json
+    - requirements.txt
+    - terraform.*
+    - notify_to_stac_queue.py
+    - test_stac.py
+    - stac_parent_update.py
+    - stac_utils.py
+
+custom:
+  # Our stage is based on what is passed in when running serverless
+  # commands. Or falls back to what we have set in the provider section.
+  Stage: ${opt:stage, self:provider.stage}
+  profile:
+    dev: devProfile
+    prod: prodProfile
+  deploymentBucket:
+    prod: "dea-lambda"
+    dev: "dea-lambdas-dev"
+  dataBucket:
+    prod: dea-public-data
+    dev: dea-public-data-dev
+  snsTopic:
+    prod: arn:aws:sns:ap-southeast-2:538673716275:DEANewData
+    dev: arn:aws:sns:ap-southeast-2:451924316694:DEANewDataDev
+  pythonRequirements:
+    dockerizePip: non-linux
+    slim: true
+    noDeploy:
+      - botocore
+      - boto3
+
+provider:
+  name: aws
+  stage: dev
+  runtime: python3.7
+  profile: ${self:custom.profile.${self:custom.Stage}}
+  deploymentBucket: ${self:custom.deploymentBucket.${self:custom.Stage}}
+  region: ap-southeast-2
+
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+       - "s3:GetObject"
+       - "s3:PutObject"
+      Resource: "arn:aws:s3:::${self:custom.dataBucket.${self:custom.Stage}}/*"
+    - Effect: "Allow"
+      Action:
+        - "sqs:ReceiveMessage"
+        - "sqs:DeleteMessage"
+        - "sqs:GetQueueAttributes"
+      Resource: "#{staticStacQueue.Arn}"
+
+functions:
+  stac:
+    handler: stac.stac_handler
+    memorySize: 128
+    timeout: 5
+    events:
+      - sqs:
+          arn: "#{staticStacQueue.Arn}"
+          batchSize: 10
+
+# Thanks https://www.jeremydaly.com/how-to-use-sns-and-sqs-to-distribute-and-throttle-events/
+resources:
+  Resources:
+    ### PART ONE: SQS Queues
+    staticStacQueue:
+      Type: AWS::SQS::Queue
+      Properties:
+        QueueName: static-stac-queue
+        VisibilityTimeout: 600
+        RedrivePolicy:
+          deadLetterTargetArn: "#{staticStacDeadLetterQueue.Arn}"
+          maxReceiveCount: 5
+    staticStacDeadLetterQueue:
+      Type: AWS::SQS::Queue
+      Properties:
+        QueueName: static-stac-dead-letter-queue
+        VisibilityTimeout: 600
+
+    ### PART TWO: Create SQS Queue Policies
+    # Create our queue policy for the 'firstQueue'
+    snsToFirstQueueSqsPolicy:
+      Type: AWS::SQS::QueuePolicy
+      Properties:
+        PolicyDocument:
+          Version: "2012-10-17"
+          Statement:
+            - Sid: "allow-sns-messages"
+              Effect: Allow
+              Principal: "*"
+              Resource: "#{staticStacQueue.Arn}"
+              Action: "SQS:SendMessage"
+              Condition:
+                ArnEquals:
+                  "aws:SourceArn": ${self:custom.snsTopic.${self:custom.Stage}}
+        Queues:
+          - Ref: staticStacQueue
+
+    ### PART THREE: Subscribe our SQS Queues to our SNS Topic
+    # Create the subscription to the 'firstQueue'
+    staticStacQueueSubscription:
+      Type: 'AWS::SNS::Subscription'
+      Properties:
+        TopicArn: ${self:custom.snsTopic.${self:custom.Stage}}
+        Endpoint: "#{staticStacQueue.Arn}"
+        Protocol: sqs
+        RawMessageDelivery: 'true'
+  Outputs:
+    QueueURL:
+      Description: "URL of newly created SQS Queue"
+      Value: "#{staticStacQueue}"
+    QueueARN:
+      Description: "ARN of newly created SQS Queue"
+      Value: "#{staticStacQueue.Arn}"

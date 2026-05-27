@@ -1,0 +1,295 @@
+---
+service: es-imputation-sg
+provider:
+  name: aws
+  deploymentBucket:
+    name: spp-results-${self:custom.environment}-serverless
+  role: arn:aws:iam::#{AWS::AccountId}:role/lambda_invoke_lambda
+  runtime: python3.7
+  region: eu-west-2
+  package:
+    individually: true
+  memorySize: 1024
+  timeout: 40
+  tracing:
+    lambda: true
+
+custom:
+  environment: ${env:ENVIRONMENT}
+  environmentType: ${env:environment_type}
+
+functions:
+  deploy-add-regionless-wrangler:
+    name: es-add-regionless-wrangler
+    handler: add_regionless_wrangler.lambda_handler
+    package:
+      include:
+        - add_regionless_wrangler.py
+      exclude:
+        - ./**
+      individually: true
+    layers:
+      - arn:aws:lambda:eu-west-2:#{AWS::AccountId}:layer:es_python_layer:latest
+      - arn:aws:lambda:eu-west-2:#{AWS::AccountId}:layer:dev-es-common-functions:latest
+    tags:
+      app: results
+    environment:
+      bucket_name: spp-results-${self:custom.environment}
+      method_name: es-add-regionless-method
+      run_environment: ${self:custom.environmentType}
+
+  deploy-add-regionless-method:
+    name: es-add-regionless-method
+    handler: add_regionless_method.lambda_handler
+    package:
+      include:
+        - add_regionless_method.py
+      exclude:
+        - ./**
+      individually: true
+    layers:
+      - arn:aws:lambda:eu-west-2:#{AWS::AccountId}:layer:es_python_layer:latest
+      - arn:aws:lambda:eu-west-2:#{AWS::AccountId}:layer:dev-es-common-functions:latest
+    tags:
+      app: results
+
+
+  deploy-apply-factors-wrangler:
+    name: es-imputation-apply-factors-wrangler
+    handler: apply_factors_wrangler.lambda_handler
+    package:
+      include:
+        - apply_factors_wrangler.py
+        - imputation_functions.py
+      exclude:
+        - ./**
+      individually: true
+    layers:
+      - arn:aws:lambda:eu-west-2:#{AWS::AccountId}:layer:es_python_layer:latest
+      - arn:aws:lambda:eu-west-2:#{AWS::AccountId}:layer:dev-es-common-functions:latest
+    tags:
+      app: results
+    environment:
+      bucket_name: spp-results-${self:custom.environment}
+      method_name: es-imputation-apply-factors-method
+      response_type: response_type
+      run_environment: ${self:custom.environmentType}
+
+  deploy-apply-factors-method:
+    name: es-imputation-apply-factors-method
+    handler: apply_factors_method.lambda_handler
+    package:
+      include:
+        - apply_factors_method.py
+        - imputation_functions.py
+      exclude:
+        - ./**
+      individually: true
+    layers:
+      - arn:aws:lambda:eu-west-2:#{AWS::AccountId}:layer:es_python_layer:latest
+      - arn:aws:lambda:eu-west-2:#{AWS::AccountId}:layer:dev-es-common-functions:latest
+    tags:
+      app: results
+
+  deploy-atypicals-wrangler:
+    name: es-imputation-atypicals-wrangler
+    handler: atypicals_wrangler.lambda_handler
+    package:
+      include:
+        - atypicals_wrangler.py
+        - imputation_functions.py
+      exclude:
+        - ./**
+      individually: true
+    layers:
+      - arn:aws:lambda:eu-west-2:#{AWS::AccountId}:layer:es_python_layer:latest
+      - arn:aws:lambda:eu-west-2:#{AWS::AccountId}:layer:dev-es-common-functions:latest
+    tags:
+      app: results
+    environment:
+      bucket_name: spp-results-${self:custom.environment}
+      method_name: es-imputation-atypicals-method
+      run_environment: ${self:custom.environmentType}
+
+  deploy-atypicals-method:
+    name: es-imputation-atypicals-method
+    handler: atypicals_method.lambda_handler
+    package:
+      include:
+        - atypicals_method.py
+        - imputation_functions.py
+      exclude:
+        - ./**
+      individually: true
+    layers:
+      - arn:aws:lambda:eu-west-2:#{AWS::AccountId}:layer:es_python_layer:latest
+      - arn:aws:lambda:eu-west-2:#{AWS::AccountId}:layer:dev-es-common-functions:latest
+    tags:
+      app: results
+
+  deploy-calculate-factors-wrangler:
+    name: es-imputation-calculate-factors-wrangler
+    handler: calculate_imputation_factors_wrangler.lambda_handler
+    package:
+      include:
+        - calculate_imputation_factors_wrangler.py
+        - imputation_functions.py
+      exclude:
+        - ./**
+      individually: true
+    layers:
+      - arn:aws:lambda:eu-west-2:#{AWS::AccountId}:layer:es_python_layer:latest
+      - arn:aws:lambda:eu-west-2:#{AWS::AccountId}:layer:dev-es-common-functions:latest
+    tags:
+      app: results
+    environment:
+      bucket_name: spp-results-${self:custom.environment}
+      method_name: es-imputation-calculate-factors-method
+      run_environment: ${self:custom.environmentType}
+
+  deploy-calculate-factors-method:
+    name: es-imputation-calculate-factors-method
+    handler: calculate_imputation_factors_method.lambda_handler
+    package:
+      include:
+        - calculate_imputation_factors_method.py
+        - imputation_functions.py
+      exclude:
+        - ./**
+      individually: true
+    layers:
+      - arn:aws:lambda:eu-west-2:#{AWS::AccountId}:layer:es_python_layer:latest
+      - arn:aws:lambda:eu-west-2:#{AWS::AccountId}:layer:dev-es-common-functions:latest
+    tags:
+      app: results
+
+  deploy-calculate-means-wrangler:
+    name: es-imputation-calculate-means-wrangler
+    handler: calculate_means_wrangler.lambda_handler
+    package:
+      include:
+        - calculate_means_wrangler.py
+        - imputation_functions.py
+      exclude:
+        - ./**
+      individually: true
+    layers:
+      - arn:aws:lambda:eu-west-2:#{AWS::AccountId}:layer:es_python_layer:latest
+      - arn:aws:lambda:eu-west-2:#{AWS::AccountId}:layer:dev-es-common-functions:latest
+    tags:
+      app: results
+    environment:
+      bucket_name: spp-results-${self:custom.environment}
+      method_name: es-imputation-calculate-means-method
+      run_environment: ${self:custom.environmentType}
+
+  deploy-calculate-means-method:
+    name: es-imputation-calculate-means-method
+    handler: calculate_means_method.lambda_handler
+    package:
+      include:
+        - calculate_means_method.py
+        - imputation_functions.py
+      exclude:
+        - ./**
+      individually: true
+    layers:
+      - arn:aws:lambda:eu-west-2:#{AWS::AccountId}:layer:es_python_layer:latest
+      - arn:aws:lambda:eu-west-2:#{AWS::AccountId}:layer:dev-es-common-functions:latest
+    tags:
+      app: results
+
+  deploy-calculate-movement-wrangler:
+    name: es-imputation-calculate-movement-wrangler
+    handler: calculate_movement_wrangler.lambda_handler
+    package:
+      include:
+        - calculate_movement_wrangler.py
+        - imputation_functions.py
+      exclude:
+        - ./**
+    layers:
+      - arn:aws:lambda:eu-west-2:#{AWS::AccountId}:layer:es_python_layer:latest
+      - arn:aws:lambda:eu-west-2:#{AWS::AccountId}:layer:dev-es-common-functions:latest
+    tags:
+      app: results
+    environment:
+      bucket_name: spp-results-${self:custom.environment}
+      method_name: es-imputation-calculate-movement-method
+      response_type: response_type
+
+  deploy-calculate-movement-method:
+    name: es-imputation-calculate-movement-method
+    handler: calculate_movement_method.lambda_handler
+    package:
+      include:
+        - calculate_movement_method.py
+        - imputation_functions.py
+      exclude:
+        - ./**
+      individually: true
+    layers:
+      - arn:aws:lambda:eu-west-2:#{AWS::AccountId}:layer:es_python_layer:latest
+      - arn:aws:lambda:eu-west-2:#{AWS::AccountId}:layer:dev-es-common-functions:latest
+    tags:
+      app: results
+
+  deploy-iqrs-wrangler:
+    name: es-imputation-iqrs-wrangler
+    handler: iqrs_wrangler.lambda_handler
+    package:
+      include:
+        - iqrs_wrangler.py
+        - imputation_functions.py
+      exclude:
+        - ./**
+      individually: true
+    layers:
+      - arn:aws:lambda:eu-west-2:#{AWS::AccountId}:layer:es_python_layer:latest
+      - arn:aws:lambda:eu-west-2:#{AWS::AccountId}:layer:dev-es-common-functions:latest
+    tags:
+      app: results
+    environment:
+      bucket_name: spp-results-${self:custom.environment}
+      method_name: es-imputation-iqrs-method
+      run_environment: ${self:custom.environmentType}
+
+  deploy-iqrs-method:
+    name: es-imputation-iqrs-method
+    handler: iqrs_method.lambda_handler
+    package:
+      include:
+        - iqrs_method.py
+        - imputation_functions.py
+      exclude:
+        - ./**
+      individually: true
+    layers:
+      - arn:aws:lambda:eu-west-2:#{AWS::AccountId}:layer:es_python_layer:latest
+      - arn:aws:lambda:eu-west-2:#{AWS::AccountId}:layer:dev-es-common-functions:latest
+    tags:
+      app: results
+
+  deploy-recalculate-means-wrangler:
+    name: es-imputation-recalculate-means-wrangler
+    handler: recalculate_means_wrangler.lambda_handler
+    package:
+      include:
+        - recalculate_means_wrangler.py
+        - imputation_functions.py
+      exclude:
+        - ./**
+      individually: true
+    layers:
+      - arn:aws:lambda:eu-west-2:#{AWS::AccountId}:layer:es_python_layer:latest
+      - arn:aws:lambda:eu-west-2:#{AWS::AccountId}:layer:dev-es-common-functions:latest
+    tags:
+      app: results
+    environment:
+      bucket_name: spp-results-${self:custom.environment}
+      method_name: es-imputation-calculate-means-method
+      run_environment: ${self:custom.environmentType}
+
+plugins:
+  - serverless-latest-layer-version
+  - serverless-pseudo-parameters

@@ -1,0 +1,218 @@
+service:
+  name: kickoffai-dataml
+
+plugins:
+  - serverless-step-functions
+  - serverless-python-requirements
+
+custom:
+  config: ${file(./config/env.yml):${opt:stage, 'dev'}}
+  pythonRequirements:
+    dockerizePip: non-linux
+    useDownloadCache: true
+    usePipenv: true
+    slim: true
+    layer:
+      name: ${self:provider.stage}-${self:service.name}
+      description: Dataml dependencies.
+      licenseInfo: MIT
+      compatibleRuntimes:
+        - python3.7
+
+provider:
+  name: aws
+  runtime: python3.7
+  timeout: 10
+  stage: ${self:custom.config.STAGE}
+  region: ${self:custom.config.REGION}
+  stackName: ${self:provider.stage}-${self:service.name}
+  logRetentionInDays: 7
+  tags:
+    app: ${self:provider.stage}-${self:service.name}
+  deploymentBucket:
+    name: ${self:custom.config.DEPLOY_BUCKET}
+    serverSideEncryption: AES256
+  environment:
+    ARTIFACT_BUCKET: ${self:custom.config.ARTIFACT_BUCKET}
+  iamRoleStatements:
+    - Sid: ExecuteAuroraDataApi
+      Effect: Allow
+      Action: rds-data:ExecuteStatement
+      Resource: ${self:custom.config.DB_CLUSTER_ARN}
+    - Sid: RetrieveAuroraSecrets
+      Effect: Allow
+      Action: secretsmanager:GetSecretValue
+      Resource: ${self:custom.config.DB_SECRET_ARN}
+    - Sid: AccessAllSSMParameters
+      Effect: Allow
+      Action: ssm:*
+      Resource: "*"
+    - Sid: AccessAllSagemakerResources
+      Effect: Allow
+      Action: sagemaker:*
+      Resource: "*"
+    - Sid: AllowLambdaAssummeRole
+      Effect: Allow
+      Action: iam:PassRole
+      Resource: ${ssm:/kickoffai/dataml/xgb_1x/iam_role_arn}
+    - Sid: AccessAllObjectsInBucket
+      Effect: Allow
+      Action: s3:*
+      Resource: "*"
+    - Sid: AccessDynamodbTable
+      Effect: Allow
+      Action:
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:Query
+      Resource:
+        - ${self:custom.config.TABLE_ANALYTICS_ARN}
+        - ${self:custom.config.TABLE_SHUB_ARN}
+        - ${self:custom.config.SHUB_INDEX_ARN}
+  apiGateway:
+    restApiId: !ImportValue restApiId-kickoffai-apigw
+    restApiRootResourceId: !ImportValue rootResourceId-kickoffai-apigw
+
+package:
+  include:
+    - src/**
+  exclude:
+    - node_modules/**
+    - aws/**
+    - config/**
+    - package*
+    - Pipfile*
+  excludeDevDependencies: true
+
+functions:
+  csvDump:
+    name: psql_csv_dump
+    handler: src/functions/csv_dump.handler
+    description: Psql dump data from database into a csv file.
+    timeout: 45
+    environment:
+      DB_NAME: ${self:custom.config.DB_NAME}
+      DB_TABLE: ${self:custom.config.DB_TABLE}
+      DB_CLUSTER_ARN: ${self:custom.config.DB_CLUSTER_ARN}
+      DB_SECRET_ARN: ${self:custom.config.DB_SECRET_ARN}
+      ARTIFACT_BUCKET: ${self:custom.config.ARTIFACT_BUCKET}
+    layers:
+      - !Ref PythonRequirementsLambdaLayer
+
+  csvTransform:
+    name: csv_transform
+    handler: src/functions/csv_transform.handler
+    description: Run csv data through an ETL pipeline.
+    environment:
+      ARTIFACT_BUCKET: ${self:custom.config.ARTIFACT_BUCKET}
+      ANALYSIS_PIPELINE_VERSION: ${ssm:/kickoffai/dataml/sls/analysis_pipeline_version}
+    layers:
+      - !Ref PythonRequirementsLambdaLayer
+
+  csvConcat:
+    name: csv_concat_stage_one
+    handler: src/functions/csv_concat.concat_stage_one
+    description: Concat inference data into human-interpretable result.
+    environment:
+      ARTIFACT_BUCKET: ${self:custom.config.ARTIFACT_BUCKET}
+    layers:
+      - !Ref PythonRequirementsLambdaLayer
+
+  csvConcatAll:
+    name: csv_concat_stage_two
+    handler: src/functions/csv_concat.concat_stage_two
+    description: Concat multiple inference data into human-interpretable result.
+    environment:
+      ARTIFACT_BUCKET: ${self:custom.config.ARTIFACT_BUCKET}
+    layers:
+      - !Ref PythonRequirementsLambdaLayer
+
+  modelTrain:
+    name: model_train_api
+    handler: src/functions/model_train.handler
+    description: Make Sagemaker API calls to train a model.
+
+  modelTrainStatus:
+    name: model_train_status
+    handler: src/functions/model_train.job_status
+    description: Check model training job status.
+    environment:
+      REGION: ${self:provider.region}
+
+  modelInference:
+    name: model_inference_api
+    handler: src/functions/model_inference.handler
+    description: Run Sagemaker inference job.
+
+  modelInferenceStart:
+    name: model_inference_start
+    handler: src/functions/model_inference.inference_start
+    description: Initialize inference workflow inputs.
+    environment:
+      PIPELINE_VERSION: ${ssm:/kickoffai/dataml/sls/inference_pipeline_version}
+      MODEL_METRIC_1X: ${ssm:/kickoffai/dataml/sls/model_metric_1x}
+      MODEL_METRIC_X2: ${ssm:/kickoffai/dataml/sls/model_metric_x2}
+      MODEL_METRIC_12: ${ssm:/kickoffai/dataml/sls/model_metric_12}
+      MODEL_METRIC_XC: ${ssm:/kickoffai/dataml/sls/model_metric_xc}
+      MODEL_TYPE_1X: ${ssm:/kickoffai/dataml/sls/model_type_1x}
+      MODEL_TYPE_X2: ${ssm:/kickoffai/dataml/sls/model_type_x2}
+      MODEL_TYPE_12: ${ssm:/kickoffai/dataml/sls/model_type_12}
+      MODEL_TYPE_XC: ${ssm:/kickoffai/dataml/sls/model_type_xc}
+
+  modelInferenceStatus:
+    name: model_inference_status
+    handler: src/functions/model_inference.inference_status
+    description: Check model inference job status.
+
+  analyticsSave:
+    name: analytics_save
+    handler: src/functions/analytics_save.handler
+    description: Add inference analytics into a database.
+    environment:
+      TABLE: ${self:custom.config.TABLE_ANALYTICS}
+      ARTIFACT_BUCKET: ${self:custom.config.ARTIFACT_BUCKET}
+    layers:
+      - !Ref PythonRequirementsLambdaLayer
+
+  analyticsUpdate:
+    name: analytics_update
+    handler: src/functions/analytics_update.handler
+    description: Update earlier saved inference analytics.
+    environment:
+      TABLE: ${self:custom.config.TABLE_ANALYTICS}
+      TABLE_SHUB: ${self:custom.config.TABLE_SHUB}
+    events:
+      - sqs:
+          arn: ${self:custom.config.ANALYTICS_QUEUE_ARN}
+          batchSize: 10
+    layers:
+      - !Ref PythonRequirementsLambdaLayer
+
+  fixturesOffload:
+    name: fixtures_offload
+    handler: src/functions/fixtures_offload.handler
+    description: Query ftscores from shub table and update them to aurora.
+    memorySize: 1024
+    timeout: 90
+    environment:
+      PIPELINE_VERSION: ${ssm:/kickoffai/dataml/sls/inference_pipeline_version}
+      DB_NAME: ${self:custom.config.DB_NAME}
+      DB_TABLE: ${self:custom.config.DB_TABLE}
+      DB_CLUSTER_ARN: ${self:custom.config.DB_CLUSTER_ARN}
+      DB_SECRET_ARN: ${self:custom.config.DB_SECRET_ARN}
+      TABLE_SHUB: ${self:custom.config.TABLE_SHUB}
+      SHUB_INDEX: ${self:custom.config.SHUB_INDEX}
+    layers:
+      - !Ref PythonRequirementsLambdaLayer
+
+  slackNotify:
+    name: slack_notify
+    handler: src/functions/slack_notify.handler
+    description: Send notifications to slack workspace.
+
+stepFunctions:
+  validate: true
+  stateMachines:
+    modelTraining: ${file(./aws/model_training.yml)}
+    modelInference: ${file(./aws/model_inference.yml)}
+    modelDataPrepation: ${file(./aws/model_data_prep.yml)}

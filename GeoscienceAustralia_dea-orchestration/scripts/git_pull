@@ -1,0 +1,27 @@
+#!/bin/bash
+
+##########################################
+# Update the dea-orchestration Checkout
+##########################################
+SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
+cd "$SCRIPT_DIR" || exit 1  # Change to the dir *this* script is in
+
+git checkout master
+git reset --hard origin/master
+git pull
+
+##########################################
+# Update the COG-Conversion Checkout
+##########################################
+COG_REPO="https://github.com/GeoscienceAustralia/COG-Conversion.git"
+COG_CONV_DIR="$HOME/COG-Conversion"
+
+if [[ ! -d "$COG_CONV_DIR" ]]; then
+  cd "$HOME" || exit 1  # Changes home folder to be in repo
+  git clone "$COG_REPO"
+fi
+
+cd "$COG_CONV_DIR" || exit 1  # Changes home folder to be in repo
+git checkout master
+git reset --hard origin/master
+git pull

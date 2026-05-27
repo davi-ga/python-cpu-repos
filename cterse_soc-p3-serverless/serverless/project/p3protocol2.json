@@ -1,0 +1,726 @@
+{
+    "name": "P3Protocol",
+    "type": "protocol",
+    "parameters": [
+        "defectiveRefund",
+        "requestId",
+        "item",
+        "orderId",
+        "address",
+        "buyerName",
+        "amount",
+        "paymentId",
+        "cancelId",
+        "shipmentId",
+        "refundId"
+    ],
+    "keys": [
+        "requestId"
+    ],
+    "ins": [],
+    "outs": [
+        "shipmentId",
+        "defectiveRefund",
+        "orderId",
+        "address",
+        "buyerName",
+        "refundId",
+        "amount",
+        "requestId",
+        "cancelId",
+        "item",
+        "paymentId"
+    ],
+    "nils": [],
+    "roles": [
+        "Buyer",
+        "Merchant",
+        "Shipper",
+        "BuyerB"
+    ],
+    "messages": {
+        "RequestQuote": {
+            "name": "RequestQuote",
+            "type": "message",
+            "parameters": [
+                "requestId",
+                "item",
+                "buyerName"
+            ],
+            "keys": [
+                "requestId"
+            ],
+            "ins": [],
+            "outs": [
+                "buyerName",
+                "item",
+                "requestId"
+            ],
+            "nils": [],
+            "roles": [
+                "Buyer",
+                "Merchant"
+            ],
+            "to": "Merchant",
+            "from": "Buyer"
+        },
+        "Order": {
+            "name": "Order",
+            "type": "message",
+            "parameters": [
+                "requestId",
+                "amount",
+                "orderId",
+                "item",
+                "address",
+                "buyerName"
+            ],
+            "keys": [
+                "requestId"
+            ],
+            "ins": [
+                "buyerName",
+                "item",
+                "amount",
+                "requestId"
+            ],
+            "outs": [
+                "orderId",
+                "address"
+            ],
+            "nils": [],
+            "roles": [
+                "Buyer",
+                "Merchant"
+            ],
+            "to": "Merchant",
+            "from": "Buyer"
+        },
+        "Pay": {
+            "name": "Pay",
+            "type": "message",
+            "parameters": [
+                "requestId",
+                "orderId",
+                "amount",
+                "paymentId",
+                "item",
+                "address",
+                "buyerName"
+            ],
+            "keys": [
+                "requestId"
+            ],
+            "ins": [
+                "orderId",
+                "address",
+                "buyerName",
+                "amount",
+                "requestId",
+                "item"
+            ],
+            "outs": [
+                "paymentId"
+            ],
+            "nils": [],
+            "roles": [
+                "Buyer",
+                "Merchant"
+            ],
+            "to": "Merchant",
+            "from": "Buyer"
+        },
+        "CancelOrder": {
+            "name": "CancelOrder",
+            "type": "message",
+            "parameters": [
+                "requestId",
+                "orderId",
+                "shipmentId",
+                "cancelId"
+            ],
+            "keys": [
+                "requestId"
+            ],
+            "ins": [
+                "orderId",
+                "requestId"
+            ],
+            "outs": [
+                "cancelId"
+            ],
+            "nils": [
+                "shipmentId"
+            ],
+            "roles": [
+                "Buyer",
+                "Merchant"
+            ],
+            "to": "Merchant",
+            "from": "Buyer"
+        },
+        "SendQuote": {
+            "name": "SendQuote",
+            "type": "message",
+            "parameters": [
+                "requestId",
+                "item",
+                "amount",
+                "buyerName"
+            ],
+            "keys": [
+                "requestId"
+            ],
+            "ins": [
+                "buyerName",
+                "item",
+                "requestId"
+            ],
+            "outs": [
+                "amount"
+            ],
+            "nils": [],
+            "roles": [
+                "Merchant",
+                "Buyer"
+            ],
+            "to": "Buyer",
+            "from": "Merchant"
+        },
+        "SendItemToShip": {
+            "name": "SendItemToShip",
+            "type": "message",
+            "parameters": [
+                "requestId",
+                "orderId",
+                "item",
+                "address",
+                "buyerName",
+                "paymentId"
+            ],
+            "keys": [
+                "requestId"
+            ],
+            "ins": [
+                "orderId",
+                "address",
+                "buyerName",
+                "requestId",
+                "item",
+                "paymentId"
+            ],
+            "outs": [],
+            "nils": [],
+            "roles": [
+                "Merchant",
+                "Shipper"
+            ],
+            "to": "Shipper",
+            "from": "Merchant"
+        },
+        "SendShippedNotification": {
+            "name": "SendShippedNotification",
+            "type": "message",
+            "parameters": [
+                "requestId",
+                "orderId",
+                "cancelId",
+                "paymentId"
+            ],
+            "keys": [
+                "requestId"
+            ],
+            "ins": [
+                "orderId",
+                "requestId",
+                "paymentId"
+            ],
+            "outs": [],
+            "nils": [
+                "cancelId"
+            ],
+            "roles": [
+                "Merchant",
+                "Buyer"
+            ],
+            "to": "Buyer",
+            "from": "Merchant"
+        },
+        "RefundBuyerOnCancel": {
+            "name": "RefundBuyerOnCancel",
+            "type": "message",
+            "parameters": [
+                "requestId",
+                "cancelId",
+                "orderId",
+                "amount",
+                "refundId"
+            ],
+            "keys": [
+                "requestId"
+            ],
+            "ins": [
+                "orderId",
+                "cancelId",
+                "amount",
+                "requestId"
+            ],
+            "outs": [
+                "refundId"
+            ],
+            "nils": [],
+            "roles": [
+                "Merchant",
+                "Buyer"
+            ],
+            "to": "Buyer",
+            "from": "Merchant"
+        },
+        "SendDeliveryReminder": {
+            "name": "SendDeliveryReminder",
+            "type": "message",
+            "parameters": [
+                "requestId",
+                "orderId",
+                "shipmentId"
+            ],
+            "keys": [
+                "requestId"
+            ],
+            "ins": [
+                "shipmentId",
+                "orderId",
+                "requestId"
+            ],
+            "outs": [],
+            "nils": [],
+            "roles": [
+                "Merchant",
+                "Buyer"
+            ],
+            "to": "Buyer",
+            "from": "Merchant"
+        },
+        "SendDefectiveNotification": {
+            "name": "SendDefectiveNotification",
+            "type": "message",
+            "parameters": [
+                "requestId",
+                "orderId",
+                "shipmentId",
+                "item"
+            ],
+            "keys": [
+                "requestId"
+            ],
+            "ins": [
+                "shipmentId",
+                "orderId",
+                "item",
+                "requestId"
+            ],
+            "outs": [],
+            "nils": [],
+            "roles": [
+                "Merchant",
+                "Buyer"
+            ],
+            "to": "Buyer",
+            "from": "Merchant"
+        },
+        "SendDefectiveRefund": {
+            "name": "SendDefectiveRefund",
+            "type": "message",
+            "parameters": [
+                "requestId",
+                "orderId",
+                "shipmentId",
+                "defectiveRefund"
+            ],
+            "keys": [
+                "requestId"
+            ],
+            "ins": [
+                "shipmentId",
+                "orderId",
+                "requestId"
+            ],
+            "outs": [
+                "defectiveRefund"
+            ],
+            "nils": [],
+            "roles": [
+                "Merchant",
+                "Buyer"
+            ],
+            "to": "Buyer",
+            "from": "Merchant"
+        },
+        "ProvideTracking": {
+            "name": "ProvideTracking",
+            "type": "message",
+            "parameters": [
+                "requestId",
+                "orderId",
+                "shipmentId",
+                "trackingId"
+            ],
+            "keys": [
+                "requestId"
+            ],
+            "ins": [
+                "orderId",
+                "requestId"
+            ],
+            "outs": [
+                "shipmentId",
+                "trackingId"
+            ],
+            "nils": [],
+            "roles": [
+                "Shipper",
+                "Merchant"
+            ],
+            "to": "Merchant",
+            "from": "Shipper"
+        },
+        "ConfirmDelivery": {
+            "name": "ConfirmDelivery",
+            "type": "message",
+            "parameters": [
+                "requestId",
+                "orderId",
+                "shipmentId"
+            ],
+            "keys": [
+                "requestId"
+            ],
+            "ins": [
+                "shipmentId",
+                "orderId",
+                "requestId"
+            ],
+            "outs": [],
+            "nils": [],
+            "roles": [
+                "Shipper",
+                "Merchant"
+            ],
+            "to": "Merchant",
+            "from": "Shipper"
+        },
+        "ReportItem": {
+            "name": "ReportItem",
+            "type": "message",
+            "parameters": [
+                "requestId",
+                "orderId",
+                "shipmentId",
+                "item"
+            ],
+            "keys": [
+                "requestId"
+            ],
+            "ins": [
+                "shipmentId",
+                "orderId",
+                "item",
+                "requestId"
+            ],
+            "outs": [],
+            "nils": [],
+            "roles": [
+                "Shipper",
+                "Merchant"
+            ],
+            "to": "Merchant",
+            "from": "Shipper"
+        },
+        "RequestQuote2": {
+            "name": "RequestQuote2",
+            "type": "message",
+            "parameters": [
+                "requestId",
+                "item",
+                "buyerName"
+            ],
+            "keys": [
+                "requestId"
+            ],
+            "ins": [],
+            "outs": [
+                "buyerName",
+                "item",
+                "requestId"
+            ],
+            "nils": [],
+            "roles": [
+                "BuyerB",
+                "Merchant"
+            ],
+            "to": "Merchant",
+            "from": "BuyerB"
+        },
+        "Order2": {
+            "name": "Order2",
+            "type": "message",
+            "parameters": [
+                "requestId",
+                "amount",
+                "orderId",
+                "item",
+                "address",
+                "buyerName"
+            ],
+            "keys": [
+                "requestId"
+            ],
+            "ins": [
+                "buyerName",
+                "item",
+                "amount",
+                "requestId"
+            ],
+            "outs": [
+                "orderId",
+                "address"
+            ],
+            "nils": [],
+            "roles": [
+                "BuyerB",
+                "Merchant"
+            ],
+            "to": "Merchant",
+            "from": "BuyerB"
+        },
+        "Pay2": {
+            "name": "Pay2",
+            "type": "message",
+            "parameters": [
+                "requestId",
+                "orderId",
+                "amount",
+                "paymentId",
+                "item",
+                "address",
+                "buyerName"
+            ],
+            "keys": [
+                "requestId"
+            ],
+            "ins": [
+                "orderId",
+                "address",
+                "buyerName",
+                "amount",
+                "requestId",
+                "item"
+            ],
+            "outs": [
+                "paymentId"
+            ],
+            "nils": [],
+            "roles": [
+                "BuyerB",
+                "Merchant"
+            ],
+            "to": "Merchant",
+            "from": "BuyerB"
+        },
+        "CancelOrder2": {
+            "name": "CancelOrder2",
+            "type": "message",
+            "parameters": [
+                "requestId",
+                "orderId",
+                "shipmentId",
+                "cancelId"
+            ],
+            "keys": [
+                "requestId"
+            ],
+            "ins": [
+                "orderId",
+                "requestId"
+            ],
+            "outs": [
+                "cancelId"
+            ],
+            "nils": [
+                "shipmentId"
+            ],
+            "roles": [
+                "BuyerB",
+                "Merchant"
+            ],
+            "to": "Merchant",
+            "from": "BuyerB"
+        },
+        "SendQuote2": {
+            "name": "SendQuote2",
+            "type": "message",
+            "parameters": [
+                "requestId",
+                "item",
+                "amount",
+                "buyerName"
+            ],
+            "keys": [
+                "requestId"
+            ],
+            "ins": [
+                "buyerName",
+                "item",
+                "requestId"
+            ],
+            "outs": [
+                "amount"
+            ],
+            "nils": [],
+            "roles": [
+                "Merchant",
+                "BuyerB"
+            ],
+            "to": "BuyerB",
+            "from": "Merchant"
+        },
+        "SendShippedNotification2": {
+            "name": "SendShippedNotification2",
+            "type": "message",
+            "parameters": [
+                "requestId",
+                "orderId",
+                "cancelId",
+                "paymentId"
+            ],
+            "keys": [
+                "requestId"
+            ],
+            "ins": [
+                "orderId",
+                "requestId",
+                "paymentId"
+            ],
+            "outs": [],
+            "nils": [
+                "cancelId"
+            ],
+            "roles": [
+                "Merchant",
+                "BuyerB"
+            ],
+            "to": "BuyerB",
+            "from": "Merchant"
+        },
+        "RefundBuyerOnCancel2": {
+            "name": "RefundBuyerOnCancel2",
+            "type": "message",
+            "parameters": [
+                "requestId",
+                "cancelId",
+                "orderId",
+                "amount",
+                "refundId"
+            ],
+            "keys": [
+                "requestId"
+            ],
+            "ins": [
+                "orderId",
+                "cancelId",
+                "amount",
+                "requestId"
+            ],
+            "outs": [
+                "refundId"
+            ],
+            "nils": [],
+            "roles": [
+                "Merchant",
+                "BuyerB"
+            ],
+            "to": "BuyerB",
+            "from": "Merchant"
+        },
+        "SendDeliveryReminder2": {
+            "name": "SendDeliveryReminder2",
+            "type": "message",
+            "parameters": [
+                "requestId",
+                "orderId",
+                "shipmentId"
+            ],
+            "keys": [
+                "requestId"
+            ],
+            "ins": [
+                "shipmentId",
+                "orderId",
+                "requestId"
+            ],
+            "outs": [],
+            "nils": [],
+            "roles": [
+                "Merchant",
+                "BuyerB"
+            ],
+            "to": "BuyerB",
+            "from": "Merchant"
+        },
+        "SendDefectiveNotification2": {
+            "name": "SendDefectiveNotification2",
+            "type": "message",
+            "parameters": [
+                "requestId",
+                "orderId",
+                "shipmentId",
+                "item"
+            ],
+            "keys": [
+                "requestId"
+            ],
+            "ins": [
+                "shipmentId",
+                "orderId",
+                "item",
+                "requestId"
+            ],
+            "outs": [],
+            "nils": [],
+            "roles": [
+                "Merchant",
+                "BuyerB"
+            ],
+            "to": "BuyerB",
+            "from": "Merchant"
+        },
+        "SendDefectiveRefund2": {
+            "name": "SendDefectiveRefund2",
+            "type": "message",
+            "parameters": [
+                "requestId",
+                "orderId",
+                "shipmentId",
+                "defectiveRefund"
+            ],
+            "keys": [
+                "requestId"
+            ],
+            "ins": [
+                "shipmentId",
+                "orderId",
+                "requestId"
+            ],
+            "outs": [
+                "defectiveRefund"
+            ],
+            "nils": [],
+            "roles": [
+                "Merchant",
+                "BuyerB"
+            ],
+            "to": "BuyerB",
+            "from": "Merchant"
+        }
+    }
+}

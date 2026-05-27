@@ -1,0 +1,330 @@
+name: ${self:service.name}-models-inference
+definition:
+  StartAt: model_inference_start
+  Comment: Daily inference analytics from available models.
+  States:
+    model_inference_start:
+      Type: Task
+      Resource: !GetAtt modelInferenceStart.Arn
+      ResultPath: $
+      Next: csv_dump
+    csv_dump:
+      Type: Task
+      Resource: !GetAtt csvDump.Arn
+      Parameters:
+        query_type: daily
+        query_date.$: $.query_date
+      ResultPath: $.outputs.csv_dump.bucket_path
+      Next: csv_transform_parallel
+    csv_transform_parallel:
+      Type: Parallel
+      Branches:
+        - StartAt: transform_1x
+          States:
+            transform_1x:
+              Type: Task
+              Resource: !GetAtt csvTransform.Arn
+              Parameters:
+                csv_label: "1x"
+                pipeline_type: "inference"
+                pipeline_version.$: $.pipeline_version
+                csv_filepath.$: $.outputs.csv_dump.bucket_path
+              ResultPath: $.outputs.transform_1x
+              Next: inference_1x
+            inference_1x:
+              Type: Task
+              Resource: !GetAtt modelInference.Arn
+              Parameters:
+                model_label: "1x"
+                model_metric.$: $.model_metric_1x
+                model_type.$: $.model_type_1x
+              ResultPath: $.outputs.inference_1x
+              Retry:
+                - ErrorEquals:
+                    - States.TaskFailed
+                  IntervalSeconds: 5
+                  MaxAttempts: 2
+                  BackoffRate: 2
+              Next: inference_1x_status
+            inference_1x_status:
+              Type: Task
+              Resource: !GetAtt modelInferenceStatus.Arn
+              Parameters:
+                transform_job_name.$: $.outputs.inference_1x.transform_job_name
+              ResultPath: $.outputs.inference_1x_status
+              Next: state_choice_1x
+            state_choice_1x:
+              Type: Choice
+              Choices:
+                - Variable: $.outputs.inference_1x_status.job_status
+                  StringEquals: "Completed"
+                  Next: concat_stage_one_1x
+                - Variable: $.outputs.inference_1x_status.job_status
+                  StringEquals: "InProgress"
+                  Next: wait_1min_1x
+                - Variable: $.outputs.inference_1x_status.job_status
+                  StringEquals: "Failed"
+                  Next: state_choice_1x_failed
+                - Variable: $.outputs.inference_1x_status.job_status
+                  StringEquals: "Stopping"
+                  Next: state_choice_1x_failed
+                - Variable: $.outputs.inference_1x_status.job_status
+                  StringEquals: "Stopped"
+                  Next: state_choice_1x_failed
+              Default: state_choice_1x_failed
+            state_choice_1x_failed:
+              Type: Fail
+            wait_1min_1x:
+              Type: Wait
+              Seconds: 60
+              Next: inference_1x_status
+            concat_stage_one_1x:
+              Type: Task
+              Resource: !GetAtt csvConcat.Arn
+              Parameters:
+                csv_label: "1x"
+                csv_input_path.$: $.outputs.csv_dump.bucket_path
+                pipeline_version.$: $.pipeline_version
+              ResultPath: $.outputs.concat_stage_one_1x
+              End: true
+
+        - StartAt: transform_12
+          States:
+            transform_12:
+              Type: Task
+              Resource: !GetAtt csvTransform.Arn
+              Parameters:
+                csv_label: "12"
+                pipeline_type: "inference"
+                pipeline_version.$: $.pipeline_version
+                csv_filepath.$: $.outputs.csv_dump.bucket_path
+              ResultPath: $.outputs.transform_12
+              Next: inference_12
+            inference_12:
+              Type: Task
+              Resource: !GetAtt modelInference.Arn
+              Parameters:
+                model_label: "12"
+                model_metric.$: $.model_metric_12
+                model_type.$: $.model_type_12
+              ResultPath: $.outputs.inference_12
+              Retry:
+                - ErrorEquals:
+                    - States.TaskFailed
+                  IntervalSeconds: 5
+                  MaxAttempts: 2
+                  BackoffRate: 2
+              Next: inference_12_status
+            inference_12_status:
+              Type: Task
+              Resource: !GetAtt modelInferenceStatus.Arn
+              Parameters:
+                transform_job_name.$: $.outputs.inference_12.transform_job_name
+              ResultPath: $.outputs.inference_12_status
+              Next: state_choice_12
+            state_choice_12:
+              Type: Choice
+              Choices:
+                - Variable: $.outputs.inference_12_status.job_status
+                  StringEquals: "Completed"
+                  Next: concat_stage_one_12
+                - Variable: $.outputs.inference_12_status.job_status
+                  StringEquals: "InProgress"
+                  Next: wait_1min_12
+                - Variable: $.outputs.inference_12_status.job_status
+                  StringEquals: "Failed"
+                  Next: state_choice_12_failed
+                - Variable: $.outputs.inference_12_status.job_status
+                  StringEquals: "Stopping"
+                  Next: state_choice_12_failed
+                - Variable: $.outputs.inference_12_status.job_status
+                  StringEquals: "Stopped"
+                  Next: state_choice_12_failed
+              Default: state_choice_12_failed
+            state_choice_12_failed:
+              Type: Fail
+            wait_1min_12:
+              Type: Wait
+              Seconds: 60
+              Next: inference_12_status
+            concat_stage_one_12:
+              Type: Task
+              Resource: !GetAtt csvConcat.Arn
+              Parameters:
+                csv_label: "12"
+                csv_input_path.$: $.outputs.csv_dump.bucket_path
+                pipeline_version.$: $.pipeline_version
+              ResultPath: $.outputs.concat_stage_one_12
+              End: true
+
+        - StartAt: transform_x2
+          States:
+            transform_x2:
+              Type: Task
+              Resource: !GetAtt csvTransform.Arn
+              Parameters:
+                csv_label: "x2"
+                pipeline_type: "inference"
+                pipeline_version.$: $.pipeline_version
+                csv_filepath.$: $.outputs.csv_dump.bucket_path
+              ResultPath: $.outputs.transform_x2
+              Next: inference_x2
+            inference_x2:
+              Type: Task
+              Resource: !GetAtt modelInference.Arn
+              Parameters:
+                model_label: "x2"
+                model_metric.$: $.model_metric_x2
+                model_type.$: $.model_type_x2
+              ResultPath: $.outputs.inference_x2
+              Retry:
+                - ErrorEquals:
+                    - States.TaskFailed
+                  IntervalSeconds: 5
+                  MaxAttempts: 2
+                  BackoffRate: 2
+              Next: inference_x2_status
+            inference_x2_status:
+              Type: Task
+              Resource: !GetAtt modelInferenceStatus.Arn
+              Parameters:
+                transform_job_name.$: $.outputs.inference_x2.transform_job_name
+              ResultPath: $.outputs.inference_x2_status
+              Next: state_choice_x2
+            state_choice_x2:
+              Type: Choice
+              Choices:
+                - Variable: $.outputs.inference_x2_status.job_status
+                  StringEquals: "Completed"
+                  Next: concat_stage_one_x2
+                - Variable: $.outputs.inference_x2_status.job_status
+                  StringEquals: "InProgress"
+                  Next: wait_1min_x2
+                - Variable: $.outputs.inference_x2_status.job_status
+                  StringEquals: "Failed"
+                  Next: state_choice_x2_failed
+                - Variable: $.outputs.inference_x2_status.job_status
+                  StringEquals: "Stopping"
+                  Next: state_choice_x2_failed
+                - Variable: $.outputs.inference_x2_status.job_status
+                  StringEquals: "Stopped"
+                  Next: state_choice_x2_failed
+              Default: state_choice_x2_failed
+            state_choice_x2_failed:
+              Type: Fail
+            wait_1min_x2:
+              Type: Wait
+              Seconds: 60
+              Next: inference_x2_status
+            concat_stage_one_x2:
+              Type: Task
+              Resource: !GetAtt csvConcat.Arn
+              Parameters:
+                csv_label: "x2"
+                csv_input_path.$: $.outputs.csv_dump.bucket_path
+                pipeline_version.$: $.pipeline_version
+              ResultPath: $.outputs.concat_stage_one_x2
+              End: true
+
+        - StartAt: transform_xc
+          States:
+            transform_xc:
+              Type: Task
+              Resource: !GetAtt csvTransform.Arn
+              Parameters:
+                csv_label: "xc"
+                pipeline_type: "inference"
+                pipeline_version.$: $.pipeline_version
+                csv_filepath.$: $.outputs.csv_dump.bucket_path
+              ResultPath: $.outputs.transform_xc
+              Next: inference_xc
+            inference_xc:
+              Type: Task
+              Resource: !GetAtt modelInference.Arn
+              Parameters:
+                model_label: "xc"
+                model_metric.$: $.model_metric_xc
+                model_type.$: $.model_type_xc
+              ResultPath: $.outputs.inference_xc
+              Retry:
+                - ErrorEquals:
+                    - States.TaskFailed
+                  IntervalSeconds: 5
+                  MaxAttempts: 2
+                  BackoffRate: 2
+              Next: inference_xc_status
+            inference_xc_status:
+              Type: Task
+              Resource: !GetAtt modelInferenceStatus.Arn
+              Parameters:
+                transform_job_name.$: $.outputs.inference_xc.transform_job_name
+              ResultPath: $.outputs.inference_xc_status
+              Next: state_choice_xc
+            state_choice_xc:
+              Type: Choice
+              Choices:
+                - Variable: $.outputs.inference_xc_status.job_status
+                  StringEquals: "Completed"
+                  Next: concat_stage_one_xc
+                - Variable: $.outputs.inference_xc_status.job_status
+                  StringEquals: "InProgress"
+                  Next: wait_1min_xc
+                - Variable: $.outputs.inference_xc_status.job_status
+                  StringEquals: "Failed"
+                  Next: state_choice_xc_failed
+                - Variable: $.outputs.inference_xc_status.job_status
+                  StringEquals: "Stopping"
+                  Next: state_choice_xc_failed
+                - Variable: $.outputs.inference_xc_status.job_status
+                  StringEquals: "Stopped"
+                  Next: state_choice_xc_failed
+              Default: state_choice_xc_failed
+            state_choice_xc_failed:
+              Type: Fail
+            wait_1min_xc:
+              Type: Wait
+              Seconds: 60
+              Next: inference_xc_status
+            concat_stage_one_xc:
+              Type: Task
+              Resource: !GetAtt csvConcat.Arn
+              Parameters:
+                csv_label: "xc"
+                csv_input_path.$: $.outputs.csv_dump.bucket_path
+                pipeline_version.$: $.pipeline_version
+              ResultPath: $.outputs.concat_stage_one_xc
+              End: true
+
+      ResultPath: $.outputs.csv_transform_parallel
+      Next: concat_stage_two
+    concat_stage_two:
+      Type: Task
+      Resource: !GetAtt csvConcatAll.Arn
+      Parameters:
+        query_date.$: $.query_date
+      ResultPath: $.outputs.concat_stage_two.bucket_path
+      Next: csv_transform_analysis
+    csv_transform_analysis:
+      Type: Task
+      Resource: !GetAtt csvTransform.Arn
+      Parameters:
+        pipeline_type: "analysis"
+        pipeline_version.$: $.pipeline_version
+        csv_filepath.$: $.outputs.concat_stage_two.bucket_path
+        csv_label: "any"
+      ResultPath: $.outputs.csv_transform_analysis.bucket_path
+      Next: analytics_save
+    analytics_save:
+      Type: Task
+      Resource: !GetAtt analyticsSave.Arn
+      Parameters:
+        bucket_path.$: $.outputs.csv_transform_analysis.bucket_path
+      ResultPath: $.outputs.analytics_save
+      End: true
+
+events:
+  - schedule:
+      name: daily_inference
+      description: Run daily inference analytics.
+      rate: cron(20 1 * * ? *) # Every day at 4:20AM EAT
+      enabled: false

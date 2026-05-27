@@ -1,0 +1,21 @@
+service: logistics
+frameworkVersion: ">=1.34.0 <2.0.0"
+
+provider:
+  name: aws
+  runtime: python3.8
+
+layers:
+  configuration:
+    path: configuration # required, path to layer contents on disk
+    name: LogisticsConfigurationLayer # optional, Deployed Lambda layer name
+    description: Layer for sharing the protocol configuration files # optional, Description to publish to AWS
+    licenseInfo: GPLv3 # optional, a string specifying license information
+
+resources:
+  Outputs:
+    ConfigurationLayerExport:
+      Value:
+        Ref: ConfigurationLambdaLayer
+      Export:
+        Name: LogisticsConfigurationLayer

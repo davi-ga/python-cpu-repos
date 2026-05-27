@@ -1,0 +1,4 @@
+requests_aws4auth
+requests
+boto3
+shapely

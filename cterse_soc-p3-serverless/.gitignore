@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+*.egg-info/
+*.db
+logs/
+venv/
+node_modules/
+.serverless/
+.dynamodb/
+.coverage
+htmlcov/
+reactors.json
+configuration-dev.json

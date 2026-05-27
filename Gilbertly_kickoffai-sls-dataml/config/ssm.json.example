@@ -1,0 +1,24 @@
+[
+  {
+    "Name": "/kickoffai/dataml/secret",
+    "Description": "Simple secret.",
+    "Type": "String",
+    "Value": "one",
+    "Overwrite": true
+  },
+  {
+    "Name": "/kickoffai/dataml/secure_secret",
+    "Description": "Secure secret with kms encryption.",
+    "Type": "SecureString",
+    "Value": "one",
+    "Overwrite": true,
+    "KeyId": "key"
+  },
+  {
+    "Name": "/kickoffai/dataml/secrets",
+    "Description": "Two secrets separated by a comma.",
+    "Type": "StringList",
+    "Value": "one, two",
+    "Overwrite": true
+  }
+]

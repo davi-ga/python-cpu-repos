@@ -1,0 +1,70 @@
+Resources:
+  LambdaBasicPermissions:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: dataml-lambda-basic-policy
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Sid: CreatePutLogsForAllFunctions
+            Effect: Allow
+            Action:
+              - logs:CreateLogStream
+              - logs:PutLogEvents
+            Resource:
+              - arn:aws:logs:${self:provider.region}::log-group:/aws/lambda/*:*:*
+      Roles:
+        - !Ref DatamlDefaultLambdaRole
+
+  LambdaAuroraPermissions:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: dataml-lambda-aurora-policy
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Sid: ExecAuroraDataApi
+            Effect: Allow
+            Action: rds-data:ExecuteStatement
+            Resource: ${self:custom.config.DB_CLUSTER_ARN}
+          - Sid: RetrieveAuroraSecrets
+            Effect: Allow
+            Action: secretsmanager:GetSecretValue
+            Resource: ${self:custom.config.DB_SECRET_ARN}
+      Roles:
+        - !Ref DatamlDefaultLambdaRole
+
+  LambdaETLPermissions:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: dataml-lambda-s3-policy
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Sid: AccessAllObjectsInPath
+            Effect: Allow
+            Action: s3:*
+            Resource: arn:aws:s3:::${self:custom.config.ARTIFACT_BUCKET}/*
+          - Sid: AccessAllSSMParameters
+            Effect: Allow
+            Action: ssm:*
+            Resource: "*"
+          - Sid: AccessAllSagemakerResources
+            Effect: Allow
+            Action: sagemaker:*
+            Resource: "*"
+      Roles:
+        - !Ref DatamlDefaultLambdaRole
+
+  DatamlDefaultLambdaRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: dataml-default-lambda-role
+      Description: Lambda IAM role for all dataml functions.
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+        Version: "2012-10-17"
