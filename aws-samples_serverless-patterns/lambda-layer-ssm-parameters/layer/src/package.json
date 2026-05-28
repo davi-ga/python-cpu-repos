@@ -1,7 +1,0 @@
-{
-  "name": "config-layer-dependencies",
-  "version": "1.0.0",
-  "dependencies": {
-    "@aws-sdk/client-ssm": "*"
-  }
-}

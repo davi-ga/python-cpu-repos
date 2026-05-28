@@ -1,7 +1,0 @@
-[
-  {
-    "DetailType": "transaction",
-    "Source": "demo.cli",
-    "Detail": "{\"msg\":\"test\"}"
-  }
-]

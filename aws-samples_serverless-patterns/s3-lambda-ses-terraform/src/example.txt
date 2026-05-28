@@ -1,3 +1,0 @@
-This is test payload which is uploded to the S3 bucket.
-
-If you have recevied this file over the email it represents that email function flow has been working correctly.

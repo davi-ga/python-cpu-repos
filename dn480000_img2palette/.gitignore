@@ -1,7 +1,0 @@
-.env
-.serverless
-note.md
-.vscode
-node_modules
-
-__pycache__

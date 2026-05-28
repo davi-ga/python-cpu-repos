@@ -1,7 +1,0 @@
-{
-    "dynamodb": {
-        "tableName": "iotDynamoDBTable",
-        "ttlAttribute": "ttl",
-        "ttlTimeVaue": 300000
-    }
-}

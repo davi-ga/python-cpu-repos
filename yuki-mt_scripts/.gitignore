@@ -1,9 +1,0 @@
-__pycache__/
-*.py[cod]
-.mypy_cache/
-
-node_modules/
-config.json
-.token
-
-toggl/*.csv

@@ -1,5 +1,0 @@
-# Replace these lines with the actual endpoints that serverless prints, then redeploy
-Merchant: https://sfa5fs6ssg.execute-api.us-east-1.amazonaws.com/merchant/messages
-Labeler:  https://sfa5fs6ssg.execute-api.us-east-1.amazonaws.com/labeler/messages
-Wrapper:  https://sfa5fs6ssg.execute-api.us-east-1.amazonaws.com/wrapper/messages
-Packer:   https://sfa5fs6ssg.execute-api.us-east-1.amazonaws.com/packer/messages

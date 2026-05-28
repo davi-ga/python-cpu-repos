@@ -1,7 +1,0 @@
-[
-  {
-    "DetailType": "transaction",
-    "Source": "cdk.myApp",
-    "Detail": "{\"location\":\"EUR-\"}"
-  }
-]

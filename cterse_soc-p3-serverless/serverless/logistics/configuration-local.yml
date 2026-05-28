@@ -1,4 +1,0 @@
-Merchant: http://localhost:3000/local/merchant/messages
-Labeler: http://localhost:3000/local/labeler/messages
-Wrapper: http://localhost:3000/local/wrapper/messages
-Packer: http://localhost:3000/local/packer/messages

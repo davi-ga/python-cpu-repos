@@ -1,5 +1,0 @@
-zappa>=0.45.1
-aws-xray-sdk
-hashids
-#django ~= 2.0.10
-django>=2.2.9

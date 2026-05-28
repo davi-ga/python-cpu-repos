@@ -1,8 +1,0 @@
-[
-    {
-      "EventBusName": "test-bus-cdk",
-      "Source": "my-cdk-application",
-      "DetailType": "message-for-queue",
-      "Detail": "{\"message\":\"Hello CDK world!\"}"
-    }
-  ]

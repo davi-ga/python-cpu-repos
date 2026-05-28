@@ -1,9 +1,0 @@
-{
-  "compilerOptions": {
-    "baseUrl": ".",
-    "target": "es6",
-    "sourceMap": true,
-    "allowSyntheticDefaultImports": true,
-    "moduleResolution": "node"
-  }
-}

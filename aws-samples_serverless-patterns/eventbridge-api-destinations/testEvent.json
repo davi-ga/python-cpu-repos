@@ -1,8 +1,0 @@
-[
-    {
-        "DetailType": "MyTestMessage",
-        "EventBusName": "MyEventBus",
-        "Source": "MyTestApp",
-        "Detail": "{\"event\":\"Payment failed\"}"
-    }
-  ]

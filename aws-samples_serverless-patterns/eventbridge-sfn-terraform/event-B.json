@@ -1,7 +1,0 @@
-[
-  {
-    "DetailType": "message",
-    "Source": "demo.sfn",
-    "Detail": "{\"Path\":\"B\"}"
-  }
-]

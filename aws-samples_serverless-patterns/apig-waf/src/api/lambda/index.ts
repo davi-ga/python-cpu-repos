@@ -1,1 +1,0 @@
-export { handler as ProxyLambda } from "./api-handler";

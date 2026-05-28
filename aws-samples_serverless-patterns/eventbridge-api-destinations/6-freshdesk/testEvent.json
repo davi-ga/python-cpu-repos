@@ -1,7 +1,0 @@
-[
-    {
-        "EventBusName": "FreshdeskEventBus",
-        "Source": "freshdesktest",
-        "Detail": "{\"description\":\"Hello from AWS\",\"subject\":\"Hi\",\"email\":\"apple@outerspace.com\",\"priority\":1, \"status\":2}"
-    }
-  ]

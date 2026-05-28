@@ -1,7 +1,0 @@
-[
-  {
-    "DetailType": "message",
-    "Source": "demo.sns",
-    "Detail": "{\"message\":\"Hello From EventBridge!\"}"
-  }
-]
