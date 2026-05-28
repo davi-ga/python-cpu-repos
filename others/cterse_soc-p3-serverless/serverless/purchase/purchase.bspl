@@ -1,0 +1,14 @@
+Purchase {
+roles B, S
+parameters out id key, out label, out item key
+private price, payment, address, prices
+
+B -> S: Rfq[out id key, out item]
+S -> B: Quote[in id key, in item, out price]
+B -> S: Buy[in id key, in price, out payment, out address]
+
+S -> B: Offer[out id key, out prices]
+B -> S: Choose[in id key, in prices, out item key, out payment, out address]
+
+S -> B: Shipment[in id key, in item key, in payment, in address, out label]
+}

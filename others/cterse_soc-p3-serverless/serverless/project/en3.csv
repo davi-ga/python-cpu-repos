@@ -1,0 +1,109 @@
+@timestamp,@message
+2021-11-22 04:43:42.213,"received_cancel_order: {""requestId"": 52, ""orderId"": 90336, ""cancelId"": 732}
+"
+2021-11-22 04:43:42.206,"[INFO]	2021-11-22T04:43:42.206Z	31d9016c-618b-4c03-8dad-b1318ecce167	Received message: {'requestId': 52, 'orderId': 90336, 'cancelId': 732}
+"
+2021-11-22 04:43:42.200,"Received message: {'requestId': 52, 'orderId': 90336, 'cancelId': 732}
+"
+2021-11-22 04:43:42.164,"cancelledOrder {""requestId"": 52, ""orderId"": 90336, ""cancelId"": 732}
+"
+2021-11-22 04:43:42.164,"[INFO]	2021-11-22T04:43:42.164Z	8513d902-8605-401a-8a32-b1422fa31b28	Sending message {'requestId': 52, 'orderId': 90336, 'cancelId': 732} to https://bdn5aj1tqi.execute-api.us-east-2.amazonaws.com/merchant/messages
+"
+2021-11-22 04:43:42.099,"received_delivery_reminder {""requestId"": 52, ""orderId"": 90336, ""shipmentId"": 52}
+"
+2021-11-22 04:43:42.089,"[INFO]	2021-11-22T04:43:42.89Z	085e8a42-0ad9-49ec-8e83-7adb7a995327	Received message: {'requestId': 52, 'orderId': 90336, 'shipmentId': 52}
+"
+2021-11-22 04:43:42.051,"Received message: {'requestId': 52, 'orderId': 90336, 'shipmentId': 52}
+"
+2021-11-22 04:43:42.011,"[INFO]	2021-11-22T04:43:42.11Z	3952905b-210f-49f2-a893-5e6f65d0d8e3	Sending message {'requestId': 52, 'orderId': 90336, 'shipmentId': 52} to https://bdn5aj1tqi.execute-api.us-east-2.amazonaws.com/buyer/messages
+"
+2021-11-22 04:43:42.010,"del_reminder_sent: {""requestId"": 52, ""orderId"": 90336, ""shipmentId"": 52}
+"
+2021-11-22 04:43:41.989,"received_delivery_confirmation: {""requestId"": 52, ""orderId"": 90336, ""shipmentId"": 52}
+"
+2021-11-22 04:43:41.989,"Sending delivery notification to Buyer: {'requestId': 52, 'orderId': 90336, 'shipmentId': 52}
+"
+2021-11-22 04:43:41.984,"[INFO]	2021-11-22T04:43:41.984Z	3952905b-210f-49f2-a893-5e6f65d0d8e3	Received message: {'requestId': 52, 'orderId': 90336, 'shipmentId': 52}
+"
+2021-11-22 04:43:41.977,"Received message: {'requestId': 52, 'orderId': 90336, 'shipmentId': 52}
+"
+2021-11-22 04:43:41.936,"delivery_confirmation_sent: {""requestId"": 52, ""orderId"": 90336, ""shipmentId"": 52}
+"
+2021-11-22 04:43:41.936,"[INFO]	2021-11-22T04:43:41.936Z	33fdcd65-94fd-488c-82ae-e99ad14334a1	Sending message {'requestId': 52, 'orderId': 90336, 'shipmentId': 52} to https://bdn5aj1tqi.execute-api.us-east-2.amazonaws.com/merchant/messages
+"
+2021-11-22 04:43:41.912,"Sending delivery confirmation to Merchant: {'requestId': 52, 'orderId': 90336, 'shipmentId': 52}
+"
+2021-11-22 04:43:41.903,"received_tracking: {""requestId"": 52, ""orderId"": 90336, ""shipmentId"": 52, ""trackingId"": 20}
+"
+2021-11-22 04:43:41.897,"[INFO]	2021-11-22T04:43:41.896Z	fd5ae846-30ab-44ba-8061-ca29358bd93c	Received message: {'requestId': 52, 'orderId': 90336, 'shipmentId': 52, 'trackingId': 20}
+"
+2021-11-22 04:43:41.855,"Received message: {'requestId': 52, 'orderId': 90336, 'shipmentId': 52, 'trackingId': 20}
+"
+2021-11-22 04:43:41.812,"[INFO]	2021-11-22T04:43:41.812Z	33fdcd65-94fd-488c-82ae-e99ad14334a1	Sending message {'requestId': 52, 'orderId': 90336, 'shipmentId': 52, 'trackingId': 20} to https://bdn5aj1tqi.execute-api.us-east-2.amazonaws.com/merchant/messages
+"
+2021-11-22 04:43:41.812,"tracking_info_sent: {""requestId"": 52, ""orderId"": 90336, ""shipmentId"": 52, ""trackingId"": 20}
+"
+2021-11-22 04:43:41.794,"received_order: {""requestId"": 52, ""orderId"": 90336, ""paymentId"": 76736, ""item"": ""test item-52"", ""address"": ""Indiana"", ""buyerName"": ""buyerB""}
+"
+2021-11-22 04:43:41.794,"Sending tracking info to Merchant: {'requestId': 52, 'orderId': 90336, 'shipmentId': 52, 'trackingId': 20}
+"
+2021-11-22 04:43:41.787,"[INFO]	2021-11-22T04:43:41.787Z	33fdcd65-94fd-488c-82ae-e99ad14334a1	Received message: {'requestId': 52, 'orderId': 90336, 'paymentId': 76736, 'item': 'test item-52', 'address': 'Indiana', 'buyerName': 'buyerB'}
+"
+2021-11-22 04:43:41.755,"Received message: {'requestId': 52, 'orderId': 90336, 'paymentId': 76736, 'item': 'test item-52', 'address': 'Indiana', 'buyerName': 'buyerB'}
+"
+2021-11-22 04:43:41.710,"item_to_ship_sent: {""requestId"": 52, ""orderId"": 90336, ""paymentId"": 76736, ""item"": ""test item-52"", ""address"": ""Indiana"", ""buyerName"": ""buyerB""}
+"
+2021-11-22 04:43:41.710,"[INFO]	2021-11-22T04:43:41.710Z	ce8745ca-f413-407e-8994-fff3da8f53f3	Sending message {'requestId': 52, 'orderId': 90336, 'paymentId': 76736, 'item': 'test item-52', 'address': 'Indiana', 'buyerName': 'buyerB'} to https://bdn5aj1tqi.execute-api.us-east-2.amazonaws.com/shipper/messages
+"
+2021-11-22 04:43:41.671,"received_pay: {""requestId"": 52, ""orderId"": 90336, ""amount"": 110, ""item"": ""test item-52"", ""address"": ""Indiana"", ""buyerName"": ""buyerB"", ""paymentId"": 76736}
+"
+2021-11-22 04:43:41.671,"Sending order to shipper: {'requestId': 52, 'orderId': 90336, 'paymentId': 76736, 'item': 'test item-52', 'address': 'Indiana', 'buyerName': 'buyerB'}
+"
+2021-11-22 04:43:41.665,"[INFO]	2021-11-22T04:43:41.665Z	ce8745ca-f413-407e-8994-fff3da8f53f3	Received message: {'requestId': 52, 'orderId': 90336, 'amount': 110, 'item': 'test item-52', 'address': 'Indiana', 'buyerName': 'buyerB', 'paymentId': 76736}
+"
+2021-11-22 04:43:41.658,"Received message: {'requestId': 52, 'orderId': 90336, 'amount': 110, 'item': 'test item-52', 'address': 'Indiana', 'buyerName': 'buyerB', 'paymentId': 76736}
+"
+2021-11-22 04:43:41.629,"[INFO]	2021-11-22T04:43:41.628Z	8513d902-8605-401a-8a32-b1422fa31b28	Sending message {'requestId': 52, 'orderId': 90336, 'amount': 110, 'item': 'test item-52', 'address': 'Indiana', 'buyerName': 'buyerB', 'paymentId': 76736} to https://bdn5aj1tqi.execute-api.us-east-2.amazonaws.com/merchant/messages
+"
+2021-11-22 04:43:41.628,"sentPayment {""requestId"": 52, ""orderId"": 90336, ""amount"": 110, ""item"": ""test item-52"", ""address"": ""Indiana"", ""buyerName"": ""buyerB"", ""paymentId"": 76736}
+"
+2021-11-22 04:43:41.578,"received_order: {""requestId"": 52, ""amount"": 110, ""item"": ""test item-52"", ""buyerName"": ""buyerB"", ""orderId"": 90336, ""address"": ""Indiana""}
+"
+2021-11-22 04:43:41.570,"[INFO]	2021-11-22T04:43:41.570Z	16b8c489-f763-40b5-9cef-1b820dabf388	Received message: {'requestId': 52, 'amount': 110, 'item': 'test item-52', 'buyerName': 'buyerB', 'orderId': 90336, 'address': 'Indiana'}
+"
+2021-11-22 04:43:41.543,"Received message: {'requestId': 52, 'amount': 110, 'item': 'test item-52', 'buyerName': 'buyerB', 'orderId': 90336, 'address': 'Indiana'}
+"
+2021-11-22 04:43:41.504,"[INFO]	2021-11-22T04:43:41.503Z	8513d902-8605-401a-8a32-b1422fa31b28	Sending message {'requestId': 52, 'amount': 110, 'item': 'test item-52', 'buyerName': 'buyerB', 'orderId': 90336, 'address': 'Indiana'} to https://bdn5aj1tqi.execute-api.us-east-2.amazonaws.com/merchant/messages
+"
+2021-11-22 04:43:41.503,"sentOrder {""requestId"": 52, ""amount"": 110, ""item"": ""test item-52"", ""buyerName"": ""buyerB"", ""orderId"": 90336, ""address"": ""Indiana""}
+"
+2021-11-22 04:43:41.474,"receivedQuote: {""requestId"": 52, ""item"": ""test item-52"", ""buyerName"": ""buyerB"", ""amount"": 110}
+"
+2021-11-22 04:43:41.467,"[INFO]	2021-11-22T04:43:41.467Z	8513d902-8605-401a-8a32-b1422fa31b28	Received message: {'requestId': 52, 'item': 'test item-52', 'buyerName': 'buyerB', 'amount': 110}
+"
+2021-11-22 04:43:41.430,"Received message: {'requestId': 52, 'item': 'test item-52', 'buyerName': 'buyerB', 'amount': 110}
+"
+2021-11-22 04:43:41.385,"quote_response_sent: {""requestId"": 52, ""item"": ""test item-52"", ""buyerName"": ""buyerB"", ""amount"": 110}
+"
+2021-11-22 04:43:41.385,"[INFO]	2021-11-22T04:43:41.385Z	bfeb57ff-a94f-4fc6-8f6e-42c43cb6e8a7	Sending message {'requestId': 52, 'item': 'test item-52', 'buyerName': 'buyerB', 'amount': 110} to https://bdn5aj1tqi.execute-api.us-east-2.amazonaws.com/buyer/messages
+"
+2021-11-22 04:43:41.356,"Quote request received: {""requestId"": 52, ""item"": ""test item-52"", ""buyerName"": ""buyerB""}
+"
+2021-11-22 04:43:41.356,"Sending quote response: {'requestId': 52, 'item': 'test item-52', 'buyerName': 'buyerB', 'amount': 110}
+"
+2021-11-22 04:43:41.350,"[INFO]	2021-11-22T04:43:41.350Z	bfeb57ff-a94f-4fc6-8f6e-42c43cb6e8a7	Received message: {'requestId': 52, 'item': 'test item-52', 'buyerName': 'buyerB'}
+"
+2021-11-22 04:43:41.315,"Received message: {'requestId': 52, 'item': 'test item-52', 'buyerName': 'buyerB'}
+"
+2021-11-22 04:43:41.271,"[INFO]	2021-11-22T04:43:41.270Z	de0b51ac-51dc-41c6-b212-763fbf7cfd1a	Sending message {'requestId': 52, 'item': 'test item-52', 'buyerName': 'buyerB'} to https://bdn5aj1tqi.execute-api.us-east-2.amazonaws.com/merchant/messages
+"
+2021-11-22 04:43:41.270,"Quote request sent {""requestId"": 52, ""item"": ""test item-52"", ""buyerName"": ""buyerB""}
+"
+2021-11-22 04:43:41.230,"{'eventID': 'd8ada9792c35a4e6f84b922f1a850b3a', 'eventName': 'INSERT', 'eventVersion': '1.1', 'eventSource': 'aws:dynamodb', 'awsRegion': 'us-east-2', 'dynamodb': {'ApproximateCreationDateTime': 1637556220.0, 'Keys': {'requestId': {'N': '52'}}, 'NewImage': {'item': {'S': 'test item-52'}, 'requestId': {'N': '52'}, 'buyerName': {'S': 'buyerB'}, '_time': {'S': '2021-11-22 04:43:40.827453'}}, 'SequenceNumber': '800000000010610215712', 'SizeBytes': 84, 'StreamViewType': 'NEW_IMAGE'}, 'eventSourceARN': 'arn:aws:dynamodb:us-east-2:538893305611:table/Quotes/stream/2021-11-22T03:26:42.088'}
+"
+2021-11-22 04:43:41.230,"Retrieved quote request info: {'item': 'test item-52', 'requestId': 52, 'buyerName': 'buyerB', '_time': '2021-11-22 04:43:40.827453'}
+"
+2021-11-22 04:43:41.230,"Sending quote request: {'requestId': 52, 'item': 'test item-52', 'buyerName': 'buyerB'}
+"
+2021-11-22 04:43:40.863,"Added entry to Quotes table: {'requestId': 52, 'item': 'test item-52', 'buyerName': 'buyerB', '_time': '2021-11-22 04:43:40.827453'}
+"

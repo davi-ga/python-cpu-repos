@@ -1,0 +1,79 @@
+service: tennis-swings
+frameworkVersion: "2"
+
+custom:
+  secrets: ${file(config.dev.yml)}
+
+provider:
+  name: aws
+  runtime: python3.8
+  stage: ${self:custom.secrets.ENV}
+  region: us-east-1
+  role: ${self:custom.secrets.ROLE_NAME}
+
+package:
+  individually: true
+  exclude:
+    - ./**
+
+functions:
+  video-cutter:
+    handler: video_cutter_handler.lambda_handler
+    package:
+      include:
+        - video_cutter_handler.py
+    events:
+      - s3:
+          bucket: ${self:custom.secrets.VIDEO_CUTTER_EVENT_BUCKET}
+          event: s3:ObjectCreated:*
+          rules:
+            - prefix: originals/
+          existing: true
+    destinations:
+      onSuccess: ${self:custom.secrets.VIDEO_CUTTER_DEST}
+    memorySize: 10240
+    timeout: 900
+    maximumRetryAttempts: 0
+    environment:
+      ACCESS_KEY_ID: ${self:custom.secrets.ACCESS_KEY_ID}
+      SECRET_ACCESS_KEY: ${self:custom.secrets.SECRET_ACCESS_KEY}
+      CLIP_LENGTH_SECS: ${self:custom.secrets.CLIP_LENGTH_SECS}
+      MAX_CLIPS: ${self:custom.secrets.MAX_CLIPS}
+      TARGET_BUCKET: ${self:custom.secrets.VIDEO_CUTTER_TARGET_BUCKET}
+      TARGET_META_FOLDER: ${self:custom.secrets.VIDEO_CUTTER_TARGET_META_FOLDER}
+      TARGET_ROOT_FOLDER: ${self:custom.secrets.VIDEO_CUTTER_TARGET_ROOT_FOLDER}
+      TARGET_AUDIO_FOLDER: ${self:custom.secrets.VIDEO_CUTTER_TARGET_AUDIO_FOLDER}
+    layers:
+      - ${self:custom.secrets.VIDEO_CUTTER_LAYER}
+
+  swing-cutter:
+    handler: swing_cutter_handler.lambda_handler
+    package:
+      include:
+        - swing_cutter_handler.py
+        - swing_cutter.py
+        - yolov4-tiny.cfg
+        - yolov4-tiny.weights
+        - coco.names
+        - pitch_detector.py
+    events:
+      - s3:
+          bucket: ${self:custom.secrets.SWING_CUTTER_EVENT_BUCKET}
+          event: s3:ObjectCreated:*
+          rules:
+            - prefix: clips/
+            - suffix: .mp4
+          existing: true
+    destinations:
+      onSuccess: ${self:custom.secrets.SWING_CUTTER_DEST}
+    memorySize: 10240
+    timeout: 900
+    maximumRetryAttempts: 0
+    environment:
+      ACCESS_KEY_ID: ${self:custom.secrets.ACCESS_KEY_ID}
+      SECRET_ACCESS_KEY: ${self:custom.secrets.SECRET_ACCESS_KEY}
+      TARGET_BUCKET: ${self:custom.secrets.SWING_CUTTER_TARGET_BUCKET}
+      META_FOLDER: ${self:custom.secrets.SWING_CUTTER_META_FOLDER}
+      MEDIA_CONVERT_ROLE: ${self:custom.secrets.MEDIA_CONVERT_ROLE}
+    layers:
+      - ${self:custom.secrets.SWING_CUTTER_LAYER}

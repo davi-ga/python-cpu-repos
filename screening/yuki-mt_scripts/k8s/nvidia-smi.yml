@@ -1,0 +1,34 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  labels:
+    app: nvidia-smi
+  name: nvidia-smi
+spec:
+  template:
+    metadata:
+      labels:
+        app: nvidia-smi
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: node-type
+                operator: In
+                values:
+                - gpu
+      tolerations:
+      - key: nvidia.com/gpu
+        operator: Exists
+        effect: NoSchedule
+      containers:
+      - name: nvidia-smi
+        image: nvidia/cuda:10.2-cudnn7-devel-ubuntu16.04
+        command: ["nvidia-smi"]
+        imagePullPolicy: IfNotPresent
+        resources:
+          limits: nvidia.com/gpu: 1
+      restartPolicy: OnFailure
+

@@ -1,0 +1,36 @@
+@timestamp,@message
+"
+2021-11-22 04:34:33.378,"received_delivery_reminder {""requestId"": 8, ""orderId"": 42191, ""shipmentId"": 61}
+"
+2021-11-22 04:34:33.370,"[INFO]	2021-11-22T04:34:33.369Z	922d9d95-bf50-4ca4-895f-7455b9211ce6	Received message: {'requestId': 8, 'orderId': 42191, 'shipmentId': 61}
+"
+2021-11-22 04:34:33.334,"Received message: {'requestId': 8, 'orderId': 42191, 'shipmentId': 61}
+"
+2021-11-22 04:34:30.955,"sentPayment {""requestId"": 8, ""orderId"": 42191, ""amount"": 110, ""item"": ""test item-8"", ""address"": ""Raleigh"", ""buyerName"": ""buyerA"", ""paymentId"": 5941}
+"
+2021-11-22 04:34:30.955,"[INFO]	2021-11-22T04:34:30.955Z	c75163ae-e050-4ab1-b609-e2a2770ae0a9	Sending message {'requestId': 8, 'orderId': 42191, 'amount': 110, 'item': 'test item-8', 'address': 'Raleigh', 'buyerName': 'buyerA', 'paymentId': 5941} to https://bdn5aj1tqi.execute-api.us-east-2.amazonaws.com/merchant/messages
+"
+2021-11-22 04:34:30.183,"sentOrder {""requestId"": 8, ""amount"": 110, ""item"": ""test item-8"", ""buyerName"": ""buyerA"", ""orderId"": 42191, ""address"": ""Raleigh""}
+"
+2021-11-22 04:34:30.183,"[INFO]	2021-11-22T04:34:30.183Z	c75163ae-e050-4ab1-b609-e2a2770ae0a9	Sending message {'requestId': 8, 'amount': 110, 'item': 'test item-8', 'buyerName': 'buyerA', 'orderId': 42191, 'address': 'Raleigh'} to https://bdn5aj1tqi.execute-api.us-east-2.amazonaws.com/merchant/messages
+"
+2021-11-22 04:34:30.153,"receivedQuote: {""requestId"": 8, ""item"": ""test item-8"", ""buyerName"": ""buyerA"", ""amount"": 110}
+"
+2021-11-22 04:34:30.145,"[INFO]	2021-11-22T04:34:30.144Z	c75163ae-e050-4ab1-b609-e2a2770ae0a9	Received message: {'requestId': 8, 'item': 'test item-8', 'buyerName': 'buyerA', 'amount': 110}
+"
+2021-11-22 04:34:30.103,"Received message: {'requestId': 8, 'item': 'test item-8', 'buyerName': 'buyerA', 'amount': 110}
+"
+2021-11-22 04:34:29.366,"quote_response_sent: {""requestId"": 8, ""item"": ""test item-8"", ""buyerName"": ""buyerA"", ""amount"": 110}
+"
+2021-11-22 04:34:29.366,"[INFO]	2021-11-22T04:34:29.365Z	743564da-30b3-43ba-b648-d1deae8032a9	Sending message {'requestId': 8, 'item': 'test item-8', 'buyerName': 'buyerA', 'amount': 110} to https://bdn5aj1tqi.execute-api.us-east-2.amazonaws.com/buyer/messages
+"
+2021-11-22 04:34:29.337,"Quote request received: {""requestId"": 8, ""item"": ""test item-8"", ""buyerName"": ""buyerA""}
+"
+2021-11-22 04:34:29.337,"Sending quote response: {'requestId': 8, 'item': 'test item-8', 'buyerName': 'buyerA', 'amount': 110}
+"
+2021-11-22 04:34:29.328,"[INFO]	2021-11-22T04:34:29.328Z	743564da-30b3-43ba-b648-d1deae8032a9	Received message: {'requestId': 8, 'item': 'test item-8', 'buyerName': 'buyerA'}
+"
+2021-11-22 04:34:29.290,"Received message: {'requestId': 8, 'item': 'test item-8', 'buyerName': 'buyerA'}
+"
+2021-11-22 04:34:27.960,"Added entry to Quotes table: {'requestId': 8, 'item': 'test item-8', 'buyerName': 'buyerA', '_time': '2021-11-22 04:34:27.929140'}
+"

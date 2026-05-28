@@ -1,0 +1,411 @@
+org: chinmayterse
+app: sls-project
+service: sls-project
+
+provider:
+  name: aws
+  runtime: python3.9
+  stage: ${opt:stage,'dev'}
+  environment:
+    IS_OFFLINE: ${self:custom.isOffline.${self:provider.stage}}
+    CONFIG: ${self:custom.config.${self:provider.stage}}
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+        - dynamodb:ListStreams
+      Resource:
+#        - Fn::GetAtt:
+#          - ordersTable
+#          - Arn
+##        - Fn::GetAtt:
+##          - merchantHistory
+##          - Arn
+#        - Fn::GetAtt:
+#          - labelerHistory
+#          - Arn
+#        - Fn::GetAtt:
+#          - wrapperHistory
+#          - Arn
+#        - Fn::GetAtt:
+#          - packerHistory
+#          - Arn
+        - Fn::GetAtt:
+          - quotesTable
+          - Arn
+        - Fn::GetAtt:
+          - merchantTable
+          - Arn
+        - Fn::GetAtt:
+          - buyerTable
+          - Arn
+        - Fn::GetAtt:
+          - shipperTable
+          - Arn
+#        - Fn::GetAtt:
+#          - buyerBTable
+#          - Arn
+
+package:
+  individually: true
+  exclude:
+    - '**'
+
+plugins:
+  - serverless-python-requirements
+  - serverless-dynamodb-local
+  - serverless-offline # serverless-offline needs to be last in the list
+
+custom:
+  stages:
+    - dev
+    - local
+  isOffline:
+    dev: False
+    local: True
+  config:
+    dev: configuration-dev.yml
+    local: configuration-local.yml
+  dynamodb:
+  # If you only want to use DynamoDB Local in some stages, declare them here
+    stages:
+      - local
+    start:
+      port: 8000
+      inMemory: true
+      heapInitial: 200m
+      heapMax: 1g
+      migrate: true
+      seed: true
+      convertEmptyValues: true
+
+functions:
+#  order:
+#    handler: order/handler.writeToDynamo
+#    events:
+#      - httpApi: POST /orders
+#    package:
+#      include:
+#        - order/**
+#  po-trigger:
+#    handler: merchant/merchant.handle_order
+#    events:
+#      - stream:
+#          type: dynamodb
+#          arn:
+#            Fn::GetAtt: [ordersTable, StreamArn]
+#    package:
+#      include:
+#        - merchant/**
+#        - logistics.json
+#        - configuration-${self:provider.stage}.yml
+#    layers:
+#      - ${cf:pos-adapter-dev.DepsLayerExport}
+#      - ${cf:pos-adapter-dev.AdapterLayerExport}
+#  merchant:
+#    handler: merchant/merchant.lambda_handler
+#    events:
+#      - httpApi: POST /merchant/messages
+#    package:
+#      include:
+#        - merchant/**
+#        - logistics.json
+#        - configuration-${self:provider.stage}.yml
+#    layers:
+#      - ${cf:pos-adapter-dev.DepsLayerExport}
+#      - ${cf:pos-adapter-dev.AdapterLayerExport}
+#  labeler:
+#    handler: labeler/labeler.lambda_handler
+#    events:
+#      - httpApi: POST /labeler/messages
+#    package:
+#      include:
+#        - labeler/**
+#        - logistics.json
+#        - configuration-${self:provider.stage}.yml
+#    layers:
+#      - ${cf:pos-adapter-dev.DepsLayerExport}
+#      - ${cf:pos-adapter-dev.AdapterLayerExport}
+#  wrapper:
+#    handler: wrapper/wrapper.lambda_handler
+#    events:
+#      - httpApi: POST /wrapper/messages
+#    package:
+#      include:
+#        - wrapper/**
+#        - logistics.json
+#        - configuration-${self:provider.stage}.yml
+#    layers:
+#      - ${cf:pos-adapter-dev.DepsLayerExport}
+#      - ${cf:pos-adapter-dev.AdapterLayerExport}
+#  packer:
+#    handler: packer/packer.lambda_handler
+#    events:
+#      - httpApi: POST /packer/messages
+#    package:
+#      include:
+#        - packer/**
+#        - logistics.json
+#        - configuration-${self:provider.stage}.yml
+#    layers:
+#      - ${cf:pos-adapter-dev.DepsLayerExport}
+#      - ${cf:pos-adapter-dev.AdapterLayerExport}
+  quote:
+    handler: p3-buyer/quote_handler.write_new_quote_request_to_dynamo
+    events:
+      - httpApi: POST /buyer/quote
+    package:
+      include:
+        - p3-buyer/**
+  quote-trigger:
+#    handler: p3-merchant/merchant.send_quote
+    handler: p3-buyer/buyer.send_quote
+    events:
+      - stream:
+          type: dynamodb
+          arn:
+            Fn::GetAtt: [ quotesTable, StreamArn ]
+    package:
+      include:
+#        - p3-merchant/**
+        - p3protocol.json
+#        - p3protocol2.json
+        - p3-buyer/**
+        - configuration-${self:provider.stage}.yml
+    layers:
+      - ${cf:pos-adapter-dev.DepsLayerExport}
+      - ${cf:pos-adapter-dev.AdapterLayerExport}
+  buyer:
+    handler: p3-buyer/buyer.lambda_handler
+    events:
+      - httpApi: POST /buyer/messages
+    package:
+      include:
+        - p3-buyer/**
+        - p3protocol.json
+#        - p3protocol2.json
+        - configuration-${self:provider.stage}.yml
+    layers:
+      - ${cf:pos-adapter-dev.DepsLayerExport}
+      - ${cf:pos-adapter-dev.AdapterLayerExport}
+#  buyerB:
+#    handler: p3-buyer/buyerB.lambda_handler
+#    events:
+#      - httpApi: POST /buyerB/messages
+#    package:
+#      include:
+#        - p3-buyer/**
+#        - p3protocol.json
+##        - p3protocol2.json
+#        - configuration-${self:provider.stage}.yml
+#    layers:
+#      - ${cf:pos-adapter-dev.DepsLayerExport}
+#      - ${cf:pos-adapter-dev.AdapterLayerExport}
+  merchant:
+    handler: p3-merchant/merchant.lambda_handler
+    events:
+      - httpApi: POST /merchant/messages
+    package:
+      include:
+        - p3-merchant/**
+        - p3protocol.json
+#        - p3protocol2.json
+        - configuration-${self:provider.stage}.yml
+    layers:
+      - ${cf:pos-adapter-dev.DepsLayerExport}
+      - ${cf:pos-adapter-dev.AdapterLayerExport}
+  shipper:
+    handler: p3-shipper/shipper.lambda_handler
+    events:
+      - httpApi: POST /shipper/messages
+    package:
+      include:
+        - p3-shipper/**
+        - p3protocol.json
+#        - p3protocol2.json
+        - configuration-${self:provider.stage}.yml
+    layers:
+      - ${cf:pos-adapter-dev.DepsLayerExport}
+      - ${cf:pos-adapter-dev.AdapterLayerExport}
+
+resources: # CloudFormation template syntax from here on.
+  Resources:
+#    ordersTable:
+#      Type: AWS::DynamoDB::Table
+#      Properties:
+#        TableName: Orders
+#        AttributeDefinitions:
+#          - AttributeName: orderID
+#            AttributeType: N
+#        KeySchema:
+#          - AttributeName: orderID
+#            KeyType: HASH
+#        ProvisionedThroughput:
+#          ReadCapacityUnits: 1
+#          WriteCapacityUnits: 1
+#        StreamSpecification:
+#          StreamViewType: NEW_IMAGE
+#    merchantHistory:
+#      Type: AWS::DynamoDB::Table
+#      Properties:
+#        TableName: MerchantHistory
+#        AttributeDefinitions:
+#          - AttributeName: orderID
+#            AttributeType: N
+#          - AttributeName: _time
+#            AttributeType: S
+#        KeySchema:
+#          - AttributeName: orderID
+#            KeyType: HASH
+#          - AttributeName: _time
+#            KeyType: RANGE
+#        ProvisionedThroughput:
+#          ReadCapacityUnits: 1
+#          WriteCapacityUnits: 1
+#    labelerHistory:
+#      Type: AWS::DynamoDB::Table
+#      Properties:
+#        TableName: LabelerHistory
+#        AttributeDefinitions:
+#          - AttributeName: orderID
+#            AttributeType: N
+#          - AttributeName: _time
+#            AttributeType: S
+#        KeySchema:
+#          - AttributeName: orderID
+#            KeyType: HASH
+#          - AttributeName: _time
+#            KeyType: RANGE
+#        ProvisionedThroughput:
+#          ReadCapacityUnits: 1
+#          WriteCapacityUnits: 1
+#    wrapperHistory:
+#      Type: AWS::DynamoDB::Table
+#      Properties:
+#        TableName: WrapperHistory
+#        AttributeDefinitions:
+#          - AttributeName: orderID
+#            AttributeType: N
+#          - AttributeName: _time
+#            AttributeType: S
+#        KeySchema:
+#          - AttributeName: orderID
+#            KeyType: HASH
+#          - AttributeName: _time
+#            KeyType: RANGE
+#        ProvisionedThroughput:
+#          ReadCapacityUnits: 1
+#          WriteCapacityUnits: 1
+#    packerHistory:
+#      Type: AWS::DynamoDB::Table
+#      Properties:
+#        TableName: PackerHistory
+#        AttributeDefinitions:
+#          - AttributeName: orderID
+#            AttributeType: N
+#          - AttributeName: _time
+#            AttributeType: S
+#        KeySchema:
+#          - AttributeName: orderID
+#            KeyType: HASH
+#          - AttributeName: _time
+#            KeyType: RANGE
+#        ProvisionedThroughput:
+#          ReadCapacityUnits: 1
+#          WriteCapacityUnits: 1
+    quotesTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: Quotes
+        AttributeDefinitions:
+          - AttributeName: requestId
+            AttributeType: N
+#          - AttributeName: _time
+#            AttributeType: S
+        KeySchema:
+          - AttributeName: requestId
+            KeyType: HASH
+#          - AttributeName: _time
+#            KeyType: RANGE
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        StreamSpecification:
+          StreamViewType: NEW_IMAGE
+    buyerTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: Buyer
+        AttributeDefinitions:
+          - AttributeName: requestId
+            AttributeType: N
+          - AttributeName: _time
+            AttributeType: S
+        KeySchema:
+          - AttributeName: requestId
+            KeyType: HASH
+          - AttributeName: _time
+            KeyType: RANGE
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        StreamSpecification:
+          StreamViewType: NEW_IMAGE
+#    buyerBTable:
+#      Type: AWS::DynamoDB::Table
+#      Properties:
+#        TableName: BuyerB
+#        AttributeDefinitions:
+#          - AttributeName: requestId
+#            AttributeType: N
+#          - AttributeName: _time
+#            AttributeType: S
+#        KeySchema:
+#          - AttributeName: requestId
+#            KeyType: HASH
+#          - AttributeName: _time
+#            KeyType: RANGE
+#        ProvisionedThroughput:
+#          ReadCapacityUnits: 1
+#          WriteCapacityUnits: 1
+#        StreamSpecification:
+#          StreamViewType: NEW_IMAGE
+    merchantTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: Merchant
+        AttributeDefinitions:
+          - AttributeName: requestId
+            AttributeType: N
+          - AttributeName: _time
+            AttributeType: S
+        KeySchema:
+          - AttributeName: requestId
+            KeyType: HASH
+          - AttributeName: _time
+            KeyType: RANGE
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+    shipperTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: Shipper
+        AttributeDefinitions:
+          - AttributeName: requestId
+            AttributeType: N
+          - AttributeName: _time
+            AttributeType: S
+        KeySchema:
+          - AttributeName: requestId
+            KeyType: HASH
+          - AttributeName: _time
+            KeyType: RANGE
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1

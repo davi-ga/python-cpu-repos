@@ -1,0 +1,390 @@
+{
+  "title": "Annotations",
+  "description": "Annotations for each field.",
+  "type": "object",
+  "properties": {
+    "cases": {
+      "title": "Cases",
+      "description": "Annotations for cases",
+      "allOf": [
+        {
+          "$ref": "#/definitions/FieldAnnotations"
+        }
+      ]
+    },
+    "deaths": {
+      "title": "Deaths",
+      "description": "Annotations for deaths",
+      "allOf": [
+        {
+          "$ref": "#/definitions/FieldAnnotations"
+        }
+      ]
+    },
+    "positiveTests": {
+      "title": "Positivetests",
+      "description": "Annotations for positiveTests",
+      "allOf": [
+        {
+          "$ref": "#/definitions/FieldAnnotations"
+        }
+      ]
+    },
+    "negativeTests": {
+      "title": "Negativetests",
+      "description": "Annotations for negativeTests",
+      "allOf": [
+        {
+          "$ref": "#/definitions/FieldAnnotations"
+        }
+      ]
+    },
+    "contactTracers": {
+      "title": "Contacttracers",
+      "description": "Annotations for contactTracers",
+      "allOf": [
+        {
+          "$ref": "#/definitions/FieldAnnotations"
+        }
+      ]
+    },
+    "hospitalBeds": {
+      "title": "Hospitalbeds",
+      "description": "Annotations for hospitalBeds",
+      "allOf": [
+        {
+          "$ref": "#/definitions/FieldAnnotations"
+        }
+      ]
+    },
+    "hsaHospitalBeds": {
+      "title": "Hsahospitalbeds",
+      "description": "Annotations for hsaHospitalBeds",
+      "allOf": [
+        {
+          "$ref": "#/definitions/FieldAnnotations"
+        }
+      ]
+    },
+    "icuBeds": {
+      "title": "Icubeds",
+      "description": "Annotations for icuBeds",
+      "allOf": [
+        {
+          "$ref": "#/definitions/FieldAnnotations"
+        }
+      ]
+    },
+    "hsaIcuBeds": {
+      "title": "Hsaicubeds",
+      "description": "Annotations for hsaIcuBeds",
+      "allOf": [
+        {
+          "$ref": "#/definitions/FieldAnnotations"
+        }
+      ]
+    },
+    "newCases": {
+      "title": "Newcases",
+      "description": "Annotations for newCases",
+      "allOf": [
+        {
+          "$ref": "#/definitions/FieldAnnotations"
+        }
+      ]
+    },
+    "newDeaths": {
+      "title": "Newdeaths",
+      "description": "Annotations for newDeaths",
+      "allOf": [
+        {
+          "$ref": "#/definitions/FieldAnnotations"
+        }
+      ]
+    },
+    "vaccinesDistributed": {
+      "title": "Vaccinesdistributed",
+      "description": "Annotations for vaccinesDistributed",
+      "allOf": [
+        {
+          "$ref": "#/definitions/FieldAnnotations"
+        }
+      ]
+    },
+    "vaccinationsInitiated": {
+      "title": "Vaccinationsinitiated",
+      "description": "Annotations for vaccinationsInitiated",
+      "allOf": [
+        {
+          "$ref": "#/definitions/FieldAnnotations"
+        }
+      ]
+    },
+    "vaccinationsCompleted": {
+      "title": "Vaccinationscompleted",
+      "description": "Annotations for vaccinationsCompleted",
+      "allOf": [
+        {
+          "$ref": "#/definitions/FieldAnnotations"
+        }
+      ]
+    },
+    "vaccinationsAdditionalDose": {
+      "title": "Vaccinationsadditionaldose",
+      "description": "Annotations for vaccinationsAdditionalDose",
+      "allOf": [
+        {
+          "$ref": "#/definitions/FieldAnnotations"
+        }
+      ]
+    },
+    "vaccinesAdministered": {
+      "title": "Vaccinesadministered",
+      "description": "Annotations for vaccinesAdministered",
+      "allOf": [
+        {
+          "$ref": "#/definitions/FieldAnnotations"
+        }
+      ]
+    },
+    "testPositivityRatio": {
+      "title": "Testpositivityratio",
+      "description": "Annotations for testPositivityRatio",
+      "allOf": [
+        {
+          "$ref": "#/definitions/FieldAnnotations"
+        }
+      ]
+    },
+    "caseDensity": {
+      "title": "Casedensity",
+      "description": "Annotations for caseDensity",
+      "allOf": [
+        {
+          "$ref": "#/definitions/FieldAnnotations"
+        }
+      ]
+    },
+    "weeklyNewCasesPer100k": {
+      "title": "Weeklynewcasesper100K",
+      "description": "Annotations for weeklyNewCasesPer100k",
+      "allOf": [
+        {
+          "$ref": "#/definitions/FieldAnnotations"
+        }
+      ]
+    },
+    "contactTracerCapacityRatio": {
+      "title": "Contacttracercapacityratio",
+      "description": "Annotations for contactTracerCapacityRatio",
+      "allOf": [
+        {
+          "$ref": "#/definitions/FieldAnnotations"
+        }
+      ]
+    },
+    "infectionRate": {
+      "title": "Infectionrate",
+      "description": "Annotations for infectionRate",
+      "allOf": [
+        {
+          "$ref": "#/definitions/FieldAnnotations"
+        }
+      ]
+    },
+    "infectionRateCI90": {
+      "title": "Infectionrateci90",
+      "description": "Annotations for infectionRateCI90",
+      "allOf": [
+        {
+          "$ref": "#/definitions/FieldAnnotations"
+        }
+      ]
+    },
+    "icuCapacityRatio": {
+      "title": "Icucapacityratio",
+      "description": "Annotations for icuCapacityRatio",
+      "allOf": [
+        {
+          "$ref": "#/definitions/FieldAnnotations"
+        }
+      ]
+    },
+    "bedsWithCovidPatientsRatio": {
+      "title": "Bedswithcovidpatientsratio",
+      "description": "Annotations for bedsWithCovidPatientsRatio",
+      "allOf": [
+        {
+          "$ref": "#/definitions/FieldAnnotations"
+        }
+      ]
+    },
+    "weeklyCovidAdmissionsPer100k": {
+      "title": "Weeklycovidadmissionsper100K",
+      "description": "Annotations for weeklyCovidAdmissionsPer100k",
+      "allOf": [
+        {
+          "$ref": "#/definitions/FieldAnnotations"
+        }
+      ]
+    },
+    "vaccinationsInitiatedRatio": {
+      "title": "Vaccinationsinitiatedratio",
+      "description": "Annotations for vaccinationsInitiatedRatio",
+      "allOf": [
+        {
+          "$ref": "#/definitions/FieldAnnotations"
+        }
+      ]
+    },
+    "vaccinationsCompletedRatio": {
+      "title": "Vaccinationscompletedratio",
+      "description": "Annotations for vaccinationsCompletedRatio",
+      "allOf": [
+        {
+          "$ref": "#/definitions/FieldAnnotations"
+        }
+      ]
+    },
+    "vaccinationsAdditionalDoseRatio": {
+      "title": "Vaccinationsadditionaldoseratio",
+      "description": "Ratio of population that are fully vaccinated and have received a booster (or additional) dose.",
+      "allOf": [
+        {
+          "$ref": "#/definitions/FieldAnnotations"
+        }
+      ]
+    }
+  },
+  "definitions": {
+    "FieldSourceType": {
+      "title": "FieldSourceType",
+      "description": "The data source of a field (metric or actual). This enumeration lists the places from which\nCAN fetches data. The source is tracked on a per field and region timeseries basis.",
+      "enum": [
+        "NYTimes",
+        "CMSTesting",
+        "CDCTesting",
+        "HHSTesting",
+        "HHSHospital",
+        "Valorum",
+        "covid_tracking",
+        "USAFacts",
+        "TestAndTrace",
+        "CANScrapersStateProviders",
+        "other"
+      ]
+    },
+    "FieldSource": {
+      "title": "FieldSource",
+      "description": "Base model for API output.",
+      "type": "object",
+      "properties": {
+        "type": {
+          "description": "The type of data source from a CAN list of data source types",
+          "allOf": [
+            {
+              "$ref": "#/definitions/FieldSourceType"
+            }
+          ]
+        },
+        "url": {
+          "title": "Url",
+          "description": "URL of a webpage containing the data at the source",
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "name": {
+          "title": "Name",
+          "description": "A human readable name of the source",
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "TagType": {
+      "title": "TagType",
+      "description": "The type of the annotation.\n\nEach enumeration refers to the method used to generate the annotation.",
+      "enum": [
+        "cumulative_tail_truncated",
+        "cumulative_long_tail_truncated",
+        "zscore_outlier",
+        "known_issue",
+        "known_issue_no_date",
+        "derived",
+        "drop_future_observation",
+        "provenance",
+        "source_url",
+        "source"
+      ],
+      "type": "string"
+    },
+    "AnomalyAnnotation": {
+      "title": "AnomalyAnnotation",
+      "description": "Base model for API output.",
+      "type": "object",
+      "properties": {
+        "date": {
+          "title": "Date",
+          "description": "Date of anomaly",
+          "type": "string",
+          "format": "date"
+        },
+        "type": {
+          "description": "Type of annotation",
+          "allOf": [
+            {
+              "$ref": "#/definitions/TagType"
+            }
+          ]
+        },
+        "original_observation": {
+          "title": "Original Observation",
+          "description": "Original value on this date detected as anomalous.",
+          "type": "number"
+        }
+      },
+      "required": [
+        "date",
+        "type",
+        "original_observation"
+      ]
+    },
+    "FieldAnnotations": {
+      "title": "FieldAnnotations",
+      "description": "Annotations associated with one field.",
+      "type": "object",
+      "properties": {
+        "sources": {
+          "title": "Sources",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FieldSource"
+          }
+        },
+        "anomalies": {
+          "title": "Anomalies",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AnomalyAnnotation"
+          }
+        }
+      },
+      "required": [
+        "sources",
+        "anomalies"
+      ]
+    }
+  }
+}

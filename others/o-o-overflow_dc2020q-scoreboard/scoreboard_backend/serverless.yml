@@ -1,0 +1,114 @@
+functions:
+  challenge:
+    events:
+      - http:
+          cors: true
+          method: GET
+          path: challenge/{id}/{token}
+          request:
+            parameters:
+              paths:
+                id: true
+                token: true
+    handler: handler.challenge
+  challenge_delete:
+    handler: handler.challenge_delete
+  challenge_open:
+    handler: handler.challenge_open
+  challenge_update:
+    handler: handler.challenge_update
+  challenges:
+    events:
+      - http:
+          cors: true
+          method: GET
+          path: challenges
+    handler: handler.challenges
+  challenges_add:
+    handler: handler.challenges_add
+  challenges_set:
+    handler: handler.challenges_set
+  migrate:
+    handler: handler.migrate
+  ping:
+    handler: handler.ping
+  submit:
+    events:
+      - http:
+          cors: true
+          method: POST
+          path: submit
+    handler: handler.submit
+  teams:
+    events:
+      - http:
+          cors: true
+          method: GET
+          path: teams
+    handler: handler.teams
+  test_email:
+    handler: handler.test_email
+  token:
+    events:
+      - http:
+          cors: true
+          method: POST
+          path: token
+    handler: handler.token
+  token_refresh:
+    events:
+      - http:
+          cors: true
+          method: POST
+          path: token_refresh
+    handler: handler.token_refresh
+  user_confirm:
+    events:
+      - http:
+          cors: true
+          method: GET
+          path: user_confirm/{id}
+          request:
+            parameters:
+              paths:
+                id: true
+    handler: handler.user_confirm
+  user_register:
+    events:
+      - http:
+          cors: true
+          method: POST
+          path: user_register
+    handler: handler.user_register
+  user_reset_password:
+    handler: handler.user_reset_password
+  users:
+    handler: handler.users
+package:
+  exclude:
+    - node_modules/**
+    - package-lock.json
+    - test*.py
+    - "*.sh"
+provider:
+  environment:
+    DB_HOST: sb-${opt:stage, self:provider.stage}.cgwgx6ftjwg2.us-east-2.rds.amazonaws.com
+    DB_PASSWORD: ${ssm:/${opt:stage, self:provider.stage}/db_password~true}
+    JWT_SECRET: ${ssm:/${opt:stage, self:provider.stage}/jwt_secret~true}
+  iamRoleStatements:
+    - Action:
+        - ses:SendEmail
+      Effect: Allow
+      Resource: "*"
+  memorySize: 128
+  name: aws
+  profile: ooo
+  region: us-east-2
+  runtime: python3.6
+  stage: development
+  vpc:
+    securityGroupIds:
+      - ${file(config/${opt:stage, self:provider.stage}-config.yml):securityGroupId}
+    subnetIds: ${file(config/${opt:stage, self:provider.stage}-config.yml):subnetIds}
+
+service: scoreboard

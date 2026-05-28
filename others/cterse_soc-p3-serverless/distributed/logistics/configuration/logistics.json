@@ -1,0 +1,146 @@
+{
+  "name": "Logistics",
+  "type": "protocol",
+  "parameters": [
+    "orderID",
+    "itemID",
+    "item",
+    "status"
+  ],
+  "keys": [
+    "orderID",
+    "itemID"
+  ],
+  "ins": [],
+  "outs": [
+    "orderID",
+    "itemID",
+    "item",
+    "status"
+  ],
+  "nils": [],
+  "roles": [
+    "Merchant",
+    "Wrapper",
+    "Labeler",
+    "Packer"
+  ],
+  "messages": {
+    "RequestLabel": {
+      "name": "Logistics/RequestLabel",
+      "type": "message",
+      "parameters": [
+        "orderID",
+        "address"
+      ],
+      "keys": [
+        "orderID"
+      ],
+      "ins": [],
+      "outs": [
+        "orderID",
+        "address"
+      ],
+      "nils": [],
+      "to": "Labeler",
+      "from": "Merchant"
+    },
+    "RequestWrapping": {
+      "name": "Logistics/RequestWrapping",
+      "type": "message",
+      "parameters": [
+        "orderID",
+        "itemID",
+        "item"
+      ],
+      "keys": [
+        "orderID",
+        "itemID"
+      ],
+      "ins": [
+        "orderID"
+      ],
+      "outs": [
+        "itemID",
+        "item"
+      ],
+      "nils": [],
+      "to": "Wrapper",
+      "from": "Merchant"
+    },
+    "Wrapped": {
+      "name": "Logistics/Wrapped",
+      "type": "message",
+      "parameters": [
+        "orderID",
+        "itemID",
+        "item",
+        "wrapping"
+      ],
+      "keys": [
+        "orderID",
+        "itemID"
+      ],
+      "ins": [
+        "orderID",
+        "itemID",
+        "item"
+      ],
+      "outs": [
+        "wrapping"
+      ],
+      "nils": [],
+      "to": "Packer",
+      "from": "Wrapper"
+    },
+    "Labeled": {
+      "name": "Logistics/Labeled",
+      "type": "message",
+      "parameters": [
+        "orderID",
+        "address",
+        "label"
+      ],
+      "keys": [
+        "orderID"
+      ],
+      "ins": [
+        "orderID",
+        "address"
+      ],
+      "outs": [
+        "label"
+      ],
+      "nils": [],
+      "to": "Packer",
+      "from": "Labeler"
+    },
+    "Packed": {
+      "name": "Logistics/Packed",
+      "type": "message",
+      "parameters": [
+        "orderID",
+        "itemID",
+        "wrapping",
+        "label",
+        "status"
+      ],
+      "keys": [
+        "orderID",
+        "itemID"
+      ],
+      "ins": [
+        "orderID",
+        "itemID",
+        "wrapping",
+        "label"
+      ],
+      "outs": [
+        "status"
+      ],
+      "nils": [],
+      "to": "Merchant",
+      "from": "Packer"
+    }
+  }
+}

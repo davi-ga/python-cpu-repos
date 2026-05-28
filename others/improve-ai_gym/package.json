@@ -1,0 +1,12 @@
+{
+  "name": "improveai-gym",
+  "version": "6.0.0",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "repository": "github:improve-ai/gym",
+  "dependencies": {
+    "yaml": "^1.10.2"
+  },
+  "devDependencies": {
+    "serverless-step-functions": "^3.7.0"
+  }
+}

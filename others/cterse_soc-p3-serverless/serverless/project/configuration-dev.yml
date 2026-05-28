@@ -1,0 +1,5 @@
+# Replace these lines with the actual endpoints that serverless prints, then redeploy
+Merchant: https://bdn5aj1tqi.execute-api.us-east-2.amazonaws.com/merchant/messages
+Buyer:    https://bdn5aj1tqi.execute-api.us-east-2.amazonaws.com/buyer/messages
+#BuyerB:   https://qej6kzro7h.execute-api.us-east-2.amazonaws.com/buyerB/messages
+Shipper:  https://bdn5aj1tqi.execute-api.us-east-2.amazonaws.com/shipper/messages

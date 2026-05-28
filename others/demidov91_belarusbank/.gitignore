@@ -1,0 +1,11 @@
+*.pyc
+local_settings.py
+keys.json
+*~
+.idea
+env
+*-env
+*.log
+build/
+node_modules/
+.serverless/

@@ -1,0 +1,737 @@
+{
+  "baby-a-fallen-lap-ray": {
+    "authors": [
+      "adamd",
+      "zardus"
+    ],
+    "category": "haiku",
+    "description": "Return of the [parallel machine](https://github.com/o-o-overflow/dc2020f-parallel-af-public). Or is it? Flag is in current directory called `flag`.\n\n`baby-a-fallen-lap-ray.challenges.ooo 5000`\n\nFiles:\n * [baby-a-fallen-lap-ray.tar.gz](/challenge_files/bbd7e39b74535522f38f46aaa95b507d868de546a277161a5e63e43a8c1d2ea2/baby-a-fallen-lap-ray.tar.gz) bb84f6e530b89f56c48294d0159c0de6b71747217d0959deaca41006ee8d585c",
+    "file_digests": {
+      "baby-a-fallen-lap-ray.tar.gz": "bb84f6e530b89f56c48294d0159c0de6b71747217d0959deaca41006ee8d585c"
+    },
+    "file_urls": [
+      "/challenge_files/bbd7e39b74535522f38f46aaa95b507d868de546a277161a5e63e43a8c1d2ea2/baby-a-fallen-lap-ray.tar.gz"
+    ],
+    "flag_hash": "63ebc61395ddd67312645514e75cb4c3e19c1de25245ec4f4815402e62362913",
+    "hidden_game_network_info": false,
+    "host": "baby-a-fallen-lap-ray.challenges.ooo",
+    "id": "baby-a-fallen-lap-ray",
+    "port": 5000,
+    "repo_dir": "cloned_repos/chall-baby-a-fallen-lap-ray",
+    "tags": [
+      "pwn",
+      "--special-emoji-👶",
+      "--special-lat-36",
+      "--special-lon-81"
+    ],
+    "title": "baby-a-fallen-lap-ray",
+    "violates_flag_format": false
+  },
+  "back-to-qoo": {
+    "authors": [
+      "tiffanyb"
+    ],
+    "category": "haiku",
+    "description": "You are pulled back to QOO again. QOO or OOO? Whatever.\n\n`back-to-qoo.challenges.ooo 5000`\n\nFiles:\n * [backend.py](/challenge_files/d1010e852cc0de4b0d48beb6d2c483799a15a6de2b34eecb456139f21a967c67/backend.py) f34c0ad16638ed67930893b8fc61abc50b98c8b00d761766cc8afb3525ae6a4d\n * [coin.py](/challenge_files/d1010e852cc0de4b0d48beb6d2c483799a15a6de2b34eecb456139f21a967c67/coin.py) 9b0a37309482c2e506d16bbd228af4c79884318f2b00c1da1c9b05ec246db9b7\n * [game.py](/challenge_files/d1010e852cc0de4b0d48beb6d2c483799a15a6de2b34eecb456139f21a967c67/game.py) c3eb4d4aef967091023a66f7db6785356543c96639b3687ef1433b09e2fd39b1\n * [players.py](/challenge_files/d1010e852cc0de4b0d48beb6d2c483799a15a6de2b34eecb456139f21a967c67/players.py) 205c1aaf464011edb413b8237e61050178ded9bbaf0891e1f7e7bd39da84645a\n * [service.py](/challenge_files/d1010e852cc0de4b0d48beb6d2c483799a15a6de2b34eecb456139f21a967c67/service.py) 12923244ae4e66fc3d23c0b276bb47618eca26d91075f7020e7c7a7ce6b35f58",
+    "file_digests": {
+      "backend.py": "f34c0ad16638ed67930893b8fc61abc50b98c8b00d761766cc8afb3525ae6a4d",
+      "coin.py": "9b0a37309482c2e506d16bbd228af4c79884318f2b00c1da1c9b05ec246db9b7",
+      "game.py": "c3eb4d4aef967091023a66f7db6785356543c96639b3687ef1433b09e2fd39b1",
+      "players.py": "205c1aaf464011edb413b8237e61050178ded9bbaf0891e1f7e7bd39da84645a",
+      "service.py": "12923244ae4e66fc3d23c0b276bb47618eca26d91075f7020e7c7a7ce6b35f58"
+    },
+    "file_urls": [
+      "/challenge_files/d1010e852cc0de4b0d48beb6d2c483799a15a6de2b34eecb456139f21a967c67/service.py",
+      "/challenge_files/d1010e852cc0de4b0d48beb6d2c483799a15a6de2b34eecb456139f21a967c67/backend.py",
+      "/challenge_files/d1010e852cc0de4b0d48beb6d2c483799a15a6de2b34eecb456139f21a967c67/coin.py",
+      "/challenge_files/d1010e852cc0de4b0d48beb6d2c483799a15a6de2b34eecb456139f21a967c67/game.py",
+      "/challenge_files/d1010e852cc0de4b0d48beb6d2c483799a15a6de2b34eecb456139f21a967c67/players.py"
+    ],
+    "flag_hash": "f01d2cb757130b62eadb0627693d5f2cd7f9ef76f251721bd26bac0b27d48bbc",
+    "hidden_game_network_info": false,
+    "host": "back-to-qoo.challenges.ooo",
+    "id": "back-to-qoo",
+    "port": 5000,
+    "repo_dir": "cloned_repos/chall-back-to-qoo",
+    "tags": [
+      "crypto",
+      "--special-emoji-💸",
+      "--special-lat-80",
+      "--special-lon-81"
+    ],
+    "title": "back-to-qoo",
+    "violates_flag_format": false
+  },
+  "band-aid": {
+    "authors": [
+      "balzaroth"
+    ],
+    "category": "haiku",
+    "description": "Who said that the DEF CON CTF is all about attacking?\n\n`band-aid.challenges.ooo 20002`",
+    "file_digests": {},
+    "file_urls": [],
+    "flag_hash": "b08e056f136f3e2953c40688feb8ed43158d65207e1ee2fe51256e2bdfd8a0e1",
+    "hidden_game_network_info": false,
+    "host": "band-aid.challenges.ooo",
+    "id": "band-aid",
+    "port": 20002,
+    "repo_dir": "cloned_repos/chall-band-aid",
+    "tags": [
+      "reversing",
+      "--special-emoji-🩹",
+      "--special-lat-84",
+      "--special-lon-61"
+    ],
+    "title": "band-aid",
+    "violates_flag_format": false
+  },
+  "coooinbase": {
+    "authors": [
+      "crowell"
+    ],
+    "category": "haiku",
+    "description": "a simple service backed by special hardware for buying bitcoin: our beta testing server is live at http://52.6.166.222:4567",
+    "file_digests": {},
+    "file_urls": [],
+    "flag_hash": "f3d6405d07578c21eeb2c55b2888fd44f37bdb903cc5a7be250d59ab9149b135",
+    "hidden_game_network_info": false,
+    "host": null,
+    "id": "coooinbase",
+    "port": null,
+    "repo_dir": "cloned_repos/chall-coooinbase",
+    "tags": [
+      "pwn",
+      "reversing",
+      "--special-emoji-🪙",
+      "--special-lat-74",
+      "--special-lon-27"
+    ],
+    "title": "coooinbase",
+    "violates_flag_format": false
+  },
+  "coooinbase-kernel": {
+    "authors": [
+      "crowell"
+    ],
+    "category": "haiku",
+    "description": "a simple service backed by special hardware for buying bitcoin: our beta testing server is live at http://52.6.166.222:4567 - this time attack the kernel!",
+    "file_digests": {},
+    "file_urls": [],
+    "flag_hash": "2782829ca93e1c5acd998d6390e5651bb8b29be2594adfcaf5a6d924338d9837",
+    "hidden_game_network_info": false,
+    "host": null,
+    "id": "coooinbase-kernel",
+    "port": null,
+    "repo_dir": "cloned_repos/chall-coooinbase-kernel",
+    "tags": [
+      "pwn",
+      "reversing",
+      "--special-emoji-🚀",
+      "--special-lat-82",
+      "--special-lon-26"
+    ],
+    "title": "coooinbase-kernel",
+    "violates_flag_format": false
+  },
+  "cozen": {
+    "authors": [
+      "Lightning"
+    ],
+    "category": "haiku",
+    "description": "Welcome to Lightning's BBS\n\n`cozen.challenges.ooo 51015`",
+    "file_digests": {},
+    "file_urls": [],
+    "flag_hash": "6d1e37ea8f72f1bf39290f3bdd29c14faf7350998ee01fa2865e94806886deff",
+    "hidden_game_network_info": false,
+    "host": "cozen.challenges.ooo",
+    "id": "cozen",
+    "port": 51015,
+    "repo_dir": "cloned_repos/chall-cozen",
+    "tags": [
+      "pwn",
+      "reversing",
+      "--special-emoji-⚡",
+      "--special-lat-38",
+      "--special-lon-13.8"
+    ],
+    "title": "cozen",
+    "violates_flag_format": false
+  },
+  "exploit-for-dummies": {
+    "authors": [
+      "balzaroth"
+    ],
+    "category": "haiku",
+    "description": "You crash it, we help you.\n\n`exploit-for-dummies.challenges.ooo 5000`\n\nFiles:\n * [trivia](/challenge_files/d73d368a18c630065c558f21930475bf3cfdce8e8ebde8b3a4e0b9d36898ba45/trivia) 6713ba857e0f09ccb692e7370332d6113e0095757a017d024c37315929a26e6e",
+    "file_digests": {
+      "trivia": "6713ba857e0f09ccb692e7370332d6113e0095757a017d024c37315929a26e6e"
+    },
+    "file_urls": [
+      "/challenge_files/d73d368a18c630065c558f21930475bf3cfdce8e8ebde8b3a4e0b9d36898ba45/trivia"
+    ],
+    "flag_hash": "2b32b2d3fa7382b851fd31d3cef48ea84b8314d245a111ef53fb07a78a586ec1",
+    "hidden_game_network_info": false,
+    "host": "exploit-for-dummies.challenges.ooo",
+    "id": "exploit-for-dummies",
+    "port": 5000,
+    "repo_dir": "cloned_repos/chall-exploit-for-dummies",
+    "tags": [
+      "trivia",
+      "shellcoding",
+      "--special-emoji-🐞",
+      "--special-lat-7",
+      "--special-lon-25"
+    ],
+    "title": "exploit-for-dummies",
+    "violates_flag_format": false
+  },
+  "gran-a-fallen-lap-ray": {
+    "authors": [
+      "adamd",
+      "zardus"
+    ],
+    "category": "haiku",
+    "description": "Added an additional security feature to mama-a-fallen-lap-ray. Flag is in current directory called `flag`.\n\n`gran-a-fallen-lap-ray.challenges.ooo 5000`\n\nFiles:\n * [gran-a-fallen-lap-ray.tar.gz](/challenge_files/365ce53196050d1a55001965e3294ad102fac7eec6b841b7a290a51bbabcaaf2/gran-a-fallen-lap-ray.tar.gz) 6bc0e1fd2f9ed6a8dd3789d9ebf2e63492101c521574ab9623cd700b5fc8894d",
+    "file_digests": {
+      "gran-a-fallen-lap-ray.tar.gz": "6bc0e1fd2f9ed6a8dd3789d9ebf2e63492101c521574ab9623cd700b5fc8894d"
+    },
+    "file_urls": [
+      "/challenge_files/365ce53196050d1a55001965e3294ad102fac7eec6b841b7a290a51bbabcaaf2/gran-a-fallen-lap-ray.tar.gz"
+    ],
+    "flag_hash": "46c6ccacd43093cfbeda8f4421fe1201b1a1e7ace5e44e1ef8f426d7cff764d0",
+    "hidden_game_network_info": false,
+    "host": "gran-a-fallen-lap-ray.challenges.ooo",
+    "id": "gran-a-fallen-lap-ray",
+    "port": 5000,
+    "repo_dir": "cloned_repos/chall-gran-a-fallen-lap-ray",
+    "tags": [
+      "pwn",
+      "--special-emoji-👵",
+      "--special-lat-50",
+      "--special-lon-76"
+    ],
+    "title": "gran-a-fallen-lap-ray",
+    "violates_flag_format": false
+  },
+  "looocked-ooout": {
+    "authors": [
+      "jay"
+    ],
+    "category": "haiku",
+    "description": "Well, like you've locked yourself out of your vehicle. Can you at least play some cool jams on the Car Infotainment Device? OOO note: given the high number of unsolved pwnables, we've simplified this one for you. The car doesn't support ASLR and has been modded to running a stock Ubuntu 20.04 docker on amd64.\n\n`35.81.74.157 4147`\n\nFiles:\n * [90s.mp3](/challenge_files/704b28230dcf024242d76f9894ae94f3cd7c05de3268394f168b977bb8e4b825/90s.mp3) d75659cb9baee11894fc306f43ebfe8b3d6e51d044132ed241901cb70cf620bd\n * [cid](/challenge_files/704b28230dcf024242d76f9894ae94f3cd7c05de3268394f168b977bb8e4b825/cid) 370338227a2b6587e6ea13765b755d803c18306a55f1f531f8438d64d4cfcb1d\n * [maps.txt](/challenge_files/704b28230dcf024242d76f9894ae94f3cd7c05de3268394f168b977bb8e4b825/maps.txt) 0858538a0f4b5917b8991cd059f6aeac40b9fe7d1dc180eda894f74d75b45de3",
+    "file_digests": {
+      "90s.mp3": "d75659cb9baee11894fc306f43ebfe8b3d6e51d044132ed241901cb70cf620bd",
+      "cid": "370338227a2b6587e6ea13765b755d803c18306a55f1f531f8438d64d4cfcb1d",
+      "maps.txt": "0858538a0f4b5917b8991cd059f6aeac40b9fe7d1dc180eda894f74d75b45de3"
+    },
+    "file_urls": [
+      "/challenge_files/704b28230dcf024242d76f9894ae94f3cd7c05de3268394f168b977bb8e4b825/cid",
+      "/challenge_files/704b28230dcf024242d76f9894ae94f3cd7c05de3268394f168b977bb8e4b825/90s.mp3",
+      "/challenge_files/704b28230dcf024242d76f9894ae94f3cd7c05de3268394f168b977bb8e4b825/maps.txt"
+    ],
+    "flag_hash": "e7eb8959c7c95a10e29637ccf84ba2af9edf7228dd2772a27cf09f5f4d62ebf4",
+    "hidden_game_network_info": false,
+    "host": "35.81.74.157",
+    "id": "looocked-ooout",
+    "port": 4147,
+    "repo_dir": "cloned_repos/chall-looocked-ooout",
+    "tags": [
+      "pwn",
+      "--special-emoji-🚗",
+      "--special-lat-12",
+      "--special-lon-33"
+    ],
+    "title": "looocked-ooout",
+    "violates_flag_format": false
+  },
+  "mama-a-fallen-lap-ray": {
+    "authors": [
+      "adamd",
+      "zardus"
+    ],
+    "category": "haiku",
+    "description": "Added security features to baby-a-fallen-lap-ray. Flag is in current directory called `flag`.\n\n`mama-a-fallen-lap-ray.challenges.ooo 5000`\n\nFiles:\n * [mama-a-fallen-lap-ray.tar.gz](/challenge_files/03922e86b26fa7f6ff640dc7259334c52116888b868d294502e61374bbaeadfe/mama-a-fallen-lap-ray.tar.gz) 41b0fba2104771bfcc4940efdccce2c8289cbee4e15a583583c6bdd728728393",
+    "file_digests": {
+      "mama-a-fallen-lap-ray.tar.gz": "41b0fba2104771bfcc4940efdccce2c8289cbee4e15a583583c6bdd728728393"
+    },
+    "file_urls": [
+      "/challenge_files/03922e86b26fa7f6ff640dc7259334c52116888b868d294502e61374bbaeadfe/mama-a-fallen-lap-ray.tar.gz"
+    ],
+    "flag_hash": "6ac6035d73c084973cc1850e2f687ffcbb4b953920f0a9f25e69cd226442f0f8",
+    "hidden_game_network_info": false,
+    "host": "mama-a-fallen-lap-ray.challenges.ooo",
+    "id": "mama-a-fallen-lap-ray",
+    "port": 5000,
+    "repo_dir": "cloned_repos/chall-mama-a-fallen-lap-ray",
+    "tags": [
+      "pwn",
+      "--special-emoji-🤱",
+      "--special-lat-45",
+      "--special-lon-24"
+    ],
+    "title": "mama-a-fallen-lap-ray",
+    "violates_flag_format": false
+  },
+  "mooosl": {
+    "authors": [
+      "slipper"
+    ],
+    "category": "haiku",
+    "description": "check my new baby toy! (Ubuntu 21.04: apt install musl)\n\n`mooosl.challenges.ooo 23333`\n\nFiles:\n * [libc.so](/challenge_files/da0db57ea9ea51f91195e68f1a39cd6cb805fe665ba3a395f0d5ac331e9d4564/libc.so) 24d94f794e20f6905ca0b5e392b6e0dcef70d3715710c7364069e31612ee073a\n * [mooosl](/challenge_files/da0db57ea9ea51f91195e68f1a39cd6cb805fe665ba3a395f0d5ac331e9d4564/mooosl) a1270d9f15c9cefb126286b27853065a425fb7aafc6a4b3c076759fa48274967",
+    "file_digests": {
+      "libc.so": "24d94f794e20f6905ca0b5e392b6e0dcef70d3715710c7364069e31612ee073a",
+      "mooosl": "a1270d9f15c9cefb126286b27853065a425fb7aafc6a4b3c076759fa48274967"
+    },
+    "file_urls": [
+      "/challenge_files/da0db57ea9ea51f91195e68f1a39cd6cb805fe665ba3a395f0d5ac331e9d4564/mooosl",
+      "/challenge_files/da0db57ea9ea51f91195e68f1a39cd6cb805fe665ba3a395f0d5ac331e9d4564/libc.so"
+    ],
+    "flag_hash": "06c1d209ca0a2d2c03595a36bb598c03b18c0c53a833bee69e04cb291dbb927e",
+    "hidden_game_network_info": false,
+    "host": "mooosl.challenges.ooo",
+    "id": "mooosl",
+    "port": 23333,
+    "repo_dir": "cloned_repos/chall-mooosl",
+    "tags": [
+      "pwn",
+      "--special-emoji-💪",
+      "--special-lat-24",
+      "--special-lon-3"
+    ],
+    "title": "mooosl",
+    "violates_flag_format": false
+  },
+  "mra": {
+    "authors": [
+      "slipper"
+    ],
+    "category": "haiku",
+    "description": "Is it odd?\n\n`mra.challenges.ooo 8000`\n\nFiles:\n * [mra](/challenge_files/5b935cb5a198187dd907c9847cf4033e98220bbc9bbee5f86e4fc8fa6fded940/mra) 136a22d1f9330491043e10809b0d08ae60634efd40d55c35b9897a9e02c5a2d6",
+    "file_digests": {
+      "mra": "136a22d1f9330491043e10809b0d08ae60634efd40d55c35b9897a9e02c5a2d6"
+    },
+    "file_urls": [
+      "/challenge_files/5b935cb5a198187dd907c9847cf4033e98220bbc9bbee5f86e4fc8fa6fded940/mra"
+    ],
+    "flag_hash": "8568364c5151455609ef5177fd08f9c0accac4fa54ef42d6d19ea7f6a8c2d1b7",
+    "hidden_game_network_info": false,
+    "host": "mra.challenges.ooo",
+    "id": "mra",
+    "port": 8000,
+    "repo_dir": "cloned_repos/chall-mra",
+    "tags": [
+      "pwn",
+      "reversing",
+      "--special-emoji-🦾",
+      "--special-lat-42",
+      "--special-lon-68"
+    ],
+    "title": "mra",
+    "violates_flag_format": false
+  },
+  "nooombers": {
+    "authors": [
+      "anton00b"
+    ],
+    "category": "haiku",
+    "description": "I really do not understand what this is about, but my cousin told me that once he managed to got a flag out of this. I was able to copy from my cousin's shell parts of his interactions with the server. You can find them in interaction1.txt and interaction2.txt. Unfortunately, they are incomplete.\n\n`nooombers.challenges.ooo 8765`\n\nFiles:\n * [interaction1.txt](/challenge_files/dc7308186e1ed06bb875d3c5ffb966acdcfd9c7433a6c67f821ce5af1ae43048/interaction1.txt) f6aeae3c35be2f8a2d098d076e4bf7ac9f5ece24ddc88c9e7fb43016e049b89a\n * [interaction2.txt](/challenge_files/dc7308186e1ed06bb875d3c5ffb966acdcfd9c7433a6c67f821ce5af1ae43048/interaction2.txt) 6fd5facfefdbd20b82d651520edf56713ef585bad1b78788db06c4208d2da321",
+    "file_digests": {
+      "interaction1.txt": "f6aeae3c35be2f8a2d098d076e4bf7ac9f5ece24ddc88c9e7fb43016e049b89a",
+      "interaction2.txt": "6fd5facfefdbd20b82d651520edf56713ef585bad1b78788db06c4208d2da321"
+    },
+    "file_urls": [
+      "/challenge_files/dc7308186e1ed06bb875d3c5ffb966acdcfd9c7433a6c67f821ce5af1ae43048/interaction1.txt",
+      "/challenge_files/dc7308186e1ed06bb875d3c5ffb966acdcfd9c7433a6c67f821ce5af1ae43048/interaction2.txt"
+    ],
+    "flag_hash": "f67ce6a2c76c6f72c016866b06a29bbd1d61ea17e25522af003d08d0757ecf39",
+    "hidden_game_network_info": false,
+    "host": "nooombers.challenges.ooo",
+    "id": "nooombers",
+    "port": 8765,
+    "repo_dir": "cloned_repos/chall-nooombers",
+    "tags": [
+      "crypto",
+      "--special-emoji-🌯",
+      "--special-lat-37",
+      "--special-lon-48"
+    ],
+    "title": "nooombers",
+    "violates_flag_format": false
+  },
+  "nooopster": {
+    "authors": [
+      "author1",
+      "author2"
+    ],
+    "category": "haiku",
+    "description": "Sharing files like its 1999. Connect to my network with OpenVPN.\n\n`nooopster.challenges.ooo 1999`\n\nFiles:\n * [nooopster.ovpn](/challenge_files/9f680560d07b8fa5102bfcfec26b6b4151628fb926017ca96c2bbda5391f6db3/nooopster.ovpn) 09a9782cf59564ca2c83ba679f864615674c712da6489e2e70c4895b135a4e43\n * [openvpn.shared.key](/challenge_files/9f680560d07b8fa5102bfcfec26b6b4151628fb926017ca96c2bbda5391f6db3/openvpn.shared.key) 0d7937906ed4795db071b403a26c18b989f5efebc7e6c20defbb96b8cd5d10bd",
+    "file_digests": {
+      "nooopster.ovpn": "09a9782cf59564ca2c83ba679f864615674c712da6489e2e70c4895b135a4e43",
+      "openvpn.shared.key": "0d7937906ed4795db071b403a26c18b989f5efebc7e6c20defbb96b8cd5d10bd"
+    },
+    "file_urls": [
+      "/challenge_files/9f680560d07b8fa5102bfcfec26b6b4151628fb926017ca96c2bbda5391f6db3/nooopster.ovpn",
+      "/challenge_files/9f680560d07b8fa5102bfcfec26b6b4151628fb926017ca96c2bbda5391f6db3/openvpn.shared.key"
+    ],
+    "flag_hash": "b9adbeecf57e2c695aa8bbe8556da811afe1239aaf9b2943f5d6dc8db82d5c84",
+    "hidden_game_network_info": false,
+    "host": "nooopster.challenges.ooo",
+    "id": "nooopster",
+    "port": 1999,
+    "repo_dir": "cloned_repos/chall-nooopster",
+    "tags": [
+      "pwn",
+      "reversing",
+      "easy",
+      "--special-emoji-🎧",
+      "--special-lat-68",
+      "--special-lon-56"
+    ],
+    "title": "nooopster",
+    "violates_flag_format": false
+  },
+  "pooow-buddy": {
+    "authors": [
+      "zardus"
+    ],
+    "category": "haiku",
+    "description": "Tired of POWs? Here's a helpful program to solve them for you!\n\n`pooow-buddy.challenges.ooo 5000`\n\nFiles:\n * [service](/challenge_files/0e83814a74804a9ae98caff1be2f4ef11c399e538a11509369d4a3bf5541c17e/service) 77f047475abaea172a9bed63d0555c79072ba139a6a0b0ea666d31fde61e5aa2",
+    "file_digests": {
+      "service": "77f047475abaea172a9bed63d0555c79072ba139a6a0b0ea666d31fde61e5aa2"
+    },
+    "file_urls": [
+      "/challenge_files/0e83814a74804a9ae98caff1be2f4ef11c399e538a11509369d4a3bf5541c17e/service"
+    ],
+    "flag_hash": "8e44e5a7ff93400ebcd5283b2377d64cf2aa1618f24f70d26af9d3e3218c37c8",
+    "hidden_game_network_info": false,
+    "host": "pooow-buddy.challenges.ooo",
+    "id": "pooow-buddy",
+    "port": 5000,
+    "repo_dir": "cloned_repos/chall-pooow-buddy",
+    "tags": [
+      "reversing",
+      "easy",
+      "--special-emoji-💥",
+      "--special-lat-23",
+      "--special-lon-76"
+    ],
+    "title": "pooow-buddy",
+    "violates_flag_format": false
+  },
+  "pooow-pal": {
+    "authors": [
+      "zardus"
+    ],
+    "category": "haiku",
+    "description": "Our pooow-buddy was too susceptible to influence. This one should be safer.\n\n`pooow-pal.challenges.ooo 5000`\n\nFiles:\n * [service](/challenge_files/7bc0f14e90cbba88de9fabd36075a505a97a24376c8e7f9efd78658729a3c8bc/service) 0efa0ff28219353fac4ac563c3366180a446097be90b0ac8d2224f6d9cb887d8",
+    "file_digests": {
+      "service": "0efa0ff28219353fac4ac563c3366180a446097be90b0ac8d2224f6d9cb887d8"
+    },
+    "file_urls": [
+      "/challenge_files/7bc0f14e90cbba88de9fabd36075a505a97a24376c8e7f9efd78658729a3c8bc/service"
+    ],
+    "flag_hash": "ba6eb80740ec8a755c5ac963571b53bc1eb225e7e5ebe81b6e3a788f3246205f",
+    "hidden_game_network_info": false,
+    "host": "pooow-pal.challenges.ooo",
+    "id": "pooow-pal",
+    "port": 5000,
+    "repo_dir": "cloned_repos/chall-pooow-pal",
+    "tags": [
+      "reversing",
+      "--special-emoji-❤️",
+      "--special-lat-29",
+      "--special-lon-74"
+    ],
+    "title": "pooow-pal",
+    "violates_flag_format": false
+  },
+  "pza999": {
+    "authors": [
+      "mike_pizza"
+    ],
+    "category": "haiku",
+    "description": "OOO Corp is proud to unveil the PZA999, a new top-of-the-line ethernet device. Before these devices are available for purchase, we've provided our developer environment to download. Inside you'll find everything you need to get started, a PZA999 emulator and the source code for our PZA999 driver. Make a TCP connection to the IP and port below to receive instructions on how to connect to a remote PZA999. Flag is in `/root/flag`\n\n`65.2.99.186 11111`\n\nFiles:\n * [pza999.tgz](/challenge_files/3cabfcf5207c0b36e3fc0eec59017e6e54a633ed9396e93f1591a76b72b5868c/pza999.tgz) fb11b154383c6c252bed4576fdf6fa6ce7947f1ec8fd75ebcc4c1b80f0b48bcd",
+    "file_digests": {
+      "pza999.tgz": "fb11b154383c6c252bed4576fdf6fa6ce7947f1ec8fd75ebcc4c1b80f0b48bcd"
+    },
+    "file_urls": [
+      "/challenge_files/3cabfcf5207c0b36e3fc0eec59017e6e54a633ed9396e93f1591a76b72b5868c/pza999.tgz"
+    ],
+    "flag_hash": "fe78312d3a5581071977eae3df72b563a7df7e38cf9977a32fb44b76e8c19909",
+    "hidden_game_network_info": false,
+    "host": "65.2.99.186",
+    "id": "pza999",
+    "port": 11111,
+    "repo_dir": "cloned_repos/chall-pza999",
+    "tags": [
+      "pwn",
+      "kernel",
+      "--special-emoji-💫",
+      "--special-lat-62",
+      "--special-lon-30"
+    ],
+    "title": "pza999",
+    "violates_flag_format": false
+  },
+  "qoo-or-ooo": {
+    "authors": [
+      "tiffanyb"
+    ],
+    "category": "haiku",
+    "description": "This is another QOO's challenge. Wait, is this QOO or OOO?\n\n`qoo-or-ooo.challenges.ooo 5000`\n\nFiles:\n * [backend.py](/challenge_files/4750459de3b6635ae262a7206fcaf125e5eb593dec379452f541ca372bbc5900/backend.py) f34c0ad16638ed67930893b8fc61abc50b98c8b00d761766cc8afb3525ae6a4d\n * [coin.py](/challenge_files/4750459de3b6635ae262a7206fcaf125e5eb593dec379452f541ca372bbc5900/coin.py) 4e812503ab73aaf7dd66e6302e01202845f8f1307232761f03baedbe3bc34cba\n * [game.py](/challenge_files/4750459de3b6635ae262a7206fcaf125e5eb593dec379452f541ca372bbc5900/game.py) 3d9158498c4272761e82e6f9fa9192cfa884d3d350ec01a2bb3873e46b0e3058\n * [players.py](/challenge_files/4750459de3b6635ae262a7206fcaf125e5eb593dec379452f541ca372bbc5900/players.py) 635db715b498511ebaf305a242cd3ca095235813189be095734721f64d568f12\n * [service.py](/challenge_files/4750459de3b6635ae262a7206fcaf125e5eb593dec379452f541ca372bbc5900/service.py) ff1f96ec1158cc9118ba0fad9142f18f92ed288b9659b1826d1006c1a2c26ff2",
+    "file_digests": {
+      "backend.py": "f34c0ad16638ed67930893b8fc61abc50b98c8b00d761766cc8afb3525ae6a4d",
+      "coin.py": "4e812503ab73aaf7dd66e6302e01202845f8f1307232761f03baedbe3bc34cba",
+      "game.py": "3d9158498c4272761e82e6f9fa9192cfa884d3d350ec01a2bb3873e46b0e3058",
+      "players.py": "635db715b498511ebaf305a242cd3ca095235813189be095734721f64d568f12",
+      "service.py": "ff1f96ec1158cc9118ba0fad9142f18f92ed288b9659b1826d1006c1a2c26ff2"
+    },
+    "file_urls": [
+      "/challenge_files/4750459de3b6635ae262a7206fcaf125e5eb593dec379452f541ca372bbc5900/service.py",
+      "/challenge_files/4750459de3b6635ae262a7206fcaf125e5eb593dec379452f541ca372bbc5900/backend.py",
+      "/challenge_files/4750459de3b6635ae262a7206fcaf125e5eb593dec379452f541ca372bbc5900/coin.py",
+      "/challenge_files/4750459de3b6635ae262a7206fcaf125e5eb593dec379452f541ca372bbc5900/game.py",
+      "/challenge_files/4750459de3b6635ae262a7206fcaf125e5eb593dec379452f541ca372bbc5900/players.py"
+    ],
+    "flag_hash": "68ca9922a423ff766e3d88203acfc17aa213e7c8aec54d78fb738e934de958a6",
+    "hidden_game_network_info": false,
+    "host": "qoo-or-ooo.challenges.ooo",
+    "id": "qoo-or-ooo",
+    "port": 5000,
+    "repo_dir": "cloned_repos/chall-qoo-or-ooo",
+    "tags": [
+      "crypto",
+      "--special-emoji-💰",
+      "--special-lat-71",
+      "--special-lon-82"
+    ],
+    "title": "qoo-or-ooo",
+    "violates_flag_format": false
+  },
+  "rad": {
+    "authors": [
+      "nullptr"
+    ],
+    "category": "haiku",
+    "description": "> The undiscovered country from whose bourn  \n> No traveler returns, puzzles the will  \n> And makes us rather bear those ills we have  \n> Than fly to others that we know not of?  \n> Thus conscience does make cowards of us all,  \n> And thus the native hue of resolution  \n> Is sicklied o'er with the pale cast of thought,  \n> And enterprises of great pith and moment  \n> With this regard their bits turn awry,  \n> And lose the name of action.  \n\nUse our cutting-edge graphical client to observe science in action!  \n\nYour team token is the value of your `dc29_access_token` in your browser's\nlocal storage for https://scoreboard.ooo.\n\n\n`165.22.0.163 1337`\n\nFiles:\n * [rad_client](/challenge_files/8730ffaded3fdf7b76dd94c829b9b538af22646bf83c8bbf37d540f8c4a578b7/rad_client) 2e82eadbfdfb2aee441bc8ae33b40ebb473bf067e81efc63c027448dde792d31\n * [rad_fw](/challenge_files/8730ffaded3fdf7b76dd94c829b9b538af22646bf83c8bbf37d540f8c4a578b7/rad_fw) 41a8c9514705d0fbfb3efc3b1ff66ff3f62d3a4ad1cd86fd2df6065e42d2aeb1",
+    "file_digests": {
+      "rad_client": "2e82eadbfdfb2aee441bc8ae33b40ebb473bf067e81efc63c027448dde792d31",
+      "rad_fw": "41a8c9514705d0fbfb3efc3b1ff66ff3f62d3a4ad1cd86fd2df6065e42d2aeb1"
+    },
+    "file_urls": [
+      "/challenge_files/8730ffaded3fdf7b76dd94c829b9b538af22646bf83c8bbf37d540f8c4a578b7/rad_client",
+      "/challenge_files/8730ffaded3fdf7b76dd94c829b9b538af22646bf83c8bbf37d540f8c4a578b7/rad_fw"
+    ],
+    "flag_hash": "407ae65cdcb9fca4b55a1d8674efec0df3dffc3fb32417f585c55b2243e73ac3",
+    "hidden_game_network_info": false,
+    "host": "165.22.0.163",
+    "id": "rad",
+    "port": 1337,
+    "repo_dir": "cloned_repos/chall-rad",
+    "tags": [
+      "pwn",
+      "reversing",
+      "--special-emoji-🛰️",
+      "--special-lat-45",
+      "--special-lon-24"
+    ],
+    "title": "rad",
+    "violates_flag_format": false
+  },
+  "rick": {
+    "authors": [
+      "reyammer"
+    ],
+    "category": "haiku",
+    "description": "Don't Open The Door\n\n`rick.challenges.ooo 4343`\n\nFiles:\n * [rick](/challenge_files/c9178812022e03d6d2d0fd8eb445cb0f4eb3b4c5ce9276993d71dee057ebb685/rick) d8c2a1bc46475a709bbf9eb166f9dd9121189d66c7be0894e722aeba0058ac41",
+    "file_digests": {
+      "rick": "d8c2a1bc46475a709bbf9eb166f9dd9121189d66c7be0894e722aeba0058ac41"
+    },
+    "file_urls": [
+      "/challenge_files/c9178812022e03d6d2d0fd8eb445cb0f4eb3b4c5ce9276993d71dee057ebb685/rick"
+    ],
+    "flag_hash": "84e7d4267ab76cdeb888a2aafa5461cc11967c2ce1915b4512e2080a13bc0714",
+    "hidden_game_network_info": false,
+    "host": "rick.challenges.ooo",
+    "id": "rick",
+    "port": 4343,
+    "repo_dir": "cloned_repos/chall-rick",
+    "tags": [
+      "reversing",
+      "--special-emoji-🎙️",
+      "--special-lat-61",
+      "--special-lon-49"
+    ],
+    "title": "rick",
+    "violates_flag_format": false
+  },
+  "say-hellooo": {
+    "authors": [
+      "zardus"
+    ],
+    "category": "haiku",
+    "description": "Hello, and welcome to our game! We are so excited to hack with you today. How excited? Call Zardus on the telephone and find out! Seriously, call Zardus on the telephone and we'll give you the flag.\n\nYou don't need to call Zardus anymore, feel free to watch this video instead LIKE AND SUBSCRIBE: https://youtu.be/7K2x4UQGPQw",
+    "file_digests": {},
+    "file_urls": [],
+    "flag_hash": "ae605a89f8a1a0542258a57411945d0605e2f33f8fa93c9b8627a6e37d13337f",
+    "hidden_game_network_info": false,
+    "host": null,
+    "id": "say-hellooo",
+    "port": null,
+    "repo_dir": "cloned_repos/chall-say-hellooo",
+    "tags": [
+      "easy",
+      "recon",
+      "--special-emoji-☎️",
+      "--special-lat-42",
+      "--special-lon-16"
+    ],
+    "title": "say-hellooo",
+    "violates_flag_format": false
+  },
+  "segnalooo": {
+    "authors": [
+      "anton00b"
+    ],
+    "category": "haiku",
+    "description": "x86 assembly is crazy. I hope this challenge will help you understand it a bit better.\n\n`segnalooo.challenges.ooo 4321`\n\nFiles:\n * [stub](/challenge_files/af42881af0bd57af2c5d5740fea6c7724353a2a01ba140d21b4abf6fd2e7d732/stub) 3580bf5cffb81b8de3cf352fe031486e6d73c12ff6a25761a656334b1fa7f65d",
+    "file_digests": {
+      "stub": "3580bf5cffb81b8de3cf352fe031486e6d73c12ff6a25761a656334b1fa7f65d"
+    },
+    "file_urls": [
+      "/challenge_files/af42881af0bd57af2c5d5740fea6c7724353a2a01ba140d21b4abf6fd2e7d732/stub"
+    ],
+    "flag_hash": "6165977f3a1df8c449d3132bed464481ecd1fd2fdbce2ce4125ec269d3ca47f2",
+    "hidden_game_network_info": false,
+    "host": "segnalooo.challenges.ooo",
+    "id": "segnalooo",
+    "port": 4321,
+    "repo_dir": "cloned_repos/chall-segnalooo",
+    "tags": [
+      "pwn",
+      "--special-emoji-🤌",
+      "--special-lat-37",
+      "--special-lon-25"
+    ],
+    "title": "segnalooo",
+    "violates_flag_format": false
+  },
+  "smart-cryptooo": {
+    "authors": [
+      "zardus"
+    ],
+    "category": "haiku",
+    "description": "Existing encryption schemes are just too dumb. OOO is here to change that!\n\nFiles:\n * [anc.py](/challenge_files/4639bf6b182d390e5e02add139505ba5c1c7547786ca3dcec90b9d36fded7e84/anc.py) 7d204768277ba04c79809165bf4654941bebefa52c367413d8b2fddfaa15cd40\n * [https___oooverflow.io_philosophy.html-secret.enc](/challenge_files/4639bf6b182d390e5e02add139505ba5c1c7547786ca3dcec90b9d36fded7e84/https___oooverflow.io_philosophy.html-secret.enc) 30bb5668a1ad3bde1ab92be6d6b934b6c80f47f1f0af739470c191157fb71a59",
+    "file_digests": {
+      "anc.py": "7d204768277ba04c79809165bf4654941bebefa52c367413d8b2fddfaa15cd40",
+      "https___oooverflow.io_philosophy.html-secret.enc": "30bb5668a1ad3bde1ab92be6d6b934b6c80f47f1f0af739470c191157fb71a59"
+    },
+    "file_urls": [
+      "/challenge_files/4639bf6b182d390e5e02add139505ba5c1c7547786ca3dcec90b9d36fded7e84/https___oooverflow.io_philosophy.html-secret.enc",
+      "/challenge_files/4639bf6b182d390e5e02add139505ba5c1c7547786ca3dcec90b9d36fded7e84/anc.py"
+    ],
+    "flag_hash": "a69af6da996a3d00a1d2f151d51d516d56d11b37a12e0a58cd5eb7e76e917222",
+    "hidden_game_network_info": false,
+    "host": null,
+    "id": "smart-cryptooo",
+    "port": null,
+    "repo_dir": "cloned_repos/chall-smart-cryptooo",
+    "tags": [
+      "ml",
+      "crypto",
+      "easy",
+      "--special-emoji-🧠",
+      "--special-lat-28",
+      "--special-lon-56"
+    ],
+    "title": "smart-cryptooo",
+    "violates_flag_format": false
+  },
+  "still-loooked-out": {
+    "authors": [
+      "jay"
+    ],
+    "category": "haiku",
+    "description": "Hours of Running in the 90s on repeat later, you're running late for a drift race. Time to unlock this thing! There might be something left over on the Car Infotainment Device that'll help! OOO note: you MUST solve looocked-out before this can be attempted.\n\n`35.81.74.157 4147`",
+    "file_digests": {},
+    "file_urls": [],
+    "flag_hash": "a17d3eb1973fe6d4b99e17426df5f394a3bf4f2fab23e48cfaafd5e7789a174b",
+    "hidden_game_network_info": false,
+    "host": "35.81.74.157",
+    "id": "still-loooked-out",
+    "port": 4147,
+    "repo_dir": "cloned_repos/chall-still-looocked-ooout",
+    "tags": [
+      "pwn",
+      "reversing",
+      "--special-emoji-🏎️",
+      "--special-lat-22",
+      "--special-lon-40"
+    ],
+    "title": "still-loooked-out",
+    "violates_flag_format": false
+  },
+  "threefactooorx": {
+    "authors": [
+      "kaptain"
+    ],
+    "category": "haiku",
+    "description": "This is the end of phishing. The Order of the Overflow is introducing the ultimate authentication factor, the most important one, the final one. To help the web transition to this new era of security, we are introducing a 3FA tool for testing your webpages completely isolated on our admin's browser.\n\n`threefactooorx.challenges.ooo 4017`\n\nFiles:\n * [3factooorx.crx](/challenge_files/684b4205e426b2ced5b5c9fa1d71016c2e36373de0b22ec342f01670aa543b98/3factooorx.crx) b40cabadcdbf1d0a8868121d184fcb9d5355c688045dc5a2e91fe870e846ff1d",
+    "file_digests": {
+      "3factooorx.crx": "b40cabadcdbf1d0a8868121d184fcb9d5355c688045dc5a2e91fe870e846ff1d"
+    },
+    "file_urls": [
+      "/challenge_files/684b4205e426b2ced5b5c9fa1d71016c2e36373de0b22ec342f01670aa543b98/3factooorx.crx"
+    ],
+    "flag_hash": "26d83d84efca29dce74a5ff67be95f4ebcb8a0b8d0706e007dfaec639a832f60",
+    "hidden_game_network_info": false,
+    "host": "threefactooorx.challenges.ooo",
+    "id": "threefactooorx",
+    "port": 4017,
+    "repo_dir": "cloned_repos/chall-threefactooorx",
+    "tags": [
+      "web"
+    ],
+    "title": "threefactooorx",
+    "violates_flag_format": false
+  },
+  "tiamat": {
+    "authors": [
+      "trickE"
+    ],
+    "category": "haiku",
+    "description": "Protovision just launched their new licensing server yesterday and the sysop over at Pirate's Harbor BBS already has a copy. You should download it and try to be the first one to hack it. \n\n`tiamat.challenges.ooo 5000`\n\nFiles:\n * [Dockerfile](/challenge_files/0f1ab4afac3cc40ff10f45ad29bbd56b55a6f93a3dc82cad7bc51b924be8c4de/Dockerfile) 2a78b44ebb731329df43ee9cce5d132f228721958ba4d0561642c65e8f8a54dd\n * [banner_fail](/challenge_files/0f1ab4afac3cc40ff10f45ad29bbd56b55a6f93a3dc82cad7bc51b924be8c4de/banner_fail) a771e38a450167dac05703990112ff797788c6237083d799b2c4c9ed3970eafc\n * [games](/challenge_files/0f1ab4afac3cc40ff10f45ad29bbd56b55a6f93a3dc82cad7bc51b924be8c4de/games) 1dccd10dd7b82ef75b4efbf5d507eda6f4f8069f94dc59164c59fc9a5560c20e\n * [liccheck.bin](/challenge_files/0f1ab4afac3cc40ff10f45ad29bbd56b55a6f93a3dc82cad7bc51b924be8c4de/liccheck.bin) a3961a8e93fcf1f9121c8d798133c13e2aa979e7d88015adaa305117a423d4a7\n * [qemooo](/challenge_files/0f1ab4afac3cc40ff10f45ad29bbd56b55a6f93a3dc82cad7bc51b924be8c4de/qemooo) 3eb76acf4a1574ebb11590705991a59c91aba100a7cdb0b4af9f54b01c1088bc\n * [service.conf](/challenge_files/0f1ab4afac3cc40ff10f45ad29bbd56b55a6f93a3dc82cad7bc51b924be8c4de/service.conf) 8aa64c9bbfc36d5ca0f47ebff99743c3e37e7fb9ced77e733c9c4ae81ebb3ffa\n * [wrapper](/challenge_files/0f1ab4afac3cc40ff10f45ad29bbd56b55a6f93a3dc82cad7bc51b924be8c4de/wrapper) 7ebc5225a50ca0239e16d518148c650699f08f7dea72a607ddff93b38a7d2cce",
+    "file_digests": {
+      "Dockerfile": "2a78b44ebb731329df43ee9cce5d132f228721958ba4d0561642c65e8f8a54dd",
+      "banner_fail": "a771e38a450167dac05703990112ff797788c6237083d799b2c4c9ed3970eafc",
+      "games": "1dccd10dd7b82ef75b4efbf5d507eda6f4f8069f94dc59164c59fc9a5560c20e",
+      "liccheck.bin": "a3961a8e93fcf1f9121c8d798133c13e2aa979e7d88015adaa305117a423d4a7",
+      "qemooo": "3eb76acf4a1574ebb11590705991a59c91aba100a7cdb0b4af9f54b01c1088bc",
+      "service.conf": "8aa64c9bbfc36d5ca0f47ebff99743c3e37e7fb9ced77e733c9c4ae81ebb3ffa",
+      "wrapper": "7ebc5225a50ca0239e16d518148c650699f08f7dea72a607ddff93b38a7d2cce"
+    },
+    "file_urls": [
+      "/challenge_files/0f1ab4afac3cc40ff10f45ad29bbd56b55a6f93a3dc82cad7bc51b924be8c4de/Dockerfile",
+      "/challenge_files/0f1ab4afac3cc40ff10f45ad29bbd56b55a6f93a3dc82cad7bc51b924be8c4de/service.conf",
+      "/challenge_files/0f1ab4afac3cc40ff10f45ad29bbd56b55a6f93a3dc82cad7bc51b924be8c4de/wrapper",
+      "/challenge_files/0f1ab4afac3cc40ff10f45ad29bbd56b55a6f93a3dc82cad7bc51b924be8c4de/liccheck.bin",
+      "/challenge_files/0f1ab4afac3cc40ff10f45ad29bbd56b55a6f93a3dc82cad7bc51b924be8c4de/qemooo",
+      "/challenge_files/0f1ab4afac3cc40ff10f45ad29bbd56b55a6f93a3dc82cad7bc51b924be8c4de/games",
+      "/challenge_files/0f1ab4afac3cc40ff10f45ad29bbd56b55a6f93a3dc82cad7bc51b924be8c4de/banner_fail"
+    ],
+    "flag_hash": "4be1a40fe70dd736bfc11c96c12979f2feed08b27eb6aa8d45e3317afe5dced2",
+    "hidden_game_network_info": false,
+    "host": "tiamat.challenges.ooo",
+    "id": "tiamat",
+    "port": 5000,
+    "repo_dir": "cloned_repos/chall-tiamat",
+    "tags": [
+      "reversing",
+      "--special-emoji-🐉",
+      "--special-lat-30",
+      "--special-lon-18"
+    ],
+    "title": "tiamat",
+    "violates_flag_format": false
+  }
+}

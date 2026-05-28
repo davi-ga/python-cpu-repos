@@ -1,0 +1,204 @@
+{
+  "title": "Metrics",
+  "description": "Calculated metrics data based on known actuals.",
+  "type": "object",
+  "properties": {
+    "testPositivityRatio": {
+      "title": "Testpositivityratio",
+      "description": "Ratio of people who test positive calculated using a 7-day rolling average.",
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "testPositivityRatioDetails": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/TestPositivityRatioDetails"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "caseDensity": {
+      "title": "Casedensity",
+      "description": "The number of cases per 100k population calculated using a 7-day rolling average.",
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "weeklyNewCasesPer100k": {
+      "title": "Weeklynewcasesper100K",
+      "description": "The number of new cases per 100k population over the last week.",
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "contactTracerCapacityRatio": {
+      "title": "Contacttracercapacityratio",
+      "description": "Ratio of currently hired tracers to estimated tracers needed based on 7-day daily case average.",
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "infectionRate": {
+      "title": "Infectionrate",
+      "description": "R_t, or the estimated number of infections arising from a typical case.",
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "infectionRateCI90": {
+      "title": "Infectionrateci90",
+      "description": "90th percentile confidence interval upper endpoint of the infection rate.",
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "icuCapacityRatio": {
+      "title": "Icucapacityratio",
+      "description": "Ratio of staffed intensive care unit (ICU) beds that are currently in use.",
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "bedsWithCovidPatientsRatio": {
+      "title": "Bedswithcovidpatientsratio",
+      "description": "Ratio of staffed hospital beds that are currently in use by COVID patients. For counties, this is calculated using HSA-level data for the corresponding area.",
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "weeklyCovidAdmissionsPer100k": {
+      "title": "Weeklycovidadmissionsper100K",
+      "description": "Number of COVID patients per 100k population admitted in the past week. For counties, this is calculated using HSA-level data for the corresponding area.",
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "vaccinationsInitiatedRatio": {
+      "title": "Vaccinationsinitiatedratio",
+      "description": "Ratio of population that has initiated vaccination.",
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "vaccinationsCompletedRatio": {
+      "title": "Vaccinationscompletedratio",
+      "description": "Ratio of population that has completed vaccination.",
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "vaccinationsAdditionalDoseRatio": {
+      "title": "Vaccinationsadditionaldoseratio",
+      "description": "Ratio of population that are fully vaccinated and have received a booster (or additional) dose.",
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "testPositivityRatio",
+    "caseDensity",
+    "weeklyNewCasesPer100k",
+    "contactTracerCapacityRatio",
+    "infectionRate",
+    "infectionRateCI90",
+    "icuCapacityRatio",
+    "bedsWithCovidPatientsRatio",
+    "weeklyCovidAdmissionsPer100k"
+  ],
+  "definitions": {
+    "TestPositivityRatioMethod": {
+      "title": "TestPositivityRatioMethod",
+      "description": "Method used to determine test positivity ratio.",
+      "enum": [
+        "CMSTesting",
+        "CDCTesting",
+        "HHSTesting",
+        "Valorum",
+        "covid_tracking",
+        "other"
+      ]
+    },
+    "TestPositivityRatioDetails": {
+      "title": "TestPositivityRatioDetails",
+      "description": "Details about how the test positivity ratio was calculated.",
+      "type": "object",
+      "properties": {
+        "source": {
+          "description": "Source data for test positivity ratio.",
+          "allOf": [
+            {
+              "$ref": "#/definitions/TestPositivityRatioMethod"
+            }
+          ]
+        }
+      },
+      "required": [
+        "source"
+      ]
+    }
+  }
+}

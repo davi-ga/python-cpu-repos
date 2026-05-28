@@ -1,0 +1,47 @@
+* Distributed Serverless Agents
+  This directory contains the components necessary for building a multiagent system using agents with an internally distributed design.
+  That is, each agent is not a single function, but rather a collection of functions that invoke each other asynchronously, enabling concurrency wherever reasonable.
+
+** Components
+   The ~components~ directory contains the generic components used to implement each agent:
+*** Adapter
+    The adapter performs the emission and reception checking, and is responsible for accessing the database.
+    A separate instance should be deployed for each agent, with the ~ROLE~ environment variable set appropriately.
+
+    The adapter also needs configuration files to tell it which reactors to invoke for the various message events.
+*** Receiver
+    The receiver handles incoming messages, and passes them to the appropriate adapter.
+    As such, it needs a ~ROLE~ environment variable set to help it identify the correct adapter.
+*** Emitter
+    The emitter is a fully generic component that simply performs the asynchronous message passing.
+    It is only a separate function because of the potentially slow nature of http requests, which are used for sending messages via REST.
+
+** Logistics
+   The ~logistics~ directory contains an example scenario, with four roles.
+
+   The contained ~configuration~ directory is used to create a separate layer for the necessary configuration files used by all of the roles.
+
+** Deployment
+   Unfortunately, without better tooling, deployment is a multi-step process.
+
+   - First, run the ~deploy.sh~ script at the top level, to sequentially deploy all of the components.
+   This will probably take a long time, since there are a lot of applications to deploy.
+   #+begin_quote
+   Note: it may be possible to run some of the deployment actions in parallel; worth looking into
+   #+end_quote
+
+   - Next, update the configuration files to refer to the correct ARNs.
+     The files that need updating are:
+     - merchant/reactors.json
+     - labeler/reactors.json
+     - wrapper/reactors.json
+     - packer/reactors.json
+     - configuration/configuration-dev.json
+     - configuration/configuration-local.json
+
+     Each configuration file has an associated ~-tmpl.json~ as an example; you'll need to rename it and replace each entry with the appropriate ARN or URL.
+
+   - Finally, redeploy all of the logistics agents, now that they are properly configured.
+
+** Future Work
+   - Improve the configuration process so that the URLs and ARNs can be derived from the environment variables or something, so that we don't need to go through the double deployment step...

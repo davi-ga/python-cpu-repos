@@ -1,0 +1,111 @@
+@timestamp,@message
+2021-11-22 04:39:44.489,"received_defective_refund {""requestId"": 31, ""orderId"": 40386, ""shipmentId"": 78, ""defectiveRefund"": ""Sending Defective Item Refund""}
+"
+2021-11-22 04:39:44.471,"[INFO]	2021-11-22T04:39:44.470Z	8420aee8-e6f6-4b6b-a1d0-b222268fbeac	Received message: {'requestId': 31, 'orderId': 40386, 'shipmentId': 78, 'defectiveRefund': 'Sending Defective Item Refund'}
+"
+2021-11-22 04:39:44.455,"Received message: {'requestId': 31, 'orderId': 40386, 'shipmentId': 78, 'defectiveRefund': 'Sending Defective Item Refund'}
+"
+2021-11-22 04:39:44.410,"defective_refund_sent: {""requestId"": 31, ""orderId"": 40386, ""shipmentId"": 78, ""defectiveRefund"": ""Sending Defective Item Refund""}
+"
+2021-11-22 04:39:44.410,"[INFO]	2021-11-22T04:39:44.410Z	c2d559ef-679f-4c60-9483-9327d7530b02	Sending message {'requestId': 31, 'orderId': 40386, 'shipmentId': 78, 'defectiveRefund': 'Sending Defective Item Refund'} to https://bdn5aj1tqi.execute-api.us-east-2.amazonaws.com/buyer/messages
+"
+2021-11-22 04:39:44.358,"Sending defective refund to Buyer: {'requestId': 31, 'orderId': 40386, 'shipmentId': 78, 'defectiveRefund': 'Sending Defective Item Refund'}
+"
+2021-11-22 04:39:44.351,"received_defective_notification {""requestId"": 31, ""orderId"": 40386, ""shipmentId"": 78, ""item"": ""test item-31""}
+"
+2021-11-22 04:39:44.320,"[INFO]	2021-11-22T04:39:44.320Z	38d3d508-573b-45b3-a853-43bd7eacd7ba	Received message: {'requestId': 31, 'orderId': 40386, 'shipmentId': 78, 'item': 'test item-31'}
+"
+2021-11-22 04:39:44.293,"Received message: {'requestId': 31, 'orderId': 40386, 'shipmentId': 78, 'item': 'test item-31'}
+"
+2021-11-22 04:39:44.253,"defective_notification_sent: {""requestId"": 31, ""orderId"": 40386, ""shipmentId"": 78, ""item"": ""test item-31""}
+"
+2021-11-22 04:39:44.253,"[INFO]	2021-11-22T04:39:44.253Z	c2d559ef-679f-4c60-9483-9327d7530b02	Sending message {'requestId': 31, 'orderId': 40386, 'shipmentId': 78, 'item': 'test item-31'} to https://bdn5aj1tqi.execute-api.us-east-2.amazonaws.com/buyer/messages
+"
+2021-11-22 04:39:44.185,"received_item_defective: {""requestId"": 31, ""orderId"": 40386, ""shipmentId"": 78, ""item"": ""test item-31""}
+"
+2021-11-22 04:39:44.185,"Sending defective notification to Buyer: {'requestId': 31, 'orderId': 40386, 'shipmentId': 78, 'item': 'test item-31'}
+"
+2021-11-22 04:39:44.178,"[INFO]	2021-11-22T04:39:44.178Z	c2d559ef-679f-4c60-9483-9327d7530b02	Received message: {'requestId': 31, 'orderId': 40386, 'shipmentId': 78, 'item': 'test item-31'}
+"
+2021-11-22 04:39:44.172,"Received message: {'requestId': 31, 'orderId': 40386, 'shipmentId': 78, 'item': 'test item-31'}
+"
+2021-11-22 04:39:44.128,"defective_notification_sent: {""requestId"": 31, ""orderId"": 40386, ""shipmentId"": 78, ""item"": ""test item-31""}
+"
+2021-11-22 04:39:44.128,"[INFO]	2021-11-22T04:39:44.128Z	0df2df50-02b1-4908-b42e-62d1030bea27	Sending message {'requestId': 31, 'orderId': 40386, 'shipmentId': 78, 'item': 'test item-31'} to https://bdn5aj1tqi.execute-api.us-east-2.amazonaws.com/merchant/messages
+"
+2021-11-22 04:39:44.095,"Sending defective notification to Merchant: {'requestId': 31, 'orderId': 40386, 'shipmentId': 78, 'item': 'test item-31'}
+"
+2021-11-22 04:39:44.086,"received_tracking: {""requestId"": 31, ""orderId"": 40386, ""shipmentId"": 78, ""trackingId"": 84}
+"
+2021-11-22 04:39:44.078,"[INFO]	2021-11-22T04:39:44.78Z	49d32721-c2b3-4fec-9eb7-a9f2ea424c16	Received message: {'requestId': 31, 'orderId': 40386, 'shipmentId': 78, 'trackingId': 84}
+"
+2021-11-22 04:39:44.042,"Received message: {'requestId': 31, 'orderId': 40386, 'shipmentId': 78, 'trackingId': 84}
+"
+2021-11-22 04:39:43.996,"[INFO]	2021-11-22T04:39:43.996Z	0df2df50-02b1-4908-b42e-62d1030bea27	Sending message {'requestId': 31, 'orderId': 40386, 'shipmentId': 78, 'trackingId': 84} to https://bdn5aj1tqi.execute-api.us-east-2.amazonaws.com/merchant/messages
+"
+2021-11-22 04:39:43.996,"tracking_info_sent: {""requestId"": 31, ""orderId"": 40386, ""shipmentId"": 78, ""trackingId"": 84}
+"
+2021-11-22 04:39:43.970,"received_order: {""requestId"": 31, ""orderId"": 40386, ""paymentId"": 75596, ""item"": ""test item-31"", ""address"": ""Indiana"", ""buyerName"": ""buyerA""}
+"
+2021-11-22 04:39:43.970,"Sending tracking info to Merchant: {'requestId': 31, 'orderId': 40386, 'shipmentId': 78, 'trackingId': 84}
+"
+2021-11-22 04:39:43.964,"[INFO]	2021-11-22T04:39:43.964Z	0df2df50-02b1-4908-b42e-62d1030bea27	Received message: {'requestId': 31, 'orderId': 40386, 'paymentId': 75596, 'item': 'test item-31', 'address': 'Indiana', 'buyerName': 'buyerA'}
+"
+2021-11-22 04:39:43.932,"Received message: {'requestId': 31, 'orderId': 40386, 'paymentId': 75596, 'item': 'test item-31', 'address': 'Indiana', 'buyerName': 'buyerA'}
+"
+2021-11-22 04:39:43.889,"[INFO]	2021-11-22T04:39:43.888Z	67da6edc-a6b8-4f98-82b3-7a7b639d7808	Sending message {'requestId': 31, 'orderId': 40386, 'paymentId': 75596, 'item': 'test item-31', 'address': 'Indiana', 'buyerName': 'buyerA'} to https://bdn5aj1tqi.execute-api.us-east-2.amazonaws.com/shipper/messages
+"
+2021-11-22 04:39:43.888,"item_to_ship_sent: {""requestId"": 31, ""orderId"": 40386, ""paymentId"": 75596, ""item"": ""test item-31"", ""address"": ""Indiana"", ""buyerName"": ""buyerA""}
+"
+2021-11-22 04:39:43.852,"received_pay: {""requestId"": 31, ""orderId"": 40386, ""amount"": 910, ""item"": ""test item-31"", ""address"": ""Indiana"", ""buyerName"": ""buyerA"", ""paymentId"": 75596}
+"
+2021-11-22 04:39:43.852,"Sending order to shipper: {'requestId': 31, 'orderId': 40386, 'paymentId': 75596, 'item': 'test item-31', 'address': 'Indiana', 'buyerName': 'buyerA'}
+"
+2021-11-22 04:39:43.845,"[INFO]	2021-11-22T04:39:43.845Z	67da6edc-a6b8-4f98-82b3-7a7b639d7808	Received message: {'requestId': 31, 'orderId': 40386, 'amount': 910, 'item': 'test item-31', 'address': 'Indiana', 'buyerName': 'buyerA', 'paymentId': 75596}
+"
+2021-11-22 04:39:43.830,"Received message: {'requestId': 31, 'orderId': 40386, 'amount': 910, 'item': 'test item-31', 'address': 'Indiana', 'buyerName': 'buyerA', 'paymentId': 75596}
+"
+2021-11-22 04:39:43.782,"sentPayment {""requestId"": 31, ""orderId"": 40386, ""amount"": 910, ""item"": ""test item-31"", ""address"": ""Indiana"", ""buyerName"": ""buyerA"", ""paymentId"": 75596}
+"
+2021-11-22 04:39:43.782,"[INFO]	2021-11-22T04:39:43.782Z	82dc9be0-db27-4c19-8dac-6eeeeaa46ee7	Sending message {'requestId': 31, 'orderId': 40386, 'amount': 910, 'item': 'test item-31', 'address': 'Indiana', 'buyerName': 'buyerA', 'paymentId': 75596} to https://bdn5aj1tqi.execute-api.us-east-2.amazonaws.com/merchant/messages
+"
+2021-11-22 04:39:43.731,"received_order: {""requestId"": 31, ""amount"": 910, ""item"": ""test item-31"", ""buyerName"": ""buyerA"", ""orderId"": 40386, ""address"": ""Indiana""}
+"
+2021-11-22 04:39:43.724,"[INFO]	2021-11-22T04:39:43.723Z	abe88dc8-045a-4852-b1aa-971c7ac6884b	Received message: {'requestId': 31, 'amount': 910, 'item': 'test item-31', 'buyerName': 'buyerA', 'orderId': 40386, 'address': 'Indiana'}
+"
+2021-11-22 04:39:43.691,"Received message: {'requestId': 31, 'amount': 910, 'item': 'test item-31', 'buyerName': 'buyerA', 'orderId': 40386, 'address': 'Indiana'}
+"
+2021-11-22 04:39:43.644,"sentOrder {""requestId"": 31, ""amount"": 910, ""item"": ""test item-31"", ""buyerName"": ""buyerA"", ""orderId"": 40386, ""address"": ""Indiana""}
+"
+2021-11-22 04:39:43.644,"[INFO]	2021-11-22T04:39:43.644Z	82dc9be0-db27-4c19-8dac-6eeeeaa46ee7	Sending message {'requestId': 31, 'amount': 910, 'item': 'test item-31', 'buyerName': 'buyerA', 'orderId': 40386, 'address': 'Indiana'} to https://bdn5aj1tqi.execute-api.us-east-2.amazonaws.com/merchant/messages
+"
+2021-11-22 04:39:43.615,"receivedQuote: {""requestId"": 31, ""item"": ""test item-31"", ""buyerName"": ""buyerA"", ""amount"": 910}
+"
+2021-11-22 04:39:43.607,"[INFO]	2021-11-22T04:39:43.607Z	82dc9be0-db27-4c19-8dac-6eeeeaa46ee7	Received message: {'requestId': 31, 'item': 'test item-31', 'buyerName': 'buyerA', 'amount': 910}
+"
+2021-11-22 04:39:43.569,"Received message: {'requestId': 31, 'item': 'test item-31', 'buyerName': 'buyerA', 'amount': 910}
+"
+2021-11-22 04:39:43.523,"[INFO]	2021-11-22T04:39:43.523Z	3c41a193-4e79-48a5-9e47-934d3d413747	Sending message {'requestId': 31, 'item': 'test item-31', 'buyerName': 'buyerA', 'amount': 910} to https://bdn5aj1tqi.execute-api.us-east-2.amazonaws.com/buyer/messages
+"
+2021-11-22 04:39:43.523,"quote_response_sent: {""requestId"": 31, ""item"": ""test item-31"", ""buyerName"": ""buyerA"", ""amount"": 910}
+"
+2021-11-22 04:39:43.499,"Quote request received: {""requestId"": 31, ""item"": ""test item-31"", ""buyerName"": ""buyerA""}
+"
+2021-11-22 04:39:43.499,"Sending quote response: {'requestId': 31, 'item': 'test item-31', 'buyerName': 'buyerA', 'amount': 910}
+"
+2021-11-22 04:39:43.487,"[INFO]	2021-11-22T04:39:43.487Z	3c41a193-4e79-48a5-9e47-934d3d413747	Received message: {'requestId': 31, 'item': 'test item-31', 'buyerName': 'buyerA'}
+"
+2021-11-22 04:39:43.454,"Received message: {'requestId': 31, 'item': 'test item-31', 'buyerName': 'buyerA'}
+"
+2021-11-22 04:39:43.397,"Quote request sent {""requestId"": 31, ""item"": ""test item-31"", ""buyerName"": ""buyerA""}
+"
+2021-11-22 04:39:43.397,"[INFO]	2021-11-22T04:39:43.397Z	cddda519-d4d2-4f8a-b628-31adf997e0e1	Sending message {'requestId': 31, 'item': 'test item-31', 'buyerName': 'buyerA'} to https://bdn5aj1tqi.execute-api.us-east-2.amazonaws.com/merchant/messages
+"
+2021-11-22 04:39:43.354,"{'eventID': 'b68967340b92207a5a5208df54c1cb02', 'eventName': 'INSERT', 'eventVersion': '1.1', 'eventSource': 'aws:dynamodb', 'awsRegion': 'us-east-2', 'dynamodb': {'ApproximateCreationDateTime': 1637555983.0, 'Keys': {'requestId': {'N': '31'}}, 'NewImage': {'item': {'S': 'test item-31'}, 'requestId': {'N': '31'}, 'buyerName': {'S': 'buyerA'}, '_time': {'S': '2021-11-22 04:39:42.977689'}}, 'SequenceNumber': '700000000010610180143', 'SizeBytes': 84, 'StreamViewType': 'NEW_IMAGE'}, 'eventSourceARN': 'arn:aws:dynamodb:us-east-2:538893305611:table/Quotes/stream/2021-11-22T03:26:42.088'}
+"
+2021-11-22 04:39:43.354,"Retrieved quote request info: {'item': 'test item-31', 'requestId': 31, 'buyerName': 'buyerA', '_time': '2021-11-22 04:39:42.977689'}
+"
+2021-11-22 04:39:43.354,"Sending quote request: {'requestId': 31, 'item': 'test item-31', 'buyerName': 'buyerA'}
+"
+2021-11-22 04:39:43.009,"Added entry to Quotes table: {'requestId': 31, 'item': 'test item-31', 'buyerName': 'buyerA', '_time': '2021-11-22 04:39:42.977689'}
+"
