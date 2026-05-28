@@ -1,0 +1,13 @@
+fastapi
+uvicorn[standard]
+numpy
+scikit-learn
+pandas
+mlflow
+boto3
+urllib3
+metaflow
+python-crfsuite
+pyahocorasick
+mecab-python3
+python-dotenv
