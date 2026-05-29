@@ -33,7 +33,7 @@ def knn_features(req: KNNRequest):
 
     X = np.array(req.X, dtype=np.float64)
     y = np.array(req.y, dtype=np.int32)
-    nnf = NearestNeighborsFeats(n_jobs=4, k_list=req.k_list, metric=req.metric)
+    nnf = NearestNeighborsFeats(n_jobs=1, k_list=req.k_list, metric=req.metric)
     nnf.fit(X, y)
     feats = nnf.predict(X)
     return KNNResponse(features=feats.tolist())
